@@ -5,7 +5,7 @@ public class PlayerData : ScriptableObject
 {
     [Header("Gravity")]
     [HideInInspector] public float gravityStrength; //Downwards force (gravity) needed for the desired jumpHeight and jumpTimeToApex.
-    [HideInInspector] public float gravityScale; //Strength of the player's gravity as a multiplier of gravity (set in ProjectSettings/Physics2D).
+    [HideInInspector] public float gravityScale; //Strength of the player's gravity as a multiplier of gravity (set in ProjectSettings/Physics2D = -30).
                                                  //Also the value the player's rigidbody2D.gravityScale is set to.
     [Space(5)]
     public float fallGravityMult; //Multiplier to the player's gravityScale when falling.
@@ -26,6 +26,7 @@ public class PlayerData : ScriptableObject
     [Space(5)]
     [Range(0f, 1)] public float accelInAir; //Multipliers applied to acceleration rate when airborne.
     [Range(0f, 1)] public float deccelInAir;
+    public bool doConserveMomentum = true;
 
     [Space(20)]
 
@@ -33,14 +34,27 @@ public class PlayerData : ScriptableObject
     public float jumpHeight; //Height of the player's jump
     public float jumpTimeToApex; //Time between applying the jump force and reaching the desired jump height. These values also control the player's gravity and jump force.
     [HideInInspector] public float jumpForce; //The actual force applied (upwards) to the player when they jump.
-    [Space(5)]
+    
+    [Header("Both Jumps")]
     public float jumpCutGravityMult; // Multiplier to increase gravity if the player releases thje jump button while still jumping
     [Range(0f, 1)] public float jumpHangGravityMult; // Reduces gravity while close to the apex (desired max height) of the jump
     public float jumpHangTimeThreshold; //Speeds (close to 0) where the player will experience extra "jump hang". The player's velocity.y is closest to 0 at the jump's apex
     [Space(0.5f)]
     public float jumpHangAccelerationMult; // Multiplier to increase acceleration while close to the (desired max height) of the jump
     public float jumpHangMaxSpeedMult; // Multiplier to increase speed while close to the (desired max height) of the jump
+    
+    [Header("Wall Jump")]
+    public Vector2 wallJumpForce; // The actual force (this time set by us) applied to the player when wall jumping.
+    [Space(5)]
+    [Range(0f, 1f)] public float wallJumpRunLerp; // Reduces the effect of player's movement while wall jumping.
+    [Range(0f, 1.5f)] public float wallJumpTime; // Time after wall jumping the player's movement is slowed for.
+    public bool doTurnOnWallJump; // Player will rotate to face wall jumping direction
+    
     [Space(20)]
+
+    [Header("Slide")]
+    public float slideSpeed;
+    public float slideAccel;
 
     [Header("Assists")]
     [Range(0.01f, 0.5f)] public float coyoteTime; //Grace period after falling off a platform, where you can still jump
