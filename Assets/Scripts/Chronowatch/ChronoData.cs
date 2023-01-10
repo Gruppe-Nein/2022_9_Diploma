@@ -1,0 +1,28 @@
+using System;
+using UnityEngine;
+
+[CreateAssetMenu(menuName = "Chrono Data")]
+public class ChronoData : ScriptableObject
+{
+    [Header("Chrono Projectile Speed")]
+    public float projectileSpeed;
+
+    [Space(5)]
+    [Header("Chrono Zone Active Time")]
+    public float chronoZoneActiveTime;
+
+    public event Action<bool> onChronoZoneDeploy;
+    public event Action<bool> OnChronoZoneActive;
+    
+    public void ChronoZoneDeploy(bool isDeployed)
+    {
+        onChronoZoneDeploy?.Invoke(isDeployed);
+    }
+
+    public void ChronoZoneActive(bool isActive)
+    {
+        OnChronoZoneActive.Invoke(isActive);
+    }
+
+
+}
