@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cData: {fileID: 11400000, guid: 9d7219fff61097a4f8c24d3bde8eaf36, type: 2}
+  _cChannel: {fileID: 11400000, guid: b224aa37d8d35674581d1c579baff9c1, type: 2}
   _cZone: {fileID: 2979648991993547275, guid: 2d5555d8925f76d4ca791373686081ec, type: 3}
 --- !u!212 &6286348467104413044
 SpriteRenderer:

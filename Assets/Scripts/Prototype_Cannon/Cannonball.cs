@@ -4,8 +4,7 @@ using UnityEngine;
 public class Cannonball : MonoBehaviour
 {
     [SerializeField] private int _speed;
-    [SerializeField] private ChronoData _cData;
-    [SerializeField] private CircleCollider2D _circleCollider;
+    [SerializeField] private ChronoEventChannel _cChannel;
 
     private Rigidbody2D _rb;
     private Vector3 _cannonballVector;
@@ -24,15 +23,7 @@ public class Cannonball : MonoBehaviour
         Destroy(gameObject, 5);
     }
 
-    private void OnEnable()
-    {
-        _cData.OnChronoZoneActive += FreezeProjectile;
-    }
-
-    private void OnDestroy()
-    {
-        _cData.OnChronoZoneActive -= FreezeProjectile;
-    }
+    #region CANNONBALL TIME ZONE BEHAVIOR
 
     private void FreezeProjectile(bool isActive)
     {
@@ -41,7 +32,6 @@ public class Cannonball : MonoBehaviour
             if (transform.parent.name == "ChronoZone(Clone)") {
                 _rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 _canDamage = false;
-                
             }
         }
         else if ((_rb.constraints & RigidbodyConstraints2D.FreezePositionX) == RigidbodyConstraints2D.FreezePositionX)
@@ -49,13 +39,12 @@ public class Cannonball : MonoBehaviour
             _rb.constraints = RigidbodyConstraints2D.None;
             _rb.velocity = _cannonballVector;
             _canDamage = true;
-            
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Projectile"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform"))
         {
             Destroy(gameObject);
         }
@@ -66,4 +55,14 @@ public class Cannonball : MonoBehaviour
             Destroy(gameObject);
         }        
     }
+    private void OnEnable()
+    {
+        _cChannel.OnChronoZoneActive += FreezeProjectile;
+    }
+
+    private void OnDestroy()
+    {
+        _cChannel.OnChronoZoneActive -= FreezeProjectile;
+    }
+    #endregion
 }

@@ -5,13 +5,25 @@ using UnityEngine;
 
 public class ChronoWatch : MonoBehaviour
 {
-    [SerializeField] private ChronoWatchTargeting _target;
-    [SerializeField] private CWatchProjectile _watchProjectile;
-    [SerializeField] private ChronoData _cData;
-    [SerializeField] private Transform _watchPlace;
-    private bool _onCooldown;
+    #region COMPONENTS    
     private SpriteRenderer _spriteRenderer;
-    private Vector3 _targetDirection;
+    #endregion
+
+    #region REFERENCES
+    [SerializeField] private Camera _mainCamera;
+    [SerializeField] private CWatchProjectile _watchProjectile;
+    #endregion
+
+    #region SCRIPTABLE OBJECTS
+    [SerializeField] private ChronoData _cData;
+    [SerializeField] private ChronoEventChannel _cChannel;
+    #endregion
+
+    #region LOCAL PARAMETERS
+    private bool _onCooldown;
+    private Vector3 _mousePosition;
+    private Vector3 _aimDirection;
+    #endregion
 
     void Start()
     {
@@ -21,38 +33,26 @@ public class ChronoWatch : MonoBehaviour
 
     void Update()
     {
-        FollowPlayer();
-
-        _targetDirection = (_target.transform.position - transform.position).normalized;
-        float rotZ = Mathf.Atan2(_targetDirection.y, _targetDirection.x) * Mathf.Rad2Deg;
-        Quaternion q = Quaternion.AngleAxis(rotZ, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 50f);
+        ChronoWatchAiming();
 
         if (Input.GetButtonDown("Fire1") && !_onCooldown)
         {
-            Shoot();
+            ShootWatchProjectile();
         }
     }
 
-    private void FollowPlayer()
+    private void ChronoWatchAiming()
     {
-        float time = 0f;
-
-        while (transform.position != _watchPlace.position)
-        {
-            transform.position = Vector2.Lerp(transform.position, _watchPlace.position, (time / Vector2.Distance(transform.position, _watchPlace.position)) * 2f);
-            time += Time.deltaTime;
-        }
+        _mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        _aimDirection = (_mousePosition - transform.position).normalized;
+        float rotAngle = Mathf.Atan2(_aimDirection.y, _aimDirection.x) * Mathf.Rad2Deg;
+        transform.eulerAngles = new Vector3(0, 0, rotAngle);
     }
 
-    private void OnEnable()
+    private void ShootWatchProjectile()
     {
-        _cData.onChronoZoneDeploy += DisableWatch;
-    }
-
-    private void OnDisable()
-    {
-        _cData.onChronoZoneDeploy -= DisableWatch;
+        _cChannel.ChronoZoneDeploy(true);
+        Instantiate(_watchProjectile, transform.position, transform.rotation);
     }
 
     private void DisableWatch(bool isDeployed)
@@ -69,9 +69,13 @@ public class ChronoWatch : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    private void OnEnable()
     {
-        _cData.ChronoZoneDeploy(true);
-        Instantiate(_watchProjectile, transform.position, transform.rotation);
+        _cChannel.onChronoZoneDeploy += DisableWatch;
+    }
+
+    private void OnDisable()
+    {
+        _cChannel.onChronoZoneDeploy -= DisableWatch;
     }
 }

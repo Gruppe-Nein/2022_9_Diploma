@@ -1,14 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class CWatchProjectile : MonoBehaviour
 {
-    [SerializeField] private ChronoData _cData;
-    [SerializeField] private ChronoZone _cZone;
-    private GameObject _player;
+    #region COMPONENTS
     private Rigidbody2D _rb;
+    #endregion
+
+    #region REFERENCES
+    private GameObject _player;
+    [SerializeField] private ChronoZone _cZone;
+    #endregion
+
+    #region SCRIPTABLE OBJECTS
+    [SerializeField] private ChronoData _cData;
+    [SerializeField] private ChronoEventChannel _cChannel;
+    #endregion
 
     void Start()
     {
@@ -16,8 +23,7 @@ public class CWatchProjectile : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         Physics2D.IgnoreCollision(_player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
-        Vector3 cannonballVector = transform.right * _cData.projectileSpeed;
-        _rb.velocity = cannonballVector;
+        _rb.velocity = transform.right * _cData.projectileSpeed;
         StartCoroutine(ForceDeploy());
     }
 
@@ -43,7 +49,7 @@ public class CWatchProjectile : MonoBehaviour
     private IEnumerator ForceDeploy()
     {
         yield return new WaitForSeconds(_cData.chronoZoneActiveTime);
-        _cData.ChronoZoneDeploy(false);
+        _cChannel.ChronoZoneDeploy(false);
         Destroy(gameObject);
     }
 }
