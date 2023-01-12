@@ -278,9 +278,7 @@ public class PlayerMovement : MonoBehaviour
         if (_IsOnPlatform)
         {
             movement = (speedDif + _platformRBody2D.velocity.x) * accelRate;
-        }
-
-        else
+        } else
         {
             movement = speedDif * accelRate;
         }
