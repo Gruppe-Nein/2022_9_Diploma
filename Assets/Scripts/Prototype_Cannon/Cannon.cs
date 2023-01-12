@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class Cannon : MonoBehaviour
 {
     [SerializeField] private Transform _firePoint;
     [SerializeField] private Cannonball _cannonball;
-    [SerializeField] private ChronoData _cData;
+    [SerializeField] private ChronoEventChannel _cChannel;
     private float _cooldown;
     private float _nextTime;
     private bool _isShooting;
@@ -24,20 +20,12 @@ public class Cannon : MonoBehaviour
     {
         if (_isShooting && Time.time > _nextTime)
         {
-            Cannonball prefab = Instantiate(_cannonball, _firePoint.position, _firePoint.rotation);
+            Instantiate(_cannonball, _firePoint.position, _firePoint.rotation);
             _nextTime = Time.time + _cooldown;
         }
     }
 
-    private void OnEnable()
-    {
-        _cData.OnChronoZoneActive += StopShoot;
-    }
-
-    private void OnDisable()
-    {
-        _cData.OnChronoZoneActive -= StopShoot;
-    }
+    #region CANNON TIME ZONE BEHAVIOR
 
     private void StopShoot(bool isActive)
     {
@@ -53,4 +41,15 @@ public class Cannon : MonoBehaviour
             _isShooting = true;
         }        
     }
+
+    private void OnEnable()
+    {
+        _cChannel.OnChronoZoneActive += StopShoot;
+    }
+
+    private void OnDisable()
+    {
+        _cChannel.OnChronoZoneActive -= StopShoot;
+    }
+    #endregion
 }

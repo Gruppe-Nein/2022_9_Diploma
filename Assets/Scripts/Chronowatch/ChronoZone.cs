@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChronoZone : MonoBehaviour
 {
-    [SerializeField] private ChronoData _cData;
-
+    #region COMPONENTS
     private CircleCollider2D _circleCollider;
-    private float _radius;
+    #endregion
 
+    #region SCRIPTABLE OBJECTS
+    [SerializeField] private ChronoData _cData;
+    [SerializeField] private ChronoEventChannel _cChannel;
+    #endregion
+
+    #region LOCAL VARIABLES
+    private float _radius;
     private Dictionary<string, Transform> _parents;
+    #endregion
 
     private void Awake()
     {
         _circleCollider = GetComponent<CircleCollider2D>();
         _radius = _circleCollider.radius;
-
         _parents = new Dictionary<string, Transform>();
     }
 
@@ -27,20 +32,20 @@ public class ChronoZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Platform") || collision.CompareTag("Projectile"))
+        if (collision.CompareTag("Projectile") || collision.CompareTag("Platform"))
         {
             _parents.TryAdd(collision.gameObject.name, collision.transform.parent);
             collision.transform.SetParent(this.transform);
-            _cData.ChronoZoneActive(true);
+            _cChannel.ChronoZoneActive(true);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Platform") || collision.CompareTag("Projectile"))
+        if (collision.CompareTag("Projectile") || collision.CompareTag("Platform"))
         {
             collision.transform.SetParent(_parents[collision.gameObject.name]);
-            _cData.ChronoZoneActive(false);
+            _cChannel.ChronoZoneActive(false);
         }
     }
 
@@ -58,7 +63,7 @@ public class ChronoZone : MonoBehaviour
             _circleCollider.radius = _radius;            
         }
         yield return new WaitForSeconds(0.5f);
-        _cData.ChronoZoneDeploy(false);
+        _cChannel.ChronoZoneDeploy(false);
         Destroy(gameObject);
     }
 }

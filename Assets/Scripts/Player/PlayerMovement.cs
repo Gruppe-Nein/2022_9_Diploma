@@ -53,6 +53,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
     #endregion
 
+    #region PLATFORM VARIABLES
+    private bool _IsOnPlatform;
+    private Rigidbody2D _platformRBody2D;
+    #endregion
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -267,7 +272,18 @@ public class PlayerMovement : MonoBehaviour
 
         float speedDif = targetSpeed - _rb.velocity.x;
 
-        float movement = speedDif * accelRate;
+        //float movement = speedDif * accelRate; <-- previous methods
+        float movement;
+
+        if (_IsOnPlatform)
+        {
+            movement = (speedDif + _platformRBody2D.velocity.x) * accelRate;
+        }
+
+        else
+        {
+            movement = speedDif * accelRate;
+        }
 
         _rb.AddForce(movement * Vector2.right, ForceMode2D.Force);
     }
@@ -337,6 +353,22 @@ public class PlayerMovement : MonoBehaviour
     private void SetGravityScale(float scale)
     {
         _rb.gravityScale = scale;
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+            _platformRBody2D = collision.gameObject.GetComponent<Rigidbody2D>();
+            _IsOnPlatform = true;
+        }
+    }
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+            _IsOnPlatform = false;
+            _platformRBody2D = null;
+        }
     }
     #endregion
 

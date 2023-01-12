@@ -10,19 +10,4 @@ public class ChronoData : ScriptableObject
     [Space(5)]
     [Header("Chrono Zone Active Time")]
     public float chronoZoneActiveTime;
-
-    public event Action<bool> onChronoZoneDeploy;
-    public event Action<bool> OnChronoZoneActive;
-    
-    public void ChronoZoneDeploy(bool isDeployed)
-    {
-        onChronoZoneDeploy?.Invoke(isDeployed);
-    }
-
-    public void ChronoZoneActive(bool isActive)
-    {
-        OnChronoZoneActive.Invoke(isActive);
-    }
-
-
 }

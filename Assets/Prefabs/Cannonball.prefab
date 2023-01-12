@@ -100,8 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _cData: {fileID: 11400000, guid: 9d7219fff61097a4f8c24d3bde8eaf36, type: 2}
-  _circleCollider: {fileID: 2099990048184568471}
+  _cChannel: {fileID: 11400000, guid: b224aa37d8d35674581d1c579baff9c1, type: 2}
 --- !u!50 &3981486656517464289
 Rigidbody2D:
   serializedVersion: 4
