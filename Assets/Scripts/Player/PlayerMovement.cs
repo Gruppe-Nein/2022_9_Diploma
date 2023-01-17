@@ -66,6 +66,8 @@ public class PlayerMovement : MonoBehaviour
     {
         SetGravityScale(Data.gravityScale);
         IsFacingRight = true;
+        GameEventSystem.Instance.OnSaveData += SaveGame;
+        GameEventSystem.Instance.OnLoadData += LoadGame;
     }
 
     // Update is called once per frame
@@ -368,6 +370,16 @@ public class PlayerMovement : MonoBehaviour
             _platformRBody2D = null;
         }
     }
+
+    void LoadGame(GameData data)
+    {
+        transform.position = data.playerPosition;
+    }
+    void SaveGame(GameData data)
+    {
+        data.playerPosition = transform.position;
+    }
+
     #endregion
 
     #region CHECK METHODS
