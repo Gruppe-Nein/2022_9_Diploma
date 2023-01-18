@@ -27,7 +27,7 @@ public class GameEventSystem : MonoBehaviour
     public void LoadData()
     {
         XmlSerializer serializer = new XmlSerializer(typeof(GameData));
-        FileStream stream = new FileStream(Application.dataPath + "/../save.xml,", FileMode.Open);
+        FileStream stream = new FileStream(Application.dataPath + "/../save.xml", FileMode.Open);
         GameData tmp = serializer.Deserialize(stream) as GameData;
         if (tmp != null)
         {
@@ -42,7 +42,7 @@ public class GameEventSystem : MonoBehaviour
         OnSaveData?.Invoke(_gameData);
 
         XmlSerializer serializer = new XmlSerializer(typeof(GameData));
-        FileStream stream = new FileStream(Application.dataPath + "/../save.xml,", FileMode.Create);
+        FileStream stream = new FileStream(Application.dataPath + "/../save.xml", FileMode.Create);
         serializer.Serialize(stream, _gameData);
         stream.Close();
     }
