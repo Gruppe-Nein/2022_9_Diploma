@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public PlayerData Data;
     #region COMPONENTS
     public Rigidbody2D _rb { get; private set; }
+    public Animator _animator { get; private set; }
+    public SpriteRenderer _sr { get; private set; }
     #endregion
 
     #region STATE PARAMETERS
@@ -61,6 +63,8 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+        _sr = GetComponent<SpriteRenderer>();
     }
     void Start()
     {
@@ -221,10 +225,11 @@ public class PlayerMovement : MonoBehaviour
             Run(Data.wallJumpRunLerp);
         else
             Run(1);
-
+        
         // Slide
         if (IsSliding)
             Slide();
+        _animator.SetBool("IsRunning", _moveInput.x != 0);
     }
 
     #region INPUT CALLBACKS
