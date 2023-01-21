@@ -9,6 +9,7 @@ public class CWatchProjectile : MonoBehaviour
 
     #region REFERENCES
     private GameObject _player;
+    private GameObject _skipGround;
     [SerializeField] private ChronoZone _cZone;
     #endregion
 
@@ -20,9 +21,11 @@ public class CWatchProjectile : MonoBehaviour
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        _rb = GetComponent<Rigidbody2D>();
+        _skipGround = GameObject.FindGameObjectWithTag("SkippableGround");        
         Physics2D.IgnoreCollision(_player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(_skipGround.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
+        _rb = GetComponent<Rigidbody2D>();
         _rb.velocity = transform.right * _cData.projectileSpeed;
         StartCoroutine(ForceDeploy());
     }
