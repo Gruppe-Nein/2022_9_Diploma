@@ -33,12 +33,10 @@ public class RotatingMechanism : MonoBehaviour
         if (isActive && transform.parent.name == "ChronoZone(Clone)")
         {
             _defaultSpeed = 0;
-            Debug.Log("STOP ROTATION");
         }
         else if (!isActive && transform.parent == null)
         {
             _defaultSpeed = _rotSpeed;            
-            Debug.Log("START ROTATION");
         }
     }
 

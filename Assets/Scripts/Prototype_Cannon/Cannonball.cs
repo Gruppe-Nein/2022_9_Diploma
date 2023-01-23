@@ -1,14 +1,23 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Cannonball : MonoBehaviour
 {
-    [SerializeField] private int _speed;
-    [SerializeField] private ChronoEventChannel _cChannel;
-
+    #region COMPONENTS
     private Rigidbody2D _rb;
+    #endregion
+
+    #region SCRIPTABLE OBJECTS
+    [SerializeField] private ChronoEventChannel _cChannel;
+    #endregion
+
+    #region PARAMETERS
+    [SerializeField] private int _speed;
     private Vector3 _cannonballVector;
     private bool _canDamage;
+    private IObjectPool<Cannonball> _pool;
+    #endregion
 
     private void Awake()
     {
@@ -16,11 +25,6 @@ public class Cannonball : MonoBehaviour
         _cannonballVector = transform.right * _speed;
         _rb.velocity = _cannonballVector;
         _canDamage = true;
-    }
-
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject, 5);
     }
 
     #region CANNONBALL TIME ZONE BEHAVIOR
@@ -42,19 +46,6 @@ public class Cannonball : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform"))
-        {
-            Destroy(gameObject);
-        }
-
-        if (collision.gameObject.CompareTag("Player") && _canDamage)
-        {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }        
-    }
     private void OnEnable()
     {
         _cChannel.OnChronoZoneActive += FreezeProjectile;
@@ -63,6 +54,47 @@ public class Cannonball : MonoBehaviour
     private void OnDestroy()
     {
         _cChannel.OnChronoZoneActive -= FreezeProjectile;
+    }
+    #endregion
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform"))
+        {
+            _pool.Release(this);
+        }
+
+        if (collision.gameObject.CompareTag("Player") && _canDamage)
+        {
+            Destroy(collision.gameObject);
+            _pool.Release(this);
+        }
+
+        ContinueMovement(collision);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        ContinueMovement(collision);
+    }
+
+    #region POOL METHODS
+    private void OnBecameVisible()
+    {
+        _rb.velocity = _cannonballVector;
+    }
+
+    public void SetPool(IObjectPool<Cannonball> pool)
+    {
+        _pool = pool;
+    }
+
+    private void ContinueMovement(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Projectile"))
+        {
+            _rb.velocity = _cannonballVector;
+        }
     }
     #endregion
 }

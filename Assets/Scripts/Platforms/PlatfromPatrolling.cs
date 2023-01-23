@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlatfromPatrolling : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class PlatfromPatrolling : MonoBehaviour
     private Vector3 _moveDirection;
     #endregion
 
+    private float _endPointCheckRadius = 0.2f;
+    [SerializeField] private LayerMask _groundLayer;
+
     private void Awake()
     {
         _rBody2D = GetComponent<Rigidbody2D>();
@@ -29,21 +33,23 @@ public class PlatfromPatrolling : MonoBehaviour
     private void Start()
     {
         _platformSpeed = _speed;
-        _targetPos = _posB.position;
+        _targetPos = _posA.position;
         CalculateDirection();
     }
 
     private void Update()
     {
-        if (Vector2.Distance(transform.position, _posA.position) < 0.05f)
+        if (Physics2D.OverlapCircle(_posA.position, _endPointCheckRadius, _groundLayer))
         {
             _targetPos = _posB.position;
             CalculateDirection();
+            return;
         }
-        if (Vector2.Distance(transform.position, _posB.position) < 0.05f)
+        if (Physics2D.OverlapCircle(_posB.position, _endPointCheckRadius, _groundLayer))
         {
             _targetPos = _posA.position;
             CalculateDirection();
+            return;
         }
     }
 
@@ -81,4 +87,11 @@ public class PlatfromPatrolling : MonoBehaviour
         _cChannel.OnChronoZoneActive -= StopPlatform;
     }
     #endregion
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(_posA.position, _endPointCheckRadius);
+        Gizmos.DrawWireSphere(_posB.position, _endPointCheckRadius);
+    }
 }

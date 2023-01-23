@@ -10,6 +10,8 @@ TagManager:
   - CWatchProjectile
   - CircleMaze
   - SkippableGround
+  - Rock
+  - Portal
   layers:
   - Default
   - TransparentFX
