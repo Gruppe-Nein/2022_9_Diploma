@@ -8,7 +8,7 @@ public class Spike : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
+            GameEventSystem.Instance.LoadData();
         }
     }
 }
