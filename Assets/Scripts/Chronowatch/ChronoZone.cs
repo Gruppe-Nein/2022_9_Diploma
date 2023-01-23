@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class ChronoZone : MonoBehaviour
 {
@@ -32,7 +33,8 @@ public class ChronoZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Projectile") || collision.CompareTag("Platform"))
+        if (collision.CompareTag("Projectile") || collision.CompareTag("Platform") 
+            || collision.CompareTag("CircleMaze") || collision.CompareTag("Rock"))
         {
             _parents.TryAdd(collision.gameObject.name, collision.transform.parent);
             collision.transform.SetParent(this.transform);
@@ -42,7 +44,8 @@ public class ChronoZone : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Projectile") || collision.CompareTag("Platform"))
+        if (collision.CompareTag("Projectile") || collision.CompareTag("Platform") 
+            || collision.CompareTag("CircleMaze") || collision.CompareTag("Rock"))
         {
             collision.transform.SetParent(_parents[collision.gameObject.name]);
             _cChannel.ChronoZoneActive(false);

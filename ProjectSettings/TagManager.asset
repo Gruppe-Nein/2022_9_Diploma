@@ -8,7 +8,10 @@ TagManager:
   - Ground
   - Projectile
   - CWatchProjectile
-  - Checkpoint
+  - CircleMaze
+  - SkippableGround
+  - Rock
+  - Portal
   layers:
   - Default
   - TransparentFX
@@ -45,10 +48,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: BackgroundObj
-    uniqueID: 966082547
-    locked: 0
-  - name: Player
-    uniqueID: 168845183
     locked: 0
