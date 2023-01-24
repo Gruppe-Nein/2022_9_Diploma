@@ -44,7 +44,6 @@ public class PlatfromPatrolling : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CheckOverlapCircle();
         _rBody2D.velocity = _moveDirection * _platformSpeed;
     }
 
