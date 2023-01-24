@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: WallCheckBack
   m_TagString: Untagged
-  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -43,7 +43,7 @@ GameObject:
   m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
-  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2469626888514318564}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0392, y: -0.579, z: 0}
+  m_LocalPosition: {x: 0.0392, y: -0.5757, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -200,10 +200,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 85ea17087c8f7f84ebba61cc6557c3bf, type: 2}
   _groundCheckPoint: {fileID: 2469626888514318565}
-  _groundCheckSize: {x: 0.32, y: 0.03}
+  _groundCheckSize: {x: 0.5, y: 0.03}
   _frontWallCheckPoint: {fileID: 2469626890429908179}
   _backWallCheckPoint: {fileID: 2469626888463294877}
-  _wallCheckSize: {x: 0.3, y: 0.8}
+  _wallCheckSize: {x: 0.3, y: 0.5999}
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -387,7 +387,7 @@ GameObject:
   m_Layer: 0
   m_Name: WallCheckFront
   m_TagString: Untagged
-  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

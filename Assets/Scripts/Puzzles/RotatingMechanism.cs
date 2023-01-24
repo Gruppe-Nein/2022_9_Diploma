@@ -30,11 +30,12 @@ public class RotatingMechanism : MonoBehaviour
 
     private void StopRotation(bool isActive)
     {
+        //TODO CHANGE NAMES
         if (isActive && transform.parent.name == "ChronoZone(Clone)")
         {
             _defaultSpeed = 0;
         }
-        else if (!isActive && transform.parent == null)
+        else if (!isActive && transform.parent.name == "MazePart")
         {
             _defaultSpeed = _rotSpeed;            
         }

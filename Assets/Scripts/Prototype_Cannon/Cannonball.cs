@@ -61,12 +61,14 @@ public class Cannonball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform"))
         {
+            
             _pool.Release(this);
         }
 
         if (collision.gameObject.CompareTag("Player") && _canDamage)
         {
-            Destroy(collision.gameObject);
+            GameEventSystem.Instance.LoadData();
+            
             _pool.Release(this);
         }
 
@@ -97,9 +99,9 @@ public class Cannonball : MonoBehaviour
         }
     }
 
-    private void OnBecameInvisible()
+    /*private void OnBecameInvisible()
     {
         Destroy(gameObject);
-    }
+    }*/
     #endregion
 }
