@@ -96,5 +96,10 @@ public class Cannonball : MonoBehaviour
             _rb.velocity = _cannonballVector;
         }
     }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
     #endregion
 }

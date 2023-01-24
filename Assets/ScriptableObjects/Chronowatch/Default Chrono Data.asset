@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Default Chrono Data
   m_EditorClassIdentifier: 
   projectileSpeed: 20
-  chronoZoneActiveTime: 5
+  chronoZoneActiveTime: 1.5
