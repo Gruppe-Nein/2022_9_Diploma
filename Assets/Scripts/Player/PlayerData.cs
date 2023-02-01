@@ -44,7 +44,7 @@ public class PlayerData : ScriptableObject
     public float jumpHangMaxSpeedMult; // Multiplier to increase speed while close to the (desired max height) of the jump
     
     [Header("Wall Jump")]
-    public Vector2 wallJumpForce; // The actual force (this time set by us) applied to the player when wall jumping.
+    public Vector2 wallJumpForce; // The actual force applied to the player when wall jumping.
     [Space(5)]
     [Range(0f, 1f)] public float wallJumpRunLerp; // Reduces the effect of player's movement while wall jumping.
     [Range(0f, 1.5f)] public float wallJumpTime; // Time after wall jumping the player's movement is slowed for.
