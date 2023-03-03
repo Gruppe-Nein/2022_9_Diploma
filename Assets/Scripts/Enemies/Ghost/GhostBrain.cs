@@ -8,6 +8,10 @@ public class GhostBrain : MonoBehaviour
     public IdleState IdleState;
     public ChasingState ChasingState;
 
+    #region SCRIPTABLE OBJECTS
+    [SerializeField] private ChronoEventChannel _cChannel;
+    #endregion
+
     #region Components
     [HideInInspector] public GhostMovement movement;
     [HideInInspector] public GameObject player;
@@ -16,6 +20,7 @@ public class GhostBrain : MonoBehaviour
 
     #region Properties
     public float MoveSpeed;
+    private float _speed;
     public float AggroRange;
     #endregion
 
@@ -28,6 +33,7 @@ public class GhostBrain : MonoBehaviour
         movement = GetComponent<GhostMovement>();
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+        _speed = MoveSpeed;
     }
 
     void Start()
@@ -52,4 +58,29 @@ public class GhostBrain : MonoBehaviour
     {
         stateMachine.CurrentState.PhysicsUpdate();
     }
+
+    #region GHOST TIME ZONE BEHAVIOR
+    private void StopGhost(bool isActive)
+    {
+        if (isActive && transform.parent.name == "ChronoZone(Clone)")
+        {
+            MoveSpeed = 0;
+        }
+        else if (!isActive)
+        {
+            MoveSpeed = _speed;
+        }
+    }
+
+    private void OnEnable()
+    {
+        _cChannel.OnChronoZoneActive += StopGhost;
+    }
+
+    private void OnDisable()
+    {
+        _cChannel.OnChronoZoneActive -= StopGhost;
+    }
+
+    #endregion
 }

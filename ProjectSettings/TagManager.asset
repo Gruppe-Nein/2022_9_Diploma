@@ -13,6 +13,7 @@ TagManager:
   - Rock
   - Portal
   - Checkpoint
+  - Ghost
   layers:
   - Default
   - TransparentFX
