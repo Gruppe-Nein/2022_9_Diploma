@@ -10,6 +10,10 @@ public abstract class State
     protected StateMachine stateMachine;
     protected bool playerInRange;
 
+    #region SCRIPTABLE OBJECTS
+    [SerializeField] protected ChronoEventChannel _cChannel;
+    #endregion
+
     protected State(GhostBrain brain, StateMachine stateMachine)
     {
         this.brain = brain;
