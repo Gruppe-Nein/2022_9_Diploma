@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class GhostBrain : MonoBehaviour
 {
+    #region Components
     public StateMachine stateMachine;
     public IdleState IdleState;
     public ChasingState ChasingState;
-
-    #region SCRIPTABLE OBJECTS
-    [SerializeField] private ChronoEventChannel _cChannel;
-    #endregion
-
-    #region Components
     [HideInInspector] public GhostMovement movement;
     [HideInInspector] public GameObject player;
     [HideInInspector] public Rigidbody2D rb;
+    #endregion
+
+    #region Scriptable Objects
+    [SerializeField] private ChronoEventChannel _cChannel;
     #endregion
 
     #region Properties
     public float MoveSpeed;
     private float _speed;
     public float AggroRange;
+    public bool ShowAggroRange;
     #endregion
 
     #region StateParameters
-    public bool IsChasing;
+    [HideInInspector] public bool IsChasing;
     #endregion
 
     private void Awake()
@@ -47,7 +47,7 @@ public class GhostBrain : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(stateMachine.CurrentState);
+        //Debug.Log(stateMachine.CurrentState);
         stateMachine.CurrentState.HandleInput();
         stateMachine.CurrentState.LogicUpdate();
 
@@ -83,4 +83,13 @@ public class GhostBrain : MonoBehaviour
     }
 
     #endregion
+
+    private void OnDrawGizmos()
+    {
+        if(ShowAggroRange)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, AggroRange);
+        }
+    }
 }

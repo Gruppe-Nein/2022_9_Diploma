@@ -2526,10 +2526,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4310947117998454314, guid: 8b2a74c89254d4c4ea460aa4e6b1faa2, type: 3}
-      propertyPath: AggroRange
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 4310947117998454324, guid: 8b2a74c89254d4c4ea460aa4e6b1faa2, type: 3}
       propertyPath: m_Name
       value: Ghost

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class ChasingState : State
 {
@@ -25,9 +24,6 @@ public class ChasingState : State
         {
             stateMachine.ChangeState(brain.IdleState);
         }
-
-        
-
     }
 
     public override void PhysicsUpdate()

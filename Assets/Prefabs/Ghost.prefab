@@ -100,12 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e662efb988d8774cbc806f5730acf45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cChannel: {fileID: 11400000, guid: b224aa37d8d35674581d1c579baff9c1, type: 2}
   movement: {fileID: 0}
   player: {fileID: 0}
   rb: {fileID: 0}
+  _cChannel: {fileID: 11400000, guid: b224aa37d8d35674581d1c579baff9c1, type: 2}
   MoveSpeed: 5
-  AggroRange: 7
+  AggroRange: 15
+  ShowAggroRange: 1
   IsChasing: 0
 --- !u!114 &4310947117998454315
 MonoBehaviour:
