@@ -229,7 +229,13 @@ public class PlayerMovement : MonoBehaviour
         // Slide
         if (IsSliding)
             Slide();
+
         _animator.SetBool("IsRunning", _moveInput.x != 0);
+        _animator.SetBool("IsGrounded", _lastOnGroundTime > 0);
+        _animator.SetBool("IsFalling", _rb.velocity.y < 0);
+        _animator.SetBool("IsJumping", IsJumping);
+        _animator.SetBool("IsSliding", IsSliding);
+        _animator.SetBool("IsWallJumping", IsWallJumping);
     }
 
     #region INPUT CALLBACKS
@@ -336,6 +342,11 @@ public class PlayerMovement : MonoBehaviour
             force.y -= _rb.velocity.y;
 
         _rb.AddForce(force, ForceMode2D.Impulse);
+
+        if(Data.doTurnOnWallJump)
+        {
+            Turn();
+        }
         #endregion
     }
     #endregion
