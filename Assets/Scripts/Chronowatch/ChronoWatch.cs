@@ -33,11 +33,14 @@ public class ChronoWatch : MonoBehaviour
 
     void Update()
     {
-        ChronoWatchAiming();
-
-        if (Input.GetButtonDown("Fire1") && !_onCooldown)
+        if (PauseManager.Instance.CheckPause() == false)
         {
-            ShootWatchProjectile();
+            ChronoWatchAiming();
+
+            if (Input.GetButtonDown("Fire1") && !_onCooldown)
+            {
+                ShootWatchProjectile();
+            }
         }
     }
 
