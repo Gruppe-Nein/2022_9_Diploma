@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <playerPosition>
-    <x>-2.55391359</x>
-    <y>-1.3369559</y>
+    <x>20.54695</x>
+    <y>-1.01204157</y>
     <z>0</z>
   </playerPosition>
+  <sceneToLoad>2</sceneToLoad>
+  <stateToLoad>Gameplay</stateToLoad>
 </GameData>

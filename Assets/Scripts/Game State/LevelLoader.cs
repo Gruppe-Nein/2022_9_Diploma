@@ -6,9 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
+    #region SCRIPTABLE OBJECTS
+    [SerializeField] private LoadingData _loadingData;
+    #endregion
+
     void Start()
     {
-        StartCoroutine(LoadSceneAsynchronously(LoadingData.sceneToLoad, LoadingData.stateToLoad));        
+        StartCoroutine(LoadSceneAsynchronously(_loadingData.sceneToLoad, _loadingData.stateToLoad));        
     }
 
     IEnumerator LoadSceneAsynchronously(int scene, GameState state)

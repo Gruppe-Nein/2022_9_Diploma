@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -31,7 +29,7 @@ public class GameManager : MonoBehaviour
         if (CurrentGameState == newGameState)
         {
             return;
-        }        
+        }       
         CurrentGameState = newGameState;
         Debug.Log("Current game state => " + CurrentGameState);
         OnGameStateChanged?.Invoke(CurrentGameState);

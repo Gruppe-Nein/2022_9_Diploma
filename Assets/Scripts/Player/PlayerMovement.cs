@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     public PlayerData Data;
+
+    #region SCRIPTABLE OBJECTS
+    [SerializeField] private LoadingData _loadingData;
+    #endregion
+
     #region COMPONENTS
     public Rigidbody2D _rb { get; private set; }
     public Animator _animator { get; private set; }
@@ -65,160 +71,166 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _sr = GetComponent<SpriteRenderer>();
+
+        GameEventSystem.Instance.OnSaveData += SaveGame;
+        GameEventSystem.Instance.OnLoadData += LoadGame;
+
+        Debug.Log("STARTING PLAYER");
+        GameEventSystem.Instance.LoadData();
     }
     void Start()
     {
         SetGravityScale(Data.gravityScale);
         IsFacingRight = true;
-        GameEventSystem.Instance.OnSaveData += SaveGame;
-        GameEventSystem.Instance.OnLoadData += LoadGame;
     }
 
+    private void OnDisable()
+    {
+        GameEventSystem.Instance.OnSaveData -= SaveGame;
+        GameEventSystem.Instance.OnLoadData -= LoadGame;
+    }
     // Update is called once per frame
     void Update()
     {
-        if (PauseManager.Instance.CheckPause() == false)
+        #region TIMERS
+        _lastOnGroundTime -= Time.deltaTime;
+        _lastOnWallTime -= Time.deltaTime;
+        _lastOnWallRightTime -= Time.deltaTime;
+        _lastOnWallLeftTime -= Time.deltaTime;
+
+        _lastPressedJumpTime -= Time.deltaTime;
+        #endregion
+
+        #region INPUT HANDLER
+        //_moveInput.x = Input.GetAxisRaw("Horizontal");
+        //_moveInput.y = Input.GetAxisRaw("Vertical");
+
+        if (_moveInput.x != 0)
+            CheckDirectionToFace(_moveInput.x > 0);
+
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
-            #region TIMERS
-            _lastOnGroundTime -= Time.deltaTime;
-            _lastOnWallTime -= Time.deltaTime;
-            _lastOnWallRightTime -= Time.deltaTime;
-            _lastOnWallLeftTime -= Time.deltaTime;
-
-            _lastPressedJumpTime -= Time.deltaTime;
-            #endregion
-
-            #region INPUT HANDLER
-            _moveInput.x = Input.GetAxisRaw("Horizontal");
-            _moveInput.y = Input.GetAxisRaw("Vertical");
-
-            if (_moveInput.x != 0)
-                CheckDirectionToFace(_moveInput.x > 0);
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                OnJumpInput();
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                OnJumpUpInput();
-            }
-            #endregion
-
-            #region COLLISION CHECKS
-            if (!IsJumping)
-            {
-                if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping)
-                {
-                    _lastOnGroundTime = Data.coyoteTime;
-                }
-            }
-
-            //Right Wall Check
-            if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)
-                    || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
-                _lastOnWallRightTime = Data.coyoteTime;
-
-            //Right Wall Check
-            if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)
-                || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
-                _lastOnWallLeftTime = Data.coyoteTime;
-
-            //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
-            _lastOnWallTime = Mathf.Max(_lastOnWallLeftTime, _lastOnWallRightTime);
-            #endregion
-
-            #region JUMP CHECKS
-            // Falling down
-            if (IsJumping && _rb.velocity.y < 0)
-            {
-                IsJumping = false;
-
-                if (!IsWallJumping)
-                    _isJumpFalling = true;
-            }
-            if (IsWallJumping && Time.time - _wallJumpStartTime > Data.wallJumpTime)
-            {
-                IsWallJumping = false;
-            }
-            // Too late for jump cut
-            if (_lastOnGroundTime > 0 && !IsJumping && !IsWallJumping)
-            {
-                _isJumpCut = false;
-
-                if (!IsJumping)
-                    _isJumpFalling = false;
-            }
-
-            // Jump
-            if (CanJump() && _lastPressedJumpTime > 0)
-            {
-                IsJumping = true;
-                IsWallJumping = false;
-                _isJumpCut = false;
-                _isJumpFalling = false;
-                Jump();
-            }
-            // Wall jump
-            else if (CanWallJump() && _lastPressedJumpTime > 0)
-            {
-                IsWallJumping = true;
-                IsJumping = false;
-                _isJumpCut = false;
-                _isJumpFalling = false;
-
-                _wallJumpStartTime = Time.time;
-                _lastWallJumpDir = (_lastOnWallRightTime > 0) ? -1 : 1;
-
-                WallJump(_lastWallJumpDir);
-            }
-            #endregion
-
-            #region SLIDE CHECKS
-            if (CanSlide() && ((_lastOnWallLeftTime > 0 && _moveInput.x < 0) || (_lastOnWallRightTime > 0 && _moveInput.x > 0)))
-                IsSliding = true;
-            else
-                IsSliding = false;
-            #endregion
-
-            #region GRAVITY
-            if (IsSliding)
-            {
-                SetGravityScale(0);
-            }
-            else if (_rb.velocity.y < 0 && _moveInput.y < 0)
-            {
-                // Much higher gravity if holding down
-                SetGravityScale(Data.gravityScale * Data.fastFallGravityMult);
-                // Caps maximum fall speed
-                _rb.velocity = new Vector2(_rb.velocity.x, Mathf.Max(_rb.velocity.y, -Data.maxFastFallSpeed));
-            }
-            else if (_isJumpCut)
-            {
-                // Higher gravity if jump button released
-                SetGravityScale(Data.gravityScale * Data.jumpCutGravityMult);
-                _rb.velocity = new Vector2(_rb.velocity.x, Mathf.Max(_rb.velocity.y, -Data.maxFallSpeed));
-            }
-            else if ((IsJumping || IsWallJumping || _isJumpFalling) && Mathf.Abs(_rb.velocity.y) < Data.jumpHangTimeThreshold)
-            {
-                // Smaller gravity when close to the apex
-                SetGravityScale(Data.gravityScale * Data.jumpHangGravityMult);
-            }
-            else if (_rb.velocity.y < 0)
-            {
-                // Higher gravity if falling
-                SetGravityScale(Data.gravityScale * Data.fallGravityMult);
-                // Caps maximum fall speed
-                _rb.velocity = new Vector2(_rb.velocity.x, Mathf.Max(_rb.velocity.y, -Data.maxFallSpeed));
-            }
-            else
-            {
-                // Default gravity
-                SetGravityScale(Data.gravityScale);
-            }
-            #endregion
+            OnJumpInput();
         }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            OnJumpUpInput();
+        }*/
+        #endregion
+
+        #region COLLISION CHECKS
+        if (!IsJumping)
+        {
+            if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping)
+            {
+                _lastOnGroundTime = Data.coyoteTime;
+            }
+        }
+
+        //Right Wall Check
+        if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)
+                || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
+            _lastOnWallRightTime = Data.coyoteTime;
+
+        //Right Wall Check
+        if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)
+            || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
+            _lastOnWallLeftTime = Data.coyoteTime;
+
+        //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
+        _lastOnWallTime = Mathf.Max(_lastOnWallLeftTime, _lastOnWallRightTime);
+        #endregion
+
+        #region JUMP CHECKS
+        // Falling down
+        if (IsJumping && _rb.velocity.y < 0)
+        {
+            IsJumping = false;
+
+            if (!IsWallJumping)
+                _isJumpFalling = true;
+        }
+        if (IsWallJumping && Time.time - _wallJumpStartTime > Data.wallJumpTime)
+        {
+            IsWallJumping = false;
+        }
+        // Too late for jump cut
+        if (_lastOnGroundTime > 0 && !IsJumping && !IsWallJumping)
+        {
+            _isJumpCut = false;
+
+            if (!IsJumping)
+                _isJumpFalling = false;
+        }
+
+        // Jump
+        if (CanJump() && _lastPressedJumpTime > 0)
+        {
+            IsJumping = true;
+            IsWallJumping = false;
+            _isJumpCut = false;
+            _isJumpFalling = false;
+            Jump();
+        }
+        // Wall jump
+        else if (CanWallJump() && _lastPressedJumpTime > 0)
+        {
+            IsWallJumping = true;
+            IsJumping = false;
+            _isJumpCut = false;
+            _isJumpFalling = false;
+
+            _wallJumpStartTime = Time.time;
+            _lastWallJumpDir = (_lastOnWallRightTime > 0) ? -1 : 1;
+
+            WallJump(_lastWallJumpDir);
+        }
+        #endregion
+
+        #region SLIDE CHECKS
+        if (CanSlide() && ((_lastOnWallLeftTime > 0 && _moveInput.x < 0) || (_lastOnWallRightTime > 0 && _moveInput.x > 0)))
+            IsSliding = true;
+        else
+            IsSliding = false;
+        #endregion
+
+        #region GRAVITY
+        if (IsSliding)
+        {
+            SetGravityScale(0);
+        }
+        else if (_rb.velocity.y < 0 && _moveInput.y < 0)
+        {
+            // Much higher gravity if holding down
+            SetGravityScale(Data.gravityScale * Data.fastFallGravityMult);
+            // Caps maximum fall speed
+            _rb.velocity = new Vector2(_rb.velocity.x, Mathf.Max(_rb.velocity.y, -Data.maxFastFallSpeed));
+        }
+        else if (_isJumpCut)
+        {
+            // Higher gravity if jump button released
+            SetGravityScale(Data.gravityScale * Data.jumpCutGravityMult);
+            _rb.velocity = new Vector2(_rb.velocity.x, Mathf.Max(_rb.velocity.y, -Data.maxFallSpeed));
+        }
+        else if ((IsJumping || IsWallJumping || _isJumpFalling) && Mathf.Abs(_rb.velocity.y) < Data.jumpHangTimeThreshold)
+        {
+            // Smaller gravity when close to the apex
+            SetGravityScale(Data.gravityScale * Data.jumpHangGravityMult);
+        }
+        else if (_rb.velocity.y < 0)
+        {
+            // Higher gravity if falling
+            SetGravityScale(Data.gravityScale * Data.fallGravityMult);
+            // Caps maximum fall speed
+            _rb.velocity = new Vector2(_rb.velocity.x, Mathf.Max(_rb.velocity.y, -Data.maxFallSpeed));
+        }
+        else
+        {
+            // Default gravity
+            SetGravityScale(Data.gravityScale);
+        }
+        #endregion
     }
     private void FixedUpdate()
     {
@@ -243,6 +255,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if (CanJumpCut() || CanWallJumpCut())
             _isJumpCut = true;
+    }
+    public void Move(InputAction.CallbackContext context)
+    {
+        _moveInput.x = context.ReadValue<Vector2>().x;
+        _moveInput.y = context.ReadValue<Vector2>().y;
+    }
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            OnJumpInput();
+        }
+        if (context.canceled)
+        {
+            OnJumpUpInput();
+        }
     }
     #endregion
 
@@ -385,6 +413,8 @@ public class PlayerMovement : MonoBehaviour
     void SaveGame(GameData data)
     {
         data.playerPosition = transform.position;
+        data.sceneToLoad = _loadingData.sceneToLoad;
+        data.stateToLoad = _loadingData.stateToLoad;
     }
 
     #endregion
