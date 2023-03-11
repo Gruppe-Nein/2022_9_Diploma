@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
-public class IdleState : State
+public class IdleGhostState : State
 {
-    public IdleState(GhostBrain brain, StateMachine stateMachine) : base(brain, stateMachine)
+    private bool playerInRange;
+
+    public IdleGhostState(GhostBrain brain, StateMachine stateMachine) : base(brain, stateMachine)
     {
     }
 
@@ -13,14 +15,13 @@ public class IdleState : State
     {
         base.Enter();
     }
-
     public override void LogicUpdate()
     {
         playerInRange = brain.IsChasing;
         base.LogicUpdate();
         if (playerInRange)
         {
-            stateMachine.ChangeState(brain.ChasingState);
+            stateMachine.ChangeState((brain as GhostBrain).ChasingState);
         }
     }
 }
