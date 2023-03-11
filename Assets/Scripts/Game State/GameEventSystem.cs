@@ -52,11 +52,20 @@ public class GameEventSystem : MonoBehaviour
     public void SaveData()
     {
         OnSaveData?.Invoke(_gameData);
-
         XmlSerializer serializer = new XmlSerializer(typeof(GameData));
         FileStream stream = new FileStream(Application.dataPath + "/../save.xml", FileMode.Create);
+
+        _gameData.sceneToLoad = _loadingData.sceneToLoad;
+        _gameData.stateToLoad = _loadingData.stateToLoad;
+
         serializer.Serialize(stream, _gameData);
         stream.Close();
+    }
+
+    public void NewGame()
+    {
+        _gameData = new GameData();
+        SaveData();
     }
 
     public void LoadControl()
@@ -75,7 +84,6 @@ public class GameEventSystem : MonoBehaviour
                 }
             }
             stream.Close();
-            Debug.Log("CONTROL LOADED");
         }
     }
 
@@ -86,7 +94,6 @@ public class GameEventSystem : MonoBehaviour
         FileStream stream = new FileStream(Application.dataPath + "/../controls.xml", FileMode.Create);
         serializer.Serialize(stream, _cRebinds);
         stream.Close();
-        Debug.Log("CONTROL SAVED");
     }
 
     private void OnEnable()

@@ -16,15 +16,12 @@ public class InGamePauseController : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("ESC PRESSED");
             if (_isPaused)
             {
-                Debug.Log("RESUME GAME");
                 ResumeGame();
             }
             else
             {
-                Debug.Log("PAUSE GAME");
                 PauseGame();
             }
         }
@@ -35,7 +32,7 @@ public class InGamePauseController : MonoBehaviour
         Time.timeScale = 1;
         _isPaused = false;
         _playerInput.SwitchCurrentActionMap("Player Controls");
-        Debug.Log(_playerInput.currentActionMap.ToString());
+        //Debug.Log(_playerInput.currentActionMap.ToString());
         _pauseMenu.SetActive(false);
     }
 
@@ -47,8 +44,6 @@ public class InGamePauseController : MonoBehaviour
 
     public void BackToMenu()
     {
-        //LoadingData.sceneToLoad = SceneIndex.MAIN_MENU;
-        //LoadingData.stateToLoad = GameState.MainMenu;
         _loadingData.sceneToLoad = SceneIndex.MAIN_MENU;
         _loadingData.stateToLoad = GameState.MainMenu;
         GameManager.Instance.SetGameState(GameState.Loading);
@@ -66,19 +61,13 @@ public class InGamePauseController : MonoBehaviour
         Time.timeScale = 0;
         _isPaused = true;
         _playerInput.SwitchCurrentActionMap("UI Controls");
-        Debug.Log(_playerInput.currentActionMap.ToString());
+        //Debug.Log(_playerInput.currentActionMap.ToString());
         _pauseMenu.SetActive(true);
     }
 
     private void Awake()
     {
-        //GameManager.OnGameStateChanged += GameStateChange;
         _playerInput = FindObjectOfType<PlayerInput>();
         _isPaused = false;
-    }
-
-    private void Start()
-    {
-        //_startButton.enabled = false;
     }
 }

@@ -8,10 +8,6 @@ public class PlayerMovement : MonoBehaviour
 {
     public PlayerData Data;
 
-    #region SCRIPTABLE OBJECTS
-    [SerializeField] private LoadingData _loadingData;
-    #endregion
-
     #region COMPONENTS
     public Rigidbody2D _rb { get; private set; }
     public Animator _animator { get; private set; }
@@ -75,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
         GameEventSystem.Instance.OnSaveData += SaveGame;
         GameEventSystem.Instance.OnLoadData += LoadGame;
 
-        Debug.Log("STARTING PLAYER");
         GameEventSystem.Instance.LoadData();
     }
     void Start()
@@ -413,8 +408,6 @@ public class PlayerMovement : MonoBehaviour
     void SaveGame(GameData data)
     {
         data.playerPosition = transform.position;
-        data.sceneToLoad = _loadingData.sceneToLoad;
-        data.stateToLoad = _loadingData.stateToLoad;
     }
 
     #endregion

@@ -19,11 +19,9 @@ public class MainMenuController : MonoBehaviour
         if (File.Exists(Application.dataPath + "/../save.xml"))
         {
             _continueButton.enabled = true;
-            Debug.Log("SAVE FILE FOUND");
         }
         else
         {
-            Debug.Log("SAVE NOT FILE FOUND");
             _continueButton.enabled = false;
             Color color = _continueText.color;
             color.a = 0.5f;
@@ -32,19 +30,16 @@ public class MainMenuController : MonoBehaviour
     }
 
     public void NewGame()
-    {
-        //LoadingData.sceneToLoad = SceneIndex.LEVEL_1;
-        //Debug.Log("SCENE TO LOAD FROM MAIN MENU: " + LoadingData.sceneToLoad);
-        //LoadingData.stateToLoad = GameState.Gameplay;
+    {       
         _loadingData.sceneToLoad = SceneIndex.LEVEL_1;
         _loadingData.stateToLoad = GameState.Gameplay;
+        GameEventSystem.Instance.NewGame();
         GameManager.Instance.SetGameState(GameState.Loading);
         SceneManager.LoadScene(SceneIndex.LOADING);
     }
 
     public void Continue()
     {
-        Debug.Log("LOADING SAVE");
         GameEventSystem.Instance.LoadData();
         GameManager.Instance.SetGameState(GameState.Loading);
         SceneManager.LoadScene(SceneIndex.LOADING);
