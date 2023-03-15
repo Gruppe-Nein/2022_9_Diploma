@@ -70,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
     {
         SetGravityScale(Data.gravityScale);
         IsFacingRight = true;
+        GameEventSystem.Instance.OnPlayerDead += PlayerDeath;
         GameEventSystem.Instance.OnSaveData += SaveGame;
         GameEventSystem.Instance.OnLoadData += LoadGame;
     }
@@ -383,6 +384,17 @@ public class PlayerMovement : MonoBehaviour
     void SaveGame(GameData data)
     {
         data.playerPosition = transform.position;
+    }
+
+    public void PlayerDeath()
+    {
+        //enabled = false;
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        GameEventSystem.Instance.OnPlayerDead -= PlayerDeath;
     }
 
     #endregion
