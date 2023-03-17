@@ -25,11 +25,24 @@ public class GameEventSystem : MonoBehaviour
         _gameData = new GameData();
         _cRebinds = new ControlBindings();
     }
-
-    #region SaveAndLoadPlayer
+    
+    #region playerActions
+        public event Action<GameData> OnPlayerTakeDamage;
+        public event Action OnPlayerDead;
+    #endregion
+    
+    #region SaveAndLoad
         public event Action<GameData> OnLoadData;
         public event Action<GameData> OnSaveData;
     #endregion
+
+    public void PlayerTakeDamage(int damage)
+    {
+        bool playerIsDead = _gameData.GetDamage(damage);
+        OnPlayerTakeDamage?.Invoke(_gameData);
+
+        if (playerIsDead) OnPlayerDead?.Invoke();
+    }
 
     public void LoadData()
     {

@@ -77,6 +77,9 @@ public class PlayerMovement : MonoBehaviour
     {
         SetGravityScale(Data.gravityScale);
         IsFacingRight = true;
+        GameEventSystem.Instance.OnPlayerDead += PlayerDeath;
+        GameEventSystem.Instance.OnSaveData += SaveGame;
+        GameEventSystem.Instance.OnLoadData += LoadGame;
     }
 
     private void OnDisable()
@@ -375,7 +378,7 @@ public class PlayerMovement : MonoBehaviour
         //The force applied can't be greater than the (negative) speedDifference * by how many times a second FixedUpdate() is called
         movement = Mathf.Clamp(movement, -Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime), Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime));
 
-        _rb.AddForce(movement * Vector2.up);
+        _rb.AddForce(movement * Vector2.down);
     }
     #endregion
 
@@ -408,6 +411,17 @@ public class PlayerMovement : MonoBehaviour
     void SaveGame(GameData data)
     {
         data.playerPosition = transform.position;
+    }
+
+    public void PlayerDeath()
+    {
+        //enabled = false;
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        GameEventSystem.Instance.OnPlayerDead -= PlayerDeath;
     }
 
     #endregion

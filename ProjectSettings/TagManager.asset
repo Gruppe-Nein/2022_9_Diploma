@@ -13,6 +13,8 @@ TagManager:
   - Rock
   - Portal
   - Checkpoint
+  - Ghost
+  - EnemyPhys
   layers:
   - Default
   - TransparentFX
