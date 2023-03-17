@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     public PlayerData Data;
+
     #region COMPONENTS
     public Rigidbody2D _rb { get; private set; }
     public Animator _animator { get; private set; }
@@ -65,6 +67,11 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _sr = GetComponent<SpriteRenderer>();
+
+        GameEventSystem.Instance.OnSaveData += SaveGame;
+        GameEventSystem.Instance.OnLoadData += LoadGame;
+
+        GameEventSystem.Instance.LoadData();
     }
     void Start()
     {
@@ -75,6 +82,11 @@ public class PlayerMovement : MonoBehaviour
         GameEventSystem.Instance.OnLoadData += LoadGame;
     }
 
+    private void OnDisable()
+    {
+        GameEventSystem.Instance.OnSaveData -= SaveGame;
+        GameEventSystem.Instance.OnLoadData -= LoadGame;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -88,13 +100,13 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region INPUT HANDLER
-        _moveInput.x = Input.GetAxisRaw("Horizontal");
-        _moveInput.y = Input.GetAxisRaw("Vertical");
+        //_moveInput.x = Input.GetAxisRaw("Horizontal");
+        //_moveInput.y = Input.GetAxisRaw("Vertical");
 
         if (_moveInput.x != 0)
             CheckDirectionToFace(_moveInput.x > 0);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             OnJumpInput();
         }
@@ -102,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             OnJumpUpInput();
-        }
+        }*/
         #endregion
 
         #region COLLISION CHECKS
@@ -217,7 +229,6 @@ public class PlayerMovement : MonoBehaviour
             SetGravityScale(Data.gravityScale);
         }
         #endregion
-
     }
     private void FixedUpdate()
     {
@@ -242,6 +253,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if (CanJumpCut() || CanWallJumpCut())
             _isJumpCut = true;
+    }
+    public void Move(InputAction.CallbackContext context)
+    {
+        _moveInput.x = context.ReadValue<Vector2>().x;
+        _moveInput.y = context.ReadValue<Vector2>().y;
+    }
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            OnJumpInput();
+        }
+        if (context.canceled)
+        {
+            OnJumpUpInput();
+        }
     }
     #endregion
 

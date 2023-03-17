@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameData
 {
     public Vector3 playerPosition;
+    public int sceneToLoad;
+    public GameState stateToLoad;
     public GameDifficulty gd;
     public int playerHealth;
     public enum GameDifficulty
@@ -14,6 +14,8 @@ public class GameData
     }
     public GameData()
     {
+        sceneToLoad = 0;
+        stateToLoad = GameState.MainMenu;
         playerPosition = new Vector3();
         gd = GameDifficulty.Easy;
         playerHealth = 2;
