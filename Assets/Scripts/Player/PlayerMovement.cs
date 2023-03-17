@@ -68,10 +68,10 @@ public class PlayerMovement : MonoBehaviour
         _animator = GetComponent<Animator>();
         _sr = GetComponent<SpriteRenderer>();
 
-        GameEventSystem.Instance.OnSaveData += SaveGame;
+        /*GameEventSystem.Instance.OnSaveData += SaveGame;
         GameEventSystem.Instance.OnLoadData += LoadGame;
 
-        GameEventSystem.Instance.LoadData();
+        GameEventSystem.Instance.LoadData();*/
     }
     void Start()
     {
