@@ -2,36 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostBrain : MonoBehaviour
+public class GhostBrain : EnemyBrain
 {
-    #region Components
-    public StateMachine stateMachine;
-    public IdleState IdleState;
+    
+    public IdleGhostState IdleGhostState;
     public ChasingState ChasingState;
-    [HideInInspector] public GhostMovement movement;
-    [HideInInspector] public GameObject player;
+
+    #region Components
+    //[HideInInspector] public GameObject player;
+    /*public StateMachine stateMachine;
+    public IdleState IdleState;
+    public ChasingState ChasingState;*/
     [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public GhostMovement movement;
     #endregion
 
-    #region Scriptable Objects
-    [SerializeField] private ChronoEventChannel _cChannel;
-    #endregion
-
-    #region Properties
+    /*#region Properties
     public float MoveSpeed;
     private float _speed;
     public float AggroRange;
     public bool ShowAggroRange;
-    #endregion
+    #endregion*/
 
-    #region StateParameters
+    /*#region StateParameters
     [HideInInspector] public bool IsChasing;
-    #endregion
+
+    #endregion*/
 
     private void Awake()
     {
-        movement = GetComponent<GhostMovement>();
         player = GameObject.FindGameObjectWithTag("Player");
+        movement = GetComponent<GhostMovement>();
         rb = GetComponent<Rigidbody2D>();
         _speed = MoveSpeed;
     }
@@ -39,10 +40,14 @@ public class GhostBrain : MonoBehaviour
     void Start()
     {
         stateMachine = new StateMachine();
-        IdleState = new IdleState(this, stateMachine);
+        IdleGhostState = new IdleGhostState(this, stateMachine);
         ChasingState = new ChasingState(this, stateMachine);
 
-        stateMachine.Initialize(IdleState);
+        /*stateMachine.states.Add(IdleGhostState);
+        stateMachine.states.Add(ChasingState);*/
+
+        stateMachine.Initialize(IdleGhostState);
+        
     }
 
     void Update()
@@ -54,7 +59,7 @@ public class GhostBrain : MonoBehaviour
         IsChasing = Vector2.Distance(rb.position, player.transform.position) < AggroRange;
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         stateMachine.CurrentState.PhysicsUpdate();
     }
@@ -86,7 +91,7 @@ public class GhostBrain : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(ShowAggroRange)
+        if (ShowAggroRange)
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, AggroRange);

@@ -351,7 +351,7 @@ public class PlayerMovement : MonoBehaviour
         //The force applied can't be greater than the (negative) speedDifference * by how many times a second FixedUpdate() is called
         movement = Mathf.Clamp(movement, -Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime), Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime));
 
-        _rb.AddForce(movement * Vector2.up);
+        _rb.AddForce(movement * Vector2.down);
     }
     #endregion
 
