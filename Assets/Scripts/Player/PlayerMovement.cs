@@ -80,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
         GameEventSystem.Instance.OnPlayerDead += PlayerDeath;
         GameEventSystem.Instance.OnSaveData += SaveGame;
         GameEventSystem.Instance.OnLoadData += LoadGame;
+
+        GameEventSystem.Instance.LoadData();
     }
 
     private void OnDisable()

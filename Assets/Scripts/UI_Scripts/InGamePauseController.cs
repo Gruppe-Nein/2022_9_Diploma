@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -8,6 +9,8 @@ public class InGamePauseController : MonoBehaviour
     [SerializeField] private GameObject _ingameMenu;
     [SerializeField] private GameObject _optionMenu;
     [SerializeField] private GameObject _controlMenu;
+    [SerializeField] private SceneIndex _mainMenuIndex;
+
     private static bool _isPaused;
     private PlayerInput _playerInput;
     private PauseCounter _pauseCounter;
@@ -76,10 +79,10 @@ public class InGamePauseController : MonoBehaviour
 
     public void BackToMenu()
     {
-        _loadingData.sceneToLoad = SceneIndex.MAIN_MENU;
+        _loadingData.sceneToLoad = _mainMenuIndex.levelIndex;
         _loadingData.stateToLoad = GameState.MainMenu;
         GameManager.Instance.SetGameState(GameState.Loading);
-        SceneManager.LoadScene(SceneIndex.LOADING);
+        SceneManager.LoadScene(_mainMenuIndex.levelIndex);
     }
 
     public void QuitGame()

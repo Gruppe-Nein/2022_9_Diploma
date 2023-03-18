@@ -5,29 +5,36 @@ public class GameData
     public Vector3 playerPosition;
     public int sceneToLoad;
     public GameState stateToLoad;
-    public GameDifficulty gd;
+    public GameDifficulty gameDifficulty;
     public int playerHealth;
     public enum GameDifficulty
     {
-        Easy,
-        Normal
+        Easy = 0,
+        Normal = 1
     }
     public GameData()
     {
         sceneToLoad = 0;
         stateToLoad = GameState.MainMenu;
         playerPosition = new Vector3();
-        gd = GameDifficulty.Easy;
-        playerHealth = 2;
+        gameDifficulty = GameDifficulty.Easy;
+        //playerHealth = 2;
     }
 
-    public void ChangeDifficilty(GameDifficulty difficulty)
+    public void SetDifficilty(GameDifficulty difficulty)
     {
-        if (gd == GameDifficulty.Normal)
+        switch (difficulty)
         {
-            playerHealth = 1;
+            case GameDifficulty.Easy:
+                Debug.Log("Chosen difficulty: easy");
+                playerHealth = 2;
+                break;
+            case GameDifficulty.Normal:
+                Debug.Log("Chosen difficulty: normal");
+                playerHealth = 1;
+                break;
         }
-        gd = difficulty;
+        gameDifficulty = difficulty;
     }
 
     public bool GetDamage(int damage)

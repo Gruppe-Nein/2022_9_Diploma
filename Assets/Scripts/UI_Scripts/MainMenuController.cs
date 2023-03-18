@@ -3,8 +3,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
 using TMPro;
-using TMPro.EditorUtilities;
 using UnityEngine.InputSystem;
+using System;
+using System.Linq;
+using System.Collections.Generic;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -14,6 +16,9 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _optionMenu;
     [SerializeField] private GameObject _controlMenu;
+    [SerializeField] private GameObject _difficultyMenu;
+
+    [SerializeField] private List<SceneIndex> _sceneIndexes;
 
     private MenuCounter _menuCounter;
 
@@ -49,46 +54,53 @@ public class MainMenuController : MonoBehaviour
             if (_menuCounter == MenuCounter.Option)
             {
                 _menuCounter = MenuCounter.Menu;
-                //Debug.Log("Current Counter: " + _menuCounter);
+                Debug.Log("Current Counter: " + _menuCounter);
                 _optionMenu.SetActive(false);
                 _mainMenu.SetActive(true);
             }
             else if (_menuCounter == MenuCounter.Control)
             {
                 _menuCounter = MenuCounter.Option;
-                //Debug.Log("Current Counter: " + _menuCounter);
+                Debug.Log("Current Counter: " + _menuCounter);
                 _controlMenu.SetActive(false);
                 _optionMenu.SetActive(true);
+            }
+            else if (_menuCounter == MenuCounter.Diffuclty)
+            {
+                _menuCounter = MenuCounter.Menu;
+                Debug.Log("Current Counter: " + _menuCounter);
+                _difficultyMenu.SetActive(false);
+                _mainMenu.SetActive(true);
             }
         }
     }
 
-    public void CounterUp()
+    public void SetUpMenuCounter(int menuCounter)
     {
-        _menuCounter++;
-        //Debug.Log("Current Counter: " + _menuCounter);
+        if (menuCounter < 0 || Enum.GetValues(typeof(MenuCounter)).Cast<MenuCounter>().Distinct().Count() < menuCounter)
+        {
+            Debug.LogError("Menu Counter out of bound");
+            _menuCounter = 0;
+            return;
+        }
+        _menuCounter = (MenuCounter)menuCounter;
+        Debug.Log("Current Counter: " + _menuCounter);
     }
 
-    public void CounterDown()
-    {
-        _menuCounter--;
-        //Debug.Log("Current Counter: " + _menuCounter);
-    }
-
-    public void NewGame()
+    public void NewGame(int difficulty)
     {       
-        _loadingData.sceneToLoad = SceneIndex.LEVEL_1;
+        _loadingData.sceneToLoad = _sceneIndexes[1].levelIndex;
         _loadingData.stateToLoad = GameState.Gameplay;
-        GameEventSystem.Instance.NewGame();
+        GameEventSystem.Instance.NewGame(difficulty);
         GameManager.Instance.SetGameState(GameState.Loading);
-        SceneManager.LoadScene(SceneIndex.LOADING);
+        SceneManager.LoadScene(_sceneIndexes[0].levelIndex); ;
     }
 
     public void Continue()
     {
         GameEventSystem.Instance.LoadData();
         GameManager.Instance.SetGameState(GameState.Loading);
-        SceneManager.LoadScene(SceneIndex.LOADING);
+        SceneManager.LoadScene(_sceneIndexes[0].levelIndex);
     }
 
     public void QuitGame()
@@ -102,6 +114,7 @@ public class MainMenuController : MonoBehaviour
         Menu = 0,
         Option = 1,
         Control = 2,
+        Diffuclty = 3
     }
 }
 

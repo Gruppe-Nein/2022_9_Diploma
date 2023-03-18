@@ -3,6 +3,8 @@ using System.IO;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using static GameData;
 
 public class GameEventSystem : MonoBehaviour
 {
@@ -18,11 +20,17 @@ public class GameEventSystem : MonoBehaviour
 
     private void Awake()
     {
+        // Error occurs becasue of the multiple instances of GameEventSystem, Ignore it. 
+        // Need it to launch scene separately, will delete it when building final version.
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
-            Destroy(gameObject);
-        _gameData = new GameData();
+        {
+            Destroy(this.gameObject);
+        }
         _cRebinds = new ControlBindings();
     }
     
@@ -54,6 +62,7 @@ public class GameEventSystem : MonoBehaviour
             if (tmp != null)
             {
                 _gameData = tmp;
+                Debug.Log("Loaded difficulty: " + _gameData.gameDifficulty);
                 _loadingData.sceneToLoad = _gameData.sceneToLoad;
                 _loadingData.stateToLoad = _gameData.stateToLoad;
             }
@@ -75,10 +84,27 @@ public class GameEventSystem : MonoBehaviour
         stream.Close();
     }
 
-    public void NewGame()
+    public void NewGame(int difficulty)
     {
         _gameData = new GameData();
+        if (difficulty == (int)GameDifficulty.Easy)
+        {
+            _gameData.SetDifficilty(GameDifficulty.Easy);
+        }
+        if (difficulty == (int)GameDifficulty.Normal)
+        {
+            _gameData.SetDifficilty(GameDifficulty.Normal);
+        }
         SaveData();
+    }
+
+    public void LoadScene(int levelIndex)
+    {
+        _loadingData.sceneToLoad = levelIndex;
+        _loadingData.stateToLoad = GameState.Gameplay;
+        GameEventSystem.Instance.SaveData();
+        GameManager.Instance.SetGameState(GameState.Loading);
+        SceneManager.LoadScene(levelIndex);
     }
 
     public void LoadControl()
