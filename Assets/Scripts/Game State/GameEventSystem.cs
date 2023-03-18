@@ -9,10 +9,15 @@ using static GameData;
 public class GameEventSystem : MonoBehaviour
 {
     public static GameEventSystem Instance;
-    [SerializeField] private GameData _gameData;
 
+    #region INPUT ACTION
     [SerializeField] private InputActionAsset actions;
+    #endregion
+
+    #region PARAMETERS
+    [SerializeField] private GameData _gameData;    
     private ControlBindings _cRebinds;
+    #endregion
 
     #region SCRIPTABLE OBJECTS
     [SerializeField] private LoadingData _loadingData;
@@ -52,38 +57,6 @@ public class GameEventSystem : MonoBehaviour
         if (playerIsDead) OnPlayerDead?.Invoke();
     }
 
-    public void LoadData()
-    {
-        if (File.Exists(Application.dataPath + "/../save.xml"))
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(GameData));
-            FileStream stream = new FileStream(Application.dataPath + "/../save.xml", FileMode.Open);
-            GameData tmp = serializer.Deserialize(stream) as GameData;
-            if (tmp != null)
-            {
-                _gameData = tmp;
-                Debug.Log("Loaded difficulty: " + _gameData.gameDifficulty);
-                _loadingData.sceneToLoad = _gameData.sceneToLoad;
-                _loadingData.stateToLoad = _gameData.stateToLoad;
-            }
-            stream.Close();
-
-            OnLoadData?.Invoke(_gameData);
-        }
-    }
-    public void SaveData()
-    {
-        OnSaveData?.Invoke(_gameData);
-        XmlSerializer serializer = new XmlSerializer(typeof(GameData));
-        FileStream stream = new FileStream(Application.dataPath + "/../save.xml", FileMode.Create);
-
-        _gameData.sceneToLoad = _loadingData.sceneToLoad;
-        _gameData.stateToLoad = _loadingData.stateToLoad;
-
-        serializer.Serialize(stream, _gameData);
-        stream.Close();
-    }
-
     public void NewGame(int difficulty)
     {
         _gameData = new GameData();
@@ -107,6 +80,50 @@ public class GameEventSystem : MonoBehaviour
         SceneManager.LoadScene(levelIndex);
     }
 
+    #region SAVING and LOADING GAME DATA METHODS
+    public void LoadData()
+    {
+        if (File.Exists(Application.dataPath + "/../save.xml"))
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(GameData));
+            FileStream stream = new FileStream(Application.dataPath + "/../save.xml", FileMode.Open);
+            GameData tmp = serializer.Deserialize(stream) as GameData;
+            if (tmp != null)
+            {
+                _gameData = tmp;
+                _loadingData.sceneToLoad = _gameData.SceneToLoad;
+                _loadingData.stateToLoad = _gameData.StateToLoad;
+            }
+            stream.Close();
+
+            OnLoadData?.Invoke(_gameData);
+        }
+    }
+    public void SaveData()
+    {
+        OnSaveData?.Invoke(_gameData);
+        XmlSerializer serializer = new XmlSerializer(typeof(GameData));
+        FileStream stream = new FileStream(Application.dataPath + "/../save.xml", FileMode.Create);
+
+        _gameData.SceneToLoad = _loadingData.sceneToLoad;
+        _gameData.StateToLoad = _loadingData.stateToLoad;
+
+        if (_gameData.GameDifficulty == GameDifficulty.Easy)
+        {
+            _gameData.PlayerHealth = 2;
+        }
+        else if (_gameData.GameDifficulty == GameDifficulty.Normal)
+        {
+            _gameData.PlayerHealth = 1;
+        }
+
+        serializer.Serialize(stream, _gameData);
+        stream.Close();
+    }
+    #endregion
+
+    #region SAVING and LOADING OPTION PARAMETERS METHODS
+    // TODO add saving and loading for other option parameters
     public void LoadControl()
     {
         if (File.Exists(Application.dataPath + "/../controls.xml"))
@@ -134,7 +151,6 @@ public class GameEventSystem : MonoBehaviour
         serializer.Serialize(stream, _cRebinds);
         stream.Close();
     }
-
     private void OnEnable()
     {
         LoadControl();
@@ -144,4 +160,5 @@ public class GameEventSystem : MonoBehaviour
     {
         SaveControl();
     }
+    #endregion
 }

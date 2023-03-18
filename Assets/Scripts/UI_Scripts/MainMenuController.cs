@@ -10,26 +10,30 @@ using System.Collections.Generic;
 
 public class MainMenuController : MonoBehaviour
 {
+    #region COMPONENTS
     [SerializeField] private Button _continueButton;
     [SerializeField] private TMP_Text _continueText;
+    #endregion
 
+    #region MENU PANELS
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _optionMenu;
     [SerializeField] private GameObject _controlMenu;
     [SerializeField] private GameObject _difficultyMenu;
+    #endregion
 
-    [SerializeField] private List<SceneIndex> _sceneIndexes;
-
+    #region PARAMETERS
     private MenuCounter _menuCounter;
+    #endregion    
 
     #region SCRIPTABLE OBJECTS
     [SerializeField] private LoadingData _loadingData;
+    [SerializeField] private List<SceneIndex> _sceneIndexes;
     #endregion
 
     private void Awake()
     {
         _menuCounter = MenuCounter.Menu;
-        //Debug.Log("Current Counter: " + _menuCounter);
     }
 
     private void Start()
@@ -54,21 +58,18 @@ public class MainMenuController : MonoBehaviour
             if (_menuCounter == MenuCounter.Option)
             {
                 _menuCounter = MenuCounter.Menu;
-                Debug.Log("Current Counter: " + _menuCounter);
                 _optionMenu.SetActive(false);
                 _mainMenu.SetActive(true);
             }
             else if (_menuCounter == MenuCounter.Control)
             {
                 _menuCounter = MenuCounter.Option;
-                Debug.Log("Current Counter: " + _menuCounter);
                 _controlMenu.SetActive(false);
                 _optionMenu.SetActive(true);
             }
             else if (_menuCounter == MenuCounter.Diffuclty)
             {
                 _menuCounter = MenuCounter.Menu;
-                Debug.Log("Current Counter: " + _menuCounter);
                 _difficultyMenu.SetActive(false);
                 _mainMenu.SetActive(true);
             }
@@ -84,7 +85,6 @@ public class MainMenuController : MonoBehaviour
             return;
         }
         _menuCounter = (MenuCounter)menuCounter;
-        Debug.Log("Current Counter: " + _menuCounter);
     }
 
     public void NewGame(int difficulty)

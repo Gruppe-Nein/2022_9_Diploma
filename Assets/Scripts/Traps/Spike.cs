@@ -6,7 +6,7 @@ public class Spike : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameEventSystem.Instance.LoadData();
+            GameEventSystem.Instance.PlayerTakeDamage(1);
         }
     }
 }

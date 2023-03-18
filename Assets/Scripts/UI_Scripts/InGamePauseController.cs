@@ -5,15 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class InGamePauseController : MonoBehaviour
 {
+    #region COMPONENTS
+    private PlayerInput _playerInput;
+    #endregion
+
+    #region MENU PANELS
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _ingameMenu;
     [SerializeField] private GameObject _optionMenu;
     [SerializeField] private GameObject _controlMenu;
     [SerializeField] private SceneIndex _mainMenuIndex;
+    #endregion
 
+    #region PARAMETERS
     private static bool _isPaused;
-    private PlayerInput _playerInput;
     private PauseCounter _pauseCounter;
+    #endregion
 
     #region SCRIPTABLE OBJECTS
     [SerializeField] private LoadingData _loadingData;
@@ -34,14 +41,12 @@ public class InGamePauseController : MonoBehaviour
             else if (_isPaused && _pauseCounter == PauseCounter.Option)
             {
                 _pauseCounter = PauseCounter.IngamePause;
-                //Debug.Log("Current Counter: " + _pauseCounter);
                 _optionMenu.SetActive(false);
                 _ingameMenu.SetActive(true);
             }
             else if (_isPaused && _pauseCounter == PauseCounter.Control)
             {
                 _pauseCounter = PauseCounter.Option;
-                //Debug.Log("Current Counter: " + _pauseCounter);
                 _controlMenu.SetActive(false);
                 _optionMenu.SetActive(true);
             }            
@@ -51,13 +56,11 @@ public class InGamePauseController : MonoBehaviour
     public void CounterUp()
     {
         _pauseCounter++;
-        //Debug.Log("Current Counter: " + _pauseCounter);
     }
 
     public void CounterDown()
     {
         _pauseCounter--;
-        //Debug.Log("Current Counter: " + _pauseCounter);
     }
 
     public void ResumeGame()
@@ -67,7 +70,6 @@ public class InGamePauseController : MonoBehaviour
         _playerInput.SwitchCurrentActionMap("Player Controls");
         _pauseCounter = PauseCounter.Gameplay;
         //Debug.Log(_playerInput.currentActionMap.ToString());
-        //Debug.Log("Current Counter: " + _pauseCounter);
         _pauseMenu.SetActive(false);
     }
 
@@ -97,7 +99,6 @@ public class InGamePauseController : MonoBehaviour
         _isPaused = true;
         _playerInput.SwitchCurrentActionMap("UI Controls");
         _pauseCounter = PauseCounter.IngamePause;
-        //Debug.Log("Current Counter: " + _pauseCounter);
         //Debug.Log(_playerInput.currentActionMap.ToString());
         _pauseMenu.SetActive(true);
     }

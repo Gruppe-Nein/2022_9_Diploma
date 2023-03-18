@@ -408,17 +408,17 @@ public class PlayerMovement : MonoBehaviour
 
     void LoadGame(GameData data)
     {
-        transform.position = data.playerPosition;
+        transform.position = data.PlayerPosition;
     }
     void SaveGame(GameData data)
     {
-        data.playerPosition = transform.position;
+        data.PlayerPosition = transform.position;
     }
 
     public void PlayerDeath()
     {
-        //enabled = false;
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        GameEventSystem.Instance.LoadData();
     }
 
     private void OnDestroy()

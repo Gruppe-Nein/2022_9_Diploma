@@ -11,8 +11,10 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private LoadingData _loadingData;
     #endregion
 
+    #region COMPONENTS
     [SerializeField] private Slider _progressBar;
     [SerializeField] private TMP_Text _progressText;
+    #endregion
 
     void Start()
     {
