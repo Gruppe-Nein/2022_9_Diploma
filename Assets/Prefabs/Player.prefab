@@ -200,7 +200,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 85ea17087c8f7f84ebba61cc6557c3bf, type: 2}
-  _loadingData: {fileID: 11400000, guid: b2b408d6340cd1f4a99bf9158e59c33a, type: 2}
   _groundCheckPoint: {fileID: 2469626888514318565}
   _groundCheckSize: {x: 0.32, y: 0.03}
   _frontWallCheckPoint: {fileID: 2469626890429908179}
@@ -255,11 +254,35 @@ MonoBehaviour:
     m_ActionId: 7d9c2310-46cd-4b59-b6d3-77f65da2315a
     m_ActionName: Player Controls/Pause Menu[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2469626890057031484}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 577323a6-ddfb-478d-83ee-917af8f383e2
     m_ActionName: Player Controls/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2469626890171582996}
+        m_TargetAssemblyTypeName: ChronoWatch, Assembly-CSharp
+        m_MethodName: ShootWatchProjectile
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 79aa4fdc-c239-4df9-a092-b359edc5011e
     m_ActionName: Player Controls/Shoot Chronowatch[/Mouse/leftButton]
   - m_PersistentCalls:
