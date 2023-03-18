@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ChronoWatch : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class ChronoWatch : MonoBehaviour
     #endregion
 
     #region REFERENCES
-    [SerializeField] private Camera _mainCamera;
     [SerializeField] private CWatchProjectile _watchProjectile;
     #endregion
 
@@ -34,25 +34,24 @@ public class ChronoWatch : MonoBehaviour
     void Update()
     {
         ChronoWatchAiming();
-
-        if (Input.GetButtonDown("Fire1") && !_onCooldown)
-        {
-            ShootWatchProjectile();
-        }
     }
-
+    
     private void ChronoWatchAiming()
     {
-        _mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        _mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        _mousePosition.z = Camera.main.nearClipPlane;
         _aimDirection = (_mousePosition - transform.position).normalized;
         float rotAngle = Mathf.Atan2(_aimDirection.y, _aimDirection.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0, 0, rotAngle);
     }
 
-    private void ShootWatchProjectile()
+    public void ShootWatchProjectile(InputAction.CallbackContext context)
     {
-        _cChannel.ChronoZoneDeploy(true);
-        Instantiate(_watchProjectile, transform.position, transform.rotation);
+        if (context.performed && !_onCooldown)
+        {
+            _cChannel.ChronoZoneDeploy(true);
+            Instantiate(_watchProjectile, transform.position, transform.rotation);
+        }
     }
 
     private void DisableWatch(bool isDeployed)
@@ -77,5 +76,11 @@ public class ChronoWatch : MonoBehaviour
     private void OnDisable()
     {
         _cChannel.onChronoZoneDeploy -= DisableWatch;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(_mousePosition, 0.5f);
     }
 }

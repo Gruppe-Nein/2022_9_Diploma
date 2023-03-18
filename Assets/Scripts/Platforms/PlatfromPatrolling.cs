@@ -39,6 +39,21 @@ public class PlatfromPatrolling : MonoBehaviour
 
     private void Update()
     {
+        CheckOverlapCircle();
+    }
+
+    private void FixedUpdate()
+    {
+        _rBody2D.velocity = _moveDirection * _platformSpeed;
+    }
+
+    private void CalculateDirection()
+    {
+        _moveDirection = (_targetPos - transform.position).normalized;
+    }
+
+    private void CheckOverlapCircle()
+    {
         if (Physics2D.OverlapCircle(_posA.position, _endPointCheckRadius, _groundLayer))
         {
             _targetPos = _posB.position;
@@ -52,17 +67,7 @@ public class PlatfromPatrolling : MonoBehaviour
             return;
         }
     }
-
-    private void FixedUpdate()
-    {
-        _rBody2D.velocity = _moveDirection * _platformSpeed;
-    }
-
-    private void CalculateDirection()
-    {
-        _moveDirection = (_targetPos - transform.position).normalized;
-    }
-
+    
     #region PLATFORM TIME ZONE BEHAVIOR
 
     private void StopPlatform(bool isActive)
@@ -94,4 +99,5 @@ public class PlatfromPatrolling : MonoBehaviour
         Gizmos.DrawWireSphere(_posA.position, _endPointCheckRadius);
         Gizmos.DrawWireSphere(_posB.position, _endPointCheckRadius);
     }
+
 }

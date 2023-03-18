@@ -1,16 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.Security;
-using UnityEngine;
-using UnityEngine.TextCore.Text;
-
 public abstract class State
 {
-    protected GhostBrain brain;
+    protected EnemyBrain brain;
     protected StateMachine stateMachine;
-    protected bool playerInRange;
 
-    protected State(GhostBrain brain, StateMachine stateMachine)
+    protected State(EnemyBrain brain, StateMachine stateMachine)
     {
         this.brain = brain;
         this.stateMachine = stateMachine;

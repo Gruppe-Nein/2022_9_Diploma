@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CWatchProjectile : MonoBehaviour
 {
@@ -37,9 +38,9 @@ public class CWatchProjectile : MonoBehaviour
         StartCoroutine(ForceDeploy());
     }
 
-    void Update()
+    public void ForceDeployChronoZone(InputAction.CallbackContext context)
     {
-        if (Input.GetButtonDown("Fire2"))
+        if (context.performed)
         {
             DeployChronoZone();
         }

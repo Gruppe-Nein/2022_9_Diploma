@@ -34,7 +34,7 @@ public class ChronoZone : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Projectile") || collision.CompareTag("Platform") 
-            || collision.CompareTag("CircleMaze") || collision.CompareTag("Rock")
+            || collision.CompareTag("CircleMaze") || collision.CompareTag("Fallable")
             || collision.CompareTag("Ghost"))
         {
             _parents.TryAdd(collision.gameObject.name, collision.transform.parent);
@@ -46,7 +46,7 @@ public class ChronoZone : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Projectile") || collision.CompareTag("Platform") 
-            || collision.CompareTag("CircleMaze") || collision.CompareTag("Rock")
+            || collision.CompareTag("CircleMaze") || collision.CompareTag("Fallable")
             || collision.CompareTag("Ghost"))
         {
             collision.transform.SetParent(_parents[collision.gameObject.name]);

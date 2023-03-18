@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ChasingState : State
 {
-    private float speed;
+    //private float speed;
+    private bool playerInRange;
 
     public ChasingState(GhostBrain brain, StateMachine stateMachine) : base(brain, stateMachine)
     {
@@ -13,7 +14,7 @@ public class ChasingState : State
     public override void Enter()
     {
         base.Enter();
-        speed = brain.MoveSpeed;
+        //speed = brain.MoveSpeed;
     }
 
     public override void LogicUpdate()
@@ -22,15 +23,13 @@ public class ChasingState : State
         base.LogicUpdate();
         if (!playerInRange)
         {
-            stateMachine.ChangeState(brain.IdleState);
+            stateMachine.ChangeState((brain as GhostBrain).IdleGhostState);
         }
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        brain.movement.Move(brain.MoveSpeed);
+        (brain as GhostBrain).movement.Move(brain.MoveSpeed, brain.player);
     }
-
-    
 }
