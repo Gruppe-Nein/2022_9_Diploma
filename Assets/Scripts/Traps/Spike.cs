@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Spike : MonoBehaviour
@@ -6,7 +8,7 @@ public class Spike : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameEventSystem.Instance.PlayerTakeDamage(1);
+            GameEventSystem.Instance.LoadData();
         }
     }
 }

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(GhostBrain))]
 public class GhostMovement : MonoBehaviour
 {
     private GhostBrain _gb;
@@ -12,9 +11,9 @@ public class GhostMovement : MonoBehaviour
         _gb = GetComponent<GhostBrain>();
     }
 
-    public void Move(float speed, GameObject player)
+    public void Move(float speed)
     {
-        Vector2 target = player.transform.position;
+        Vector2 target = _gb.player.transform.position;
         Vector2 newPos = Vector2.MoveTowards(_gb.rb.position, target, speed * Time.deltaTime);
         _gb.rb.MovePosition(newPos);
     }

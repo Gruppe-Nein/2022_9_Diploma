@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2818313844139898542}
   - component: {fileID: 3981486656517464289}
   - component: {fileID: 2099990048184568471}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Cannonball
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98193c89c2930d7448d3087cacfd6512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cChannel: {fileID: 11400000, guid: b224aa37d8d35674581d1c579baff9c1, type: 2}
   _speed: 5
+  _cChannel: {fileID: 11400000, guid: b224aa37d8d35674581d1c579baff9c1, type: 2}
 --- !u!50 &3981486656517464289
 Rigidbody2D:
   serializedVersion: 4

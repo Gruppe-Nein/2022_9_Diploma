@@ -26,7 +26,7 @@ public class Rock : MonoBehaviour
         _rigidbody.velocity = Vector2.up * -1f * _speed;
     }
 
-    #region ROCK TIME ZONE BEHAVIOR
+    #region CANNONBALL TIME ZONE BEHAVIOR
     private void FreezeRock(bool isActive)
     {
         if (isActive && transform.parent != null)

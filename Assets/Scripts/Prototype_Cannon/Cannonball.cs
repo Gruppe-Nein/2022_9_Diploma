@@ -66,7 +66,7 @@ public class Cannonball : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player") && _canDamage)
         {
-            GameEventSystem.Instance.PlayerTakeDamage(1);
+            Destroy(collision.gameObject);
             _pool.Release(this);
         }
 

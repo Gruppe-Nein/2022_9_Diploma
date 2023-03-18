@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4310947117998454312}
   - component: {fileID: 4310947117998454313}
-  - component: {fileID: 879833935557078692}
-  - component: {fileID: 8326909985570611025}
+  - component: {fileID: 4310947117998454314}
+  - component: {fileID: 4310947117998454315}
   - component: {fileID: 4310947117998454318}
   - component: {fileID: 4786335662920599673}
   m_Layer: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &879833935557078692
+--- !u!114 &4310947117998454314
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,15 +100,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e662efb988d8774cbc806f5730acf45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  MoveSpeed: 0
-  AggroRange: 0
-  ShowAggroRange: 0
-  IsChasing: 0
-  _cChannel: {fileID: 0}
-  rb: {fileID: 0}
   movement: {fileID: 0}
---- !u!114 &8326909985570611025
+  player: {fileID: 0}
+  rb: {fileID: 0}
+  _cChannel: {fileID: 11400000, guid: b224aa37d8d35674581d1c579baff9c1, type: 2}
+  MoveSpeed: 5
+  AggroRange: 15
+  ShowAggroRange: 1
+  IsChasing: 0
+--- !u!114 &4310947117998454315
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
