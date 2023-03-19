@@ -23,17 +23,22 @@ public class ChronoWatch : MonoBehaviour
     private bool _onCooldown;
     private Vector3 _mousePosition;
     private Vector3 _aimDirection;
+    private bool _isFacingRight;
     #endregion
 
     void Start()
     {
         _onCooldown = false;
+        _isFacingRight = true;
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
         ChronoWatchAiming();
+
+        if (gameObject.transform.parent.localScale.x != 0)
+            CheckDirectionToFace(gameObject.transform.parent.localScale.x > 0);
     }
     
     private void ChronoWatchAiming()
@@ -42,13 +47,6 @@ public class ChronoWatch : MonoBehaviour
         _mousePosition.z = Camera.main.nearClipPlane;
         _aimDirection = (_mousePosition - transform.position).normalized;
         float rotAngle = Mathf.Atan2(_aimDirection.y, _aimDirection.x) * Mathf.Rad2Deg;
-
-        if (gameObject.transform.parent.localScale.x < 0)
-        {
-            transform.eulerAngles = new Vector3(0, 0, rotAngle - 180f);
-            return;
-        }
-
         transform.eulerAngles = new Vector3(0, 0, rotAngle);
     }
 
@@ -73,6 +71,20 @@ public class ChronoWatch : MonoBehaviour
             _onCooldown = false;
             _spriteRenderer.enabled = true;
         }
+    }
+
+    public void CheckDirectionToFace(bool isMovingRight)
+    {
+        if (isMovingRight != _isFacingRight)
+            Turn();
+    }
+
+    private void Turn()
+    {
+        _spriteRenderer.flipX = _isFacingRight;
+        _spriteRenderer.flipY = _isFacingRight;
+
+        _isFacingRight = !_isFacingRight;
     }
 
     private void OnEnable()
