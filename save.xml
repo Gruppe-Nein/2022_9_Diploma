@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <PlayerPosition>
-    <x>0</x>
-    <y>0</y>
+    <x>-2.57128453</x>
+    <y>-1.38340211</y>
     <z>0</z>
   </PlayerPosition>
   <SceneToLoad>2</SceneToLoad>
   <StateToLoad>Gameplay</StateToLoad>
-  <GameDifficulty>Normal</GameDifficulty>
-  <PlayerHealth>1</PlayerHealth>
+  <GameDifficulty>Easy</GameDifficulty>
+  <PlayerHealth>2</PlayerHealth>
 </GameData>

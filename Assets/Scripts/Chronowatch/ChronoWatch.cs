@@ -42,6 +42,13 @@ public class ChronoWatch : MonoBehaviour
         _mousePosition.z = Camera.main.nearClipPlane;
         _aimDirection = (_mousePosition - transform.position).normalized;
         float rotAngle = Mathf.Atan2(_aimDirection.y, _aimDirection.x) * Mathf.Rad2Deg;
+
+        if (gameObject.transform.parent.localScale.x < 0)
+        {
+            transform.eulerAngles = new Vector3(0, 0, rotAngle - 180f);
+            return;
+        }
+
         transform.eulerAngles = new Vector3(0, 0, rotAngle);
     }
 
