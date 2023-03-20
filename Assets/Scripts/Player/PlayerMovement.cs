@@ -278,6 +278,13 @@ public class PlayerMovement : MonoBehaviour
             OnJumpUpInput();
         }
     }
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GameManager.Instance.SetGameState(GameState.Pause);
+        }
+    }
     #endregion
 
     #region RUN METHODS
@@ -332,9 +339,13 @@ public class PlayerMovement : MonoBehaviour
     private void Turn()
     {
         // Stores scale and flips the player along the x axis, 
+        _sr.flipX = IsFacingRight;
+
+        /*
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+        */
 
         IsFacingRight = !IsFacingRight;
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Chrono Data")]
+[CreateAssetMenu(fileName = "Chrono Data", menuName = "Chrono/Chrono Data")]
 public class ChronoData : ScriptableObject
 {
     [Header("Chrono Projectile Speed")]

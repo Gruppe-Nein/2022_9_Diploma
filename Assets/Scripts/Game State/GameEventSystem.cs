@@ -151,6 +151,7 @@ public class GameEventSystem : MonoBehaviour
         serializer.Serialize(stream, _cRebinds);
         stream.Close();
     }
+
     private void OnEnable()
     {
         LoadControl();

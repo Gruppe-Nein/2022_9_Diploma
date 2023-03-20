@@ -31,6 +31,37 @@ public class Cannonball : MonoBehaviour
 
     private void FreezeProjectile(bool isActive)
     {
+        if (isActive)
+        {
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            _canDamage = false;
+        }
+        else
+        {            
+            _rb.constraints = RigidbodyConstraints2D.None;
+            _rb.velocity = _cannonballVector;
+            _canDamage = true;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            FreezeProjectile(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            FreezeProjectile(false);
+        }
+    }
+    /*
+    private void FreezeProjectile(bool isActive)
+    {
         if (isActive && transform.parent != null)
         {
             if (transform.parent.name == "ChronoZone(Clone)") {
@@ -45,7 +76,6 @@ public class Cannonball : MonoBehaviour
             _canDamage = true;
         }
     }
-
     private void OnEnable()
     {
         _cChannel.OnChronoZoneActive += FreezeProjectile;
@@ -54,7 +84,7 @@ public class Cannonball : MonoBehaviour
     private void OnDestroy()
     {
         _cChannel.OnChronoZoneActive -= FreezeProjectile;
-    }
+    }*/
     #endregion
 
     private void OnCollisionEnter2D(Collision2D collision)

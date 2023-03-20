@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 2469626890057031489}
   - component: {fileID: 2469626890057031488}
   - component: {fileID: 2469626890057031484}
-  - component: {fileID: 818922508456091656}
+  - component: {fileID: 1953370594455993562}
   - component: {fileID: 2469626890057031491}
   - component: {fileID: 3548295886853754080}
   - component: {fileID: 3179319122902805999}
@@ -208,7 +208,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &818922508456091656
+--- !u!114 &1953370594455993562
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,10 +250,6 @@ MonoBehaviour:
     m_ActionId: d1ff361a-4c69-4afe-b4a1-0f951fd66a6d
     m_ActionName: Player Controls/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7d9c2310-46cd-4b59-b6d3-77f65da2315a
-    m_ActionName: Player Controls/Pause Menu[/Keyboard/escape]
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2469626890057031484}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
@@ -290,49 +286,53 @@ MonoBehaviour:
     m_ActionId: e3ef278e-e1b5-4c2f-99e7-7e298b1a8e9a
     m_ActionName: Player Controls/Deply Chronowatch[/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ed30fde3-8b88-41ae-97dc-e745b4bac2e9
     m_ActionName: UI Controls/Pause Menu[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7b147400-ff58-40b1-8f3c-d7e9b33a2046
-    m_ActionName: UI Controls/TrackedDeviceOrientation
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: be726953-d35c-4bed-bb10-47fc3ce92197
+    m_ActionName: UI Controls/DialogueNext[/Keyboard/q]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 21961f14-1b0b-44d8-a2cc-51704d443383
-    m_ActionName: UI Controls/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6bb940fb-86e2-48ca-ac3a-f9e68af6fae8
-    m_ActionName: UI Controls/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f3c72d0a-2634-4107-ba91-bd2d006806bc
-    m_ActionName: UI Controls/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 12e63905-2922-4a7a-93b9-2a38e5c6c87b
-    m_ActionName: UI Controls/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4009faac-b664-4f3f-aaa6-56f2fb2b3f0f
-    m_ActionName: UI Controls/Click[/Mouse/leftButton,/Pen/tip]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7b36dc05-816a-4a0a-8936-94a3ca2a5110
-    m_ActionName: UI Controls/Point[/Mouse/position,/Pen/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 46c1c25d-ac9c-4802-a45c-3623abf09f94
-    m_ActionName: UI Controls/Cancel[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0498a14f-b9a9-4cfe-9e6c-ecee1fa3a923
-    m_ActionName: UI Controls/Submit[/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 77b21059-c6fb-42fa-b2e3-1393801613ce
-    m_ActionName: UI Controls/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+      m_Calls:
+      - m_Target: {fileID: 2469626890057031484}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 99caea10-021e-4925-bfb4-14fd4648bc0f
+    m_ActionName: Player Controls/Pause Menu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player Controls

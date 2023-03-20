@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Chrono Event Channel")]
+[CreateAssetMenu(fileName = "Chrono Event Channel", menuName = "Chrono/Chrono Event Channel")]
 public class ChronoEventChannel : ScriptableObject
 {
     public event Action<bool> onChronoZoneDeploy;

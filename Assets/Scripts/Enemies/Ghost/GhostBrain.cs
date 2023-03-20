@@ -67,6 +67,33 @@ public class GhostBrain : EnemyBrain
     #region GHOST TIME ZONE BEHAVIOR
     private void StopGhost(bool isActive)
     {
+        if (isActive)
+        {
+            MoveSpeed = 0;
+        }
+        else
+        {
+            MoveSpeed = _speed;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            StopGhost(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            StopGhost(false);
+        }
+    }
+    /*
+    private void StopGhost(bool isActive)
+    {
         if (isActive && transform.parent.name == "ChronoZone(Clone)")
         {
             MoveSpeed = 0;
@@ -86,6 +113,7 @@ public class GhostBrain : EnemyBrain
     {
         _cChannel.OnChronoZoneActive -= StopGhost;
     }
+    */
 
     #endregion
 

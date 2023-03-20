@@ -15,6 +15,7 @@ TagManager:
   - Checkpoint
   - Ghost
   - EnemyPhys
+  - ChronoZone
   layers:
   - Default
   - TransparentFX
@@ -57,4 +58,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3043946587
+    locked: 0
+  - name: UI
+    uniqueID: 1165163485
     locked: 0

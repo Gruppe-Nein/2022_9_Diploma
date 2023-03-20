@@ -16,14 +16,14 @@ public class ChronoZone : MonoBehaviour
 
     #region LOCAL VARIABLES
     private float _radius;
-    private Dictionary<string, Transform> _parents;
+    //private Dictionary<string, Transform> _parents;
     #endregion
 
     private void Awake()
     {
         _circleCollider = GetComponent<CircleCollider2D>();
         _radius = _circleCollider.radius;
-        _parents = new Dictionary<string, Transform>();
+        //_parents = new Dictionary<string, Transform>();
     }
 
     void Start()
@@ -31,7 +31,7 @@ public class ChronoZone : MonoBehaviour
         StartCoroutine(ActiveTime());
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Projectile") || collision.CompareTag("Platform") 
             || collision.CompareTag("CircleMaze") || collision.CompareTag("Fallable")
@@ -52,7 +52,7 @@ public class ChronoZone : MonoBehaviour
             collision.transform.SetParent(_parents[collision.gameObject.name]);
             _cChannel.ChronoZoneActive(false);
         }
-    }
+    }*/
 
     private IEnumerator ActiveTime()
     {
