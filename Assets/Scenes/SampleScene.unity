@@ -1061,6 +1061,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5177434966425597807, guid: be20e31ff1089f44e9f5a54c559ffcdf, type: 3}
+      propertyPath: _iFramesDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177434966425597807, guid: be20e31ff1089f44e9f5a54c559ffcdf, type: 3}
+      propertyPath: _numberOfFlashes
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5177434966425597808, guid: be20e31ff1089f44e9f5a54c559ffcdf, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -2864,7 +2872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8335926184115368431, guid: 8166073d8d88f1249bdb38ba62befc8a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8335926184115368435, guid: 8166073d8d88f1249bdb38ba62befc8a, type: 3}
       propertyPath: m_RootOrder

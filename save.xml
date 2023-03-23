@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <_canTakeDamage>true</_canTakeDamage>
+  <_iFramesDuration>2</_iFramesDuration>
+  <_numberOfFlashes>5</_numberOfFlashes>
   <PlayerPosition>
-    <x>-2.045456</x>
-    <y>-1.383899</y>
+    <x>-2.133334</x>
+    <y>-1.38340616</y>
     <z>0</z>
   </PlayerPosition>
   <SceneToLoad>2</SceneToLoad>

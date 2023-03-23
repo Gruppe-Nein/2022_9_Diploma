@@ -63,14 +63,16 @@ public class Cannonball : MonoBehaviour
         {
             _pool.Release(this);
         }
+        ContinueMovement(collision);
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.gameObject.CompareTag("Player") && _canDamage)
         {
             GameEventSystem.Instance.PlayerTakeDamage(1);
             _pool.Release(this);
         }
-
-        ContinueMovement(collision);
     }
 
     private void OnCollisionStay2D(Collision2D collision)

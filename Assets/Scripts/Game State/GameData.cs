@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class GameData
 {
+    [Header("Player damage")]
+    public bool _canTakeDamage = true;
+    public float _iFramesDuration = 2;
+    public int _numberOfFlashes = 5;
+
     private Vector3 _playerPosition;
     private int _sceneToLoad;
     private GameState _stateToLoad;
