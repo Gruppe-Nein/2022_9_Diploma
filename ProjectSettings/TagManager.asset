@@ -15,6 +15,7 @@ TagManager:
   - Checkpoint
   - Ghost
   - EnemyPhys
+  - Fallable
   layers:
   - Default
   - TransparentFX
