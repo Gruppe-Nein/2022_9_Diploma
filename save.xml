@@ -2,7 +2,7 @@
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <PlayerPosition>
     <x>-2.07698655</x>
-    <y>-0.34341678</y>
+    <y>-0.690083265</y>
     <z>0</z>
   </PlayerPosition>
   <SceneToLoad>2</SceneToLoad>

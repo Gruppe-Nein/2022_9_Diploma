@@ -2806,7 +2806,7 @@ PrefabInstance:
     - target: {fileID: 5220734786989277712, guid: 18980507b8001d245a0edf11e73a5e53, type: 3}
       propertyPath: _dialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 57693e5b3ce15e44cb45bffca84d38d4, type: 2}
+      objectReference: {fileID: 11400000, guid: 9695f29459172e141b7af864ea4b57c9, type: 2}
     - target: {fileID: 5220734786989277712, guid: 18980507b8001d245a0edf11e73a5e53, type: 3}
       propertyPath: _isLoopable
       value: 1

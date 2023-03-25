@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78f3c32340dc0f140a689cf02208362a, type: 3}
-  m_Name: Dialogue with Demon
+  m_Name: TEST2_BEAR
   m_EditorClassIdentifier: 
   DialogueText:
-  - _actor: {fileID: 11400000, guid: bfe4c5334aff16f479ab373fb42a8483, type: 2}
+  - _actor: {fileID: 11400000, guid: aa2e9add8b106db4b99d0391057cf6b3, type: 2}
     _line: '*Dubs*'
-  - _actor: {fileID: 11400000, guid: 5b74b0e67a6ee224fb410cfa6ca615c5, type: 2}
+  - _actor: {fileID: 11400000, guid: aa2e9add8b106db4b99d0391057cf6b3, type: 2}
     _line: '*Laughs*'
   - _actor: {fileID: 11400000, guid: 5b74b0e67a6ee224fb410cfa6ca615c5, type: 2}
     _line: '*Dies of cringe*'
