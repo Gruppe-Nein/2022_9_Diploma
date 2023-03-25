@@ -24,6 +24,8 @@ public class ChronoZone : MonoBehaviour
         _circleCollider = GetComponent<CircleCollider2D>();
         _radius = _circleCollider.radius;
         //_parents = new Dictionary<string, Transform>();
+
+        _cChannel.onCheckPointRestore += RestoreWatch;
     }
 
     void Start()
@@ -66,9 +68,22 @@ public class ChronoZone : MonoBehaviour
             }
             yield return new WaitForSeconds(0.5f);
             _circleCollider.radius = _radius;            
-        }
-        yield return new WaitForSeconds(0.5f);
+        }        
         _cChannel.ChronoZoneDeploy(false);
         Destroy(gameObject);
+    }
+
+    private void RestoreWatch(bool reset)
+    {
+        if (reset)
+        {
+            _cChannel.ChronoZoneDeploy(false);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        _cChannel.onCheckPointRestore -= RestoreWatch;
     }
 }

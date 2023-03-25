@@ -29,6 +29,33 @@ public class Rock : MonoBehaviour
     #region ROCK TIME ZONE BEHAVIOR
     private void FreezeRock(bool isActive)
     {
+        if (isActive)
+        {
+            _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+        } else
+        {
+            _rigidbody.constraints = RigidbodyConstraints2D.None;
+
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            FreezeRock(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            FreezeRock(false);
+        }
+    }
+    /*
+    private void FreezeRock(bool isActive)
+    {
         if (isActive && transform.parent != null)
         {
             if (transform.parent.name == "ChronoZone(Clone)")
@@ -51,7 +78,7 @@ public class Rock : MonoBehaviour
     private void OnDestroy()
     {
         _cChannel.OnChronoZoneActive -= FreezeRock;
-    }
+    }*/
     #endregion
 
     #region PORTAL METHODS

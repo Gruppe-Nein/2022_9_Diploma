@@ -23,22 +23,20 @@ public class ChronoWatch : MonoBehaviour
     private bool _onCooldown;
     private Vector3 _mousePosition;
     private Vector3 _aimDirection;
-    private bool _isFacingRight;
+    private Quaternion _rotationAim;
     #endregion
 
     void Start()
     {
         _onCooldown = false;
-        _isFacingRight = true;
+        _rotationAim = transform.rotation;
+
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
         ChronoWatchAiming();
-
-        if (gameObject.transform.parent.localScale.x != 0)
-            CheckDirectionToFace(gameObject.transform.parent.localScale.x > 0);
     }
     
     private void ChronoWatchAiming()
@@ -48,21 +46,23 @@ public class ChronoWatch : MonoBehaviour
         _aimDirection = (_mousePosition - transform.position).normalized;
         float rotAngle = Mathf.Atan2(_aimDirection.y, _aimDirection.x) * Mathf.Rad2Deg;
 
-        if (gameObject.transform.parent.localScale.x < 0)
+        _rotationAim = Quaternion.Euler(0, 0, rotAngle);
+
+        /*if (gameObject.transform.parent.localScale.x < 0)
         {
             transform.eulerAngles = new Vector3(0, 0, rotAngle - 180f);
             return;
-        }
+        }*/
 
-        transform.eulerAngles = new Vector3(0, 0, rotAngle);
+        //transform.eulerAngles = new Vector3(0, 0, rotAngle);
     }
 
     public void ShootWatchProjectile(InputAction.CallbackContext context)
     {
         if (context.performed && !_onCooldown)
         {
-            _cChannel.ChronoZoneDeploy(true);
-            Instantiate(_watchProjectile, transform.position, transform.rotation);
+            _cChannel.WatchProjectileDeploy(true);
+            Instantiate(_watchProjectile, transform.position, _rotationAim);
         }
     }
 
@@ -80,28 +80,14 @@ public class ChronoWatch : MonoBehaviour
         }
     }
 
-    public void CheckDirectionToFace(bool isMovingRight)
-    {
-        if (isMovingRight != _isFacingRight)
-            Turn();
-    }
-
-    private void Turn()
-    {
-        _spriteRenderer.flipX = _isFacingRight;
-        _spriteRenderer.flipY = _isFacingRight;
-
-        _isFacingRight = !_isFacingRight;
-    }
-
     private void OnEnable()
     {
-        _cChannel.onChronoZoneDeploy += DisableWatch;
+        _cChannel.onWatchProjectileDeploy += DisableWatch;
     }
 
     private void OnDisable()
     {
-        _cChannel.onChronoZoneDeploy -= DisableWatch;
+        _cChannel.onWatchProjectileDeploy -= DisableWatch;
     }
 
     private void OnDrawGizmos()

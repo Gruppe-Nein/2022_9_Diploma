@@ -44,9 +44,7 @@ public class MoveOnEnterPlatform : MonoBehaviour
         _platformSpeed = _speed;
         _targetPos = _posA.position;
         CalculateDirection();
-    }
-
-    
+    }    
 
     private void FixedUpdate()
     {
@@ -90,29 +88,35 @@ public class MoveOnEnterPlatform : MonoBehaviour
             return;
         }
     }
-    
+
     #region PLATFORM TIME ZONE BEHAVIOR
 
     private void StopPlatform(bool isActive)
     {
-        if (isActive && transform.parent.name == "ChronoZone(Clone)")
+        if (isActive)
         {
             _platformSpeed = 0;
         }
-        else if (!isActive)
+        else
         {
             _platformSpeed = _speed;
         }
     }
 
-    private void OnEnable()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        _cChannel.OnChronoZoneActive += StopPlatform;
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            StopPlatform(true);
+        }
     }
 
-    private void OnDisable()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        _cChannel.OnChronoZoneActive -= StopPlatform;
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            StopPlatform(false);
+        }
     }
     #endregion
 

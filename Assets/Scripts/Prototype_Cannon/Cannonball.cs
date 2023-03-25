@@ -65,14 +65,14 @@ public class Cannonball : MonoBehaviour
         if (isActive && transform.parent != null)
         {
             if (transform.parent.name == "ChronoZone(Clone)") {
-                _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                _rigibBody.constraints = RigidbodyConstraints2D.FreezeAll;
                 _canDamage = false;
             }
         }
-        else if ((_rb.constraints & RigidbodyConstraints2D.FreezePositionX) == RigidbodyConstraints2D.FreezePositionX)
+        else if ((_rigibBody.constraints & RigidbodyConstraints2D.FreezePositionX) == RigidbodyConstraints2D.FreezePositionX)
         {            
-            _rb.constraints = RigidbodyConstraints2D.None;
-            _rb.velocity = _cannonballVector;
+            _rigibBody.constraints = RigidbodyConstraints2D.None;
+            _rigibBody.velocity = _cannonballVector;
             _canDamage = true;
         }
     }

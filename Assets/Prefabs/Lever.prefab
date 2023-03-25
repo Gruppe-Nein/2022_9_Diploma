@@ -236,6 +236,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _inputEventChannel: {fileID: 11400000, guid: b36333aa290224c419dbaa20647ef54f, type: 2}
 --- !u!61 &8752612168416888428
 BoxCollider2D:
   m_ObjectHideFlags: 0
