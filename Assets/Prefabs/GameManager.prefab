@@ -59,3 +59,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions: {fileID: -944628639613478452, guid: cbeabe625c10dfa49a6684679391b7c5, type: 3}
   _loadingData: {fileID: 11400000, guid: b2b408d6340cd1f4a99bf9158e59c33a, type: 2}
+  _cEventChannel: {fileID: 11400000, guid: b224aa37d8d35674581d1c579baff9c1, type: 2}

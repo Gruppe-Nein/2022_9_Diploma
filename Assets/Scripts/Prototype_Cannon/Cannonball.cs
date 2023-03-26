@@ -87,26 +87,19 @@ public class Cannonball : MonoBehaviour
     }*/
     #endregion
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform"))
         {
             _pool.Release(this);
         }
-        ContinueMovement(collision);
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
         if (collision.gameObject.CompareTag("Player") && _canDamage)
         {
             GameEventSystem.Instance.PlayerTakeDamage(1);
             _pool.Release(this);
         }
-    }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
         ContinueMovement(collision);
     }
 
@@ -121,7 +114,7 @@ public class Cannonball : MonoBehaviour
         _pool = pool;
     }
 
-    private void ContinueMovement(Collision2D collision)
+    private void ContinueMovement(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Projectile"))
         {
