@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class InGamePauseController : MonoBehaviour
 {
-    #region COMPONENTS
+    #region REFERENCES
     private PlayerInput _playerInput;
     #endregion
 
     #region MENU PANELS
-    [SerializeField] private GameObject _pauseMenu;
+    //[SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _ingameMenu;
     [SerializeField] private GameObject _optionMenu;
     [SerializeField] private GameObject _controlMenu;
@@ -28,29 +28,32 @@ public class InGamePauseController : MonoBehaviour
 
     public void DeterminePause(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (GameManager.Instance.CurrentGameState == GameState.Pause)
         {
-            if (_isPaused && _pauseCounter == PauseCounter.IngamePause)
+            if (context.performed)
             {
-                ResumeGame();
+                if (_isPaused && _pauseCounter == PauseCounter.IngamePause)
+                {
+                    ResumeGame();
+                }
+                /*else if (!_isPaused && _pauseCounter == PauseCounter.Gameplay)
+                {
+                    PauseGame();
+                }*/
+                else if (_isPaused && _pauseCounter == PauseCounter.Option)
+                {
+                    _pauseCounter = PauseCounter.IngamePause;
+                    _optionMenu.SetActive(false);
+                    _ingameMenu.SetActive(true);
+                }
+                else if (_isPaused && _pauseCounter == PauseCounter.Control)
+                {
+                    _pauseCounter = PauseCounter.Option;
+                    _controlMenu.SetActive(false);
+                    _optionMenu.SetActive(true);
+                }
             }
-            else if (!_isPaused && _pauseCounter == PauseCounter.Gameplay)
-            {
-                PauseGame();
-            }
-            else if (_isPaused && _pauseCounter == PauseCounter.Option)
-            {
-                _pauseCounter = PauseCounter.IngamePause;
-                _optionMenu.SetActive(false);
-                _ingameMenu.SetActive(true);
-            }
-            else if (_isPaused && _pauseCounter == PauseCounter.Control)
-            {
-                _pauseCounter = PauseCounter.Option;
-                _controlMenu.SetActive(false);
-                _optionMenu.SetActive(true);
-            }            
-        }        
+        }    
     }
 
     public void CounterUp()
@@ -69,8 +72,9 @@ public class InGamePauseController : MonoBehaviour
         _isPaused = false;
         _playerInput.SwitchCurrentActionMap("Player Controls");
         _pauseCounter = PauseCounter.Gameplay;
+        GameManager.Instance.SetGameState(GameState.Gameplay);
         //Debug.Log(_playerInput.currentActionMap.ToString());
-        _pauseMenu.SetActive(false);
+        //_pauseMenu.SetActive(false);
     }
 
     public void RestartFromCheckpoint()
@@ -100,7 +104,7 @@ public class InGamePauseController : MonoBehaviour
         _playerInput.SwitchCurrentActionMap("UI Controls");
         _pauseCounter = PauseCounter.IngamePause;
         //Debug.Log(_playerInput.currentActionMap.ToString());
-        _pauseMenu.SetActive(true);
+        //_pauseMenu.SetActive(true);
     }
 
     private void Awake()
@@ -108,6 +112,11 @@ public class InGamePauseController : MonoBehaviour
         _playerInput = FindObjectOfType<PlayerInput>();
         _isPaused = false;
         _pauseCounter = PauseCounter.Gameplay;
+    }
+
+    private void OnEnable()
+    {
+        PauseGame();
     }
 
     private enum PauseCounter

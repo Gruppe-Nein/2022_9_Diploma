@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f3c32340dc0f140a689cf02208362a, type: 3}
+  m_Name: TEST2_BEAR
+  m_EditorClassIdentifier: 
+  DialogueText:
+  - _actor: {fileID: 11400000, guid: aa2e9add8b106db4b99d0391057cf6b3, type: 2}
+    _line: '*Dubs*'
+  - _actor: {fileID: 11400000, guid: aa2e9add8b106db4b99d0391057cf6b3, type: 2}
+    _line: '*Laughs*'
+  - _actor: {fileID: 11400000, guid: 5b74b0e67a6ee224fb410cfa6ca615c5, type: 2}
+    _line: '*Dies of cringe*'

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3510216206795787798}
   m_Layer: 0
   m_Name: ChronoZone
-  m_TagString: Untagged
+  m_TagString: ChronoZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.17007834, g: 0.76398563, b: 0.9245283, a: 1}
   m_FlipX: 0

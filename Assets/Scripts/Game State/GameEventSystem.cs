@@ -24,6 +24,7 @@ public class GameEventSystem : MonoBehaviour
 
     #region SCRIPTABLE OBJECTS
     [SerializeField] private LoadingData _loadingData;
+    [SerializeField] private ChronoEventChannel _cEventChannel;
     #endregion
 
     private void Awake()
@@ -107,6 +108,7 @@ public class GameEventSystem : MonoBehaviour
             stream.Close();
 
             OnLoadData?.Invoke(_gameData);
+            _cEventChannel.CheckPointRestore(true);
         }
     }
     public void SaveData()
@@ -161,6 +163,7 @@ public class GameEventSystem : MonoBehaviour
         serializer.Serialize(stream, _cRebinds);
         stream.Close();
     }
+
     private void OnEnable()
     {
         LoadControl();

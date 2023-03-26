@@ -54,8 +54,8 @@ public class ChronoWatch : MonoBehaviour
     {
         if (context.performed && !_onCooldown)
         {
-            _cChannel.ChronoZoneDeploy(true);
-            Instantiate(_watchProjectile, transform.position, transform.rotation);
+            _cChannel.WatchProjectileDeploy(true);
+            Instantiate(_watchProjectile, transform.position, _rotationAim);
         }
     }
 
@@ -89,12 +89,12 @@ public class ChronoWatch : MonoBehaviour
 
     private void OnEnable()
     {
-        _cChannel.onChronoZoneDeploy += DisableWatch;
+        _cChannel.onWatchProjectileDeploy += DisableWatch;
     }
 
     private void OnDisable()
     {
-        _cChannel.onChronoZoneDeploy -= DisableWatch;
+        _cChannel.onWatchProjectileDeploy -= DisableWatch;
     }
 
     private void OnDrawGizmos()

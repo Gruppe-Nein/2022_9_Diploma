@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class LeverMechanism : MonoBehaviour
 {
     [Header("Door Events")]
     [SerializeField] private UnityEvent closeDoor;
     [SerializeField] private UnityEvent openDoor;
+
+    [SerializeField] private InputEventChannel _inputEventChannel;
 
     private bool _isTriggered = false;
     private bool _canBePushed = false;
@@ -17,11 +20,17 @@ public class LeverMechanism : MonoBehaviour
     private void Awake()
     {
         _sp = GetComponent<SpriteRenderer>();
+
     }
 
-    private void Update()
+    private void Start()
     {
-        if (_canBePushed && Input.GetKeyUp(KeyCode.E))
+        _inputEventChannel.onInteractButtonPressed += activateLever;
+    }
+
+    private void activateLever(InputAction.CallbackContext context)
+    {
+        if (_canBePushed && context.performed)
         {
             if (_isTriggered == false)
             {
@@ -35,7 +44,7 @@ public class LeverMechanism : MonoBehaviour
                 _isTriggered = false;
                 _sp.color = Color.red;
             }
-            
+
         }
     }
 
@@ -53,5 +62,10 @@ public class LeverMechanism : MonoBehaviour
         {
             _canBePushed = false;
         }
+    }
+
+    private void OnDisable()
+    {
+        _inputEventChannel.onInteractButtonPressed += activateLever;
     }
 }

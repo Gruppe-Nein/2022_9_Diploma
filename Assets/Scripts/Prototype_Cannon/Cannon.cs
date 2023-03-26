@@ -40,7 +40,33 @@ public class Cannon : MonoBehaviour
     }
 
     #region CANNON TIME ZONE BEHAVIOR
+    private void StopShoot(bool isActive)
+    {
+        if (isActive)
+        {
+            _isShooting = false;
+        }
+        else
+        {
+            _isShooting = true;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            StopShoot(true);
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            StopShoot(false);
+        }
+    }
+    /*
     private void StopShoot(bool isActive)
     {
         if (isActive && transform.parent != null)
@@ -64,6 +90,7 @@ public class Cannon : MonoBehaviour
     {
         _cChannel.OnChronoZoneActive -= StopShoot;
     }
+    */
     #endregion
 
     #region POOL METHODS

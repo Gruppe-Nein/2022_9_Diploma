@@ -16,14 +16,16 @@ public class ChronoZone : MonoBehaviour
 
     #region LOCAL VARIABLES
     private float _radius;
-    private Dictionary<string, Transform> _parents;
+    //private Dictionary<string, Transform> _parents;
     #endregion
 
     private void Awake()
     {
         _circleCollider = GetComponent<CircleCollider2D>();
         _radius = _circleCollider.radius;
-        _parents = new Dictionary<string, Transform>();
+        //_parents = new Dictionary<string, Transform>();
+
+        _cChannel.onCheckPointRestore += RestoreWatch;
     }
 
     void Start()
@@ -31,7 +33,7 @@ public class ChronoZone : MonoBehaviour
         StartCoroutine(ActiveTime());
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Projectile") || collision.CompareTag("Platform") 
             || collision.CompareTag("CircleMaze") || collision.CompareTag("Fallable")
@@ -52,7 +54,7 @@ public class ChronoZone : MonoBehaviour
             collision.transform.SetParent(_parents[collision.gameObject.name]);
             _cChannel.ChronoZoneActive(false);
         }
-    }
+    }*/
 
     private IEnumerator ActiveTime()
     {
@@ -66,9 +68,22 @@ public class ChronoZone : MonoBehaviour
             }
             yield return new WaitForSeconds(0.5f);
             _circleCollider.radius = _radius;            
-        }
-        yield return new WaitForSeconds(0.5f);
+        }        
         _cChannel.ChronoZoneDeploy(false);
         Destroy(gameObject);
+    }
+
+    private void RestoreWatch(bool reset)
+    {
+        if (reset)
+        {
+            _cChannel.ChronoZoneDeploy(false);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        _cChannel.onCheckPointRestore -= RestoreWatch;
     }
 }

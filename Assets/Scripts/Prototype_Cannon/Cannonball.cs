@@ -31,14 +31,12 @@ public class Cannonball : MonoBehaviour
 
     private void FreezeProjectile(bool isActive)
     {
-        if (isActive && transform.parent != null)
+        if (isActive)
         {
-            if (transform.parent.name == "ChronoZone(Clone)") {
-                _rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                _canDamage = false;
-            }
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            _canDamage = false;
         }
-        else if ((_rb.constraints & RigidbodyConstraints2D.FreezePositionX) == RigidbodyConstraints2D.FreezePositionX)
+        else
         {            
             _rb.constraints = RigidbodyConstraints2D.None;
             _rb.velocity = _cannonballVector;
@@ -46,6 +44,38 @@ public class Cannonball : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            FreezeProjectile(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            FreezeProjectile(false);
+        }
+    }
+    /*
+    private void FreezeProjectile(bool isActive)
+    {
+        if (isActive && transform.parent != null)
+        {
+            if (transform.parent.name == "ChronoZone(Clone)") {
+                _rigibBody.constraints = RigidbodyConstraints2D.FreezeAll;
+                _canDamage = false;
+            }
+        }
+        else if ((_rigibBody.constraints & RigidbodyConstraints2D.FreezePositionX) == RigidbodyConstraints2D.FreezePositionX)
+        {            
+            _rigibBody.constraints = RigidbodyConstraints2D.None;
+            _rigibBody.velocity = _cannonballVector;
+            _canDamage = true;
+        }
+    }
     private void OnEnable()
     {
         _cChannel.OnChronoZoneActive += FreezeProjectile;
@@ -54,7 +84,7 @@ public class Cannonball : MonoBehaviour
     private void OnDestroy()
     {
         _cChannel.OnChronoZoneActive -= FreezeProjectile;
-    }
+    }*/
     #endregion
 
     private void OnCollisionEnter2D(Collision2D collision)

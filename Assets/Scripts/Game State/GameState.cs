@@ -4,5 +4,7 @@ public enum GameState
     Default,
     MainMenu,
     Loading,
-    Gameplay,    
+    Gameplay,
+    Pause,
+    Dialogue
 }

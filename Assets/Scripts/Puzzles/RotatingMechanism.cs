@@ -27,7 +27,32 @@ public class RotatingMechanism : MonoBehaviour
     }
 
     #region MECHANISM TIME ZONE BEHAVIOR
+    private void StopRotation(bool isActive)
+    {
+        if (isActive)
+        {
+            _defaultSpeed = 0;
+        }
+        else {
+            _defaultSpeed = _rotSpeed;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            StopRotation(true);
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            StopRotation(false);
+        }
+    }
+    /*
     private void StopRotation(bool isActive)
     {
         if (isActive && transform.parent.name == "ChronoZone(Clone)")
@@ -48,6 +73,6 @@ public class RotatingMechanism : MonoBehaviour
     private void OnDestroy()
     {
         _cChannel.OnChronoZoneActive -= StopRotation;
-    }
+    }*/
     #endregion
 }

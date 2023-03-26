@@ -67,9 +67,36 @@ public class PlatfromPatrolling : MonoBehaviour
             return;
         }
     }
-    
-    #region PLATFORM TIME ZONE BEHAVIOR
 
+    #region PLATFORM TIME ZONE BEHAVIOR
+    private void StopPlatform(bool isActive)
+    {
+        if (isActive)
+        {
+            _platformSpeed = 0;
+        }
+        else
+        {
+            _platformSpeed = _speed;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            StopPlatform(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            StopPlatform(false);
+        }
+    }
+    /*
     private void StopPlatform(bool isActive)
     {
         if (isActive && transform.parent.name == "ChronoZone(Clone)")
@@ -91,6 +118,7 @@ public class PlatfromPatrolling : MonoBehaviour
     {
         _cChannel.OnChronoZoneActive -= StopPlatform;
     }
+    */
     #endregion
 
     private void OnDrawGizmos()

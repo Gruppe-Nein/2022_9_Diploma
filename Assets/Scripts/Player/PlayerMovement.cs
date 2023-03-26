@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public PlayerData Data;
+    [SerializeField] private InputEventChannel _inputEventChannel;
 
     #region COMPONENTS
     public Rigidbody2D _rb { get; private set; }
@@ -279,6 +280,21 @@ public class PlayerMovement : MonoBehaviour
             OnJumpUpInput();
         }
     }
+    public void ShootWatch(InputAction.CallbackContext context)
+    {
+        _inputEventChannel.ShootButtonPressed(context);
+    }
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GameManager.Instance.SetGameState(GameState.Pause);
+        }
+    }
+    public void Interact(InputAction.CallbackContext context)
+    {
+        _inputEventChannel.InteractButtonPressed(context);
+    }
     #endregion
 
     #region RUN METHODS
@@ -332,10 +348,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Turn()
     {
-        // Stores scale and flips the player along the x axis, 
+        // Stores scale and flips the player along the x axis        
         Vector3 scale = transform.localScale;
         scale.x *= -1;
-        transform.localScale = scale;
+        transform.localScale = scale;      
 
         IsFacingRight = !IsFacingRight;
     }
