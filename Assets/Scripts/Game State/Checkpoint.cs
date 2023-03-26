@@ -13,6 +13,7 @@ public class Checkpoint : MonoBehaviour
         {
             _sr.color = Color.green;
             GameEventSystem.Instance.SaveData();
+            GameEventSystem.Instance.PlayerRestoreHealthCheckpoint(1);
         }
     }
 }

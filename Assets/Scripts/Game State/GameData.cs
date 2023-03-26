@@ -10,14 +10,15 @@ public class GameData
     private Vector3 _playerPosition;
     private int _sceneToLoad;
     private GameState _stateToLoad;
-    private GameDifficulty _gameDifficulty;
-    private int _playerHealth;
+    [SerializeField] private GameDifficulty _gameDifficulty;
+    public int _playerCurrentHealth;
+    public int _playerMaxHealth;
 
     public Vector3 PlayerPosition { get => _playerPosition; set => _playerPosition = value; }
     public int SceneToLoad { get => _sceneToLoad; set => _sceneToLoad = value; }
     public GameState StateToLoad { get => _stateToLoad; set => _stateToLoad = value; }
     public GameDifficulty GameDifficulty { get => _gameDifficulty; set => _gameDifficulty = value; }
-    public int PlayerHealth { get => _playerHealth; set => _playerHealth = value; }
+    public int PlayerHealth { get => _playerCurrentHealth; set => _playerCurrentHealth = value; }
 
     public GameData()
     {
@@ -52,5 +53,10 @@ public class GameData
             return true; // player is dead
         }
         else return false; // player is alive
+    }
+    public void GetHealth(int amount)
+    {
+        if (PlayerHealth + amount <= _playerMaxHealth)
+            PlayerHealth += amount;
     }
 }

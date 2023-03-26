@@ -38,13 +38,14 @@ public class GameEventSystem : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         _cRebinds = new ControlBindings();
     }
     
     #region playerActions
         public event Action<GameData> OnPlayerTakeDamage;
+        public event Action<GameData> OnPlayerRestoreHealth;
         public event Action OnPlayerDead;
     #endregion
     
@@ -64,6 +65,10 @@ public class GameEventSystem : MonoBehaviour
             else
                 OnPlayerTakeDamage?.Invoke(_gameData);
         }        
+
+    public void PlayerRestoreHealthCheckpoint(int amount)
+    {
+        _gameData.GetHealth(amount);
     }
 
     
@@ -74,6 +79,7 @@ public class GameEventSystem : MonoBehaviour
         if (difficulty == (int)GameDifficulty.Easy)
         {
             _gameData.SetDifficilty(GameDifficulty.Easy);
+            //Debug.Log(_gameData.PlayerHealth);
         }
         if (difficulty == (int)GameDifficulty.Normal)
         {
@@ -86,7 +92,7 @@ public class GameEventSystem : MonoBehaviour
     {
         _loadingData.sceneToLoad = levelIndex;
         _loadingData.stateToLoad = GameState.Gameplay;
-        GameEventSystem.Instance.SaveData();
+        Instance.SaveData();
         GameManager.Instance.SetGameState(GameState.Loading);
         SceneManager.LoadScene(levelIndex);
     }
