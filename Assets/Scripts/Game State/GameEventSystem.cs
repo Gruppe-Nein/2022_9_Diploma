@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.IO;
 using System.Xml.Serialization;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class GameEventSystem : MonoBehaviour
     #region PARAMETERS
     [SerializeField] private GameData _gameData;    
     private ControlBindings _cRebinds;
+
+    
     #endregion
 
     #region SCRIPTABLE OBJECTS
@@ -51,11 +54,18 @@ public class GameEventSystem : MonoBehaviour
 
     public void PlayerTakeDamage(int damage)
     {
-        bool playerIsDead = _gameData.GetDamage(damage);
-        OnPlayerTakeDamage?.Invoke(_gameData);
-
-        if (playerIsDead) OnPlayerDead?.Invoke();
+        bool playerIsDead = false;
+        if (_gameData._canTakeDamage)
+        {
+            playerIsDead = _gameData.GetDamage(damage);
+            if (playerIsDead)
+                OnPlayerDead?.Invoke();
+            else
+                OnPlayerTakeDamage?.Invoke(_gameData);
+        }        
     }
+
+    
 
     public void NewGame(int difficulty)
     {

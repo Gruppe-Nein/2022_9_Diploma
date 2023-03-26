@@ -78,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
         SetGravityScale(Data.gravityScale);
         IsFacingRight = true;
         GameEventSystem.Instance.OnPlayerDead += PlayerDeath;
+        GameEventSystem.Instance.OnPlayerTakeDamage += PlayerTakeDamage;
         GameEventSystem.Instance.OnSaveData += SaveGame;
         GameEventSystem.Instance.OnLoadData += LoadGame;
 
@@ -424,6 +425,36 @@ public class PlayerMovement : MonoBehaviour
     void SaveGame(GameData data)
     {
         data.PlayerPosition = transform.position;
+    }
+
+    public void PlayerTakeDamage(GameData data)
+    {
+        StartCoroutine(Invunerability(data));
+        StartCoroutine(Knock(data));
+    }
+
+    private IEnumerator Knock(GameData data)
+    {
+        _rb.velocity = Vector2.zero;
+        _rb.AddForce(new Vector2(-10, 10), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(1f);
+        _rb.velocity = Vector2.zero;
+    }
+
+    private IEnumerator Invunerability(GameData data)
+    {
+        Debug.Log("Invun");
+        data._canTakeDamage = false;
+        for (int i = 0; i < data._numberOfFlashes; i++)
+        {
+            _sr.color = new Color(1, 0, 0, 0.5f);
+            yield return new WaitForSeconds(data._iFramesDuration / (data._numberOfFlashes * 3));
+            _sr.color = Color.white;
+            yield return new WaitForSeconds(data._iFramesDuration / (data._numberOfFlashes * 3));
+        }
+        
+        data._canTakeDamage = true;
+        Debug.Log("Vun");
     }
 
     public void PlayerDeath()
