@@ -3,9 +3,11 @@
   <_canTakeDamage>true</_canTakeDamage>
   <_iFramesDuration>2</_iFramesDuration>
   <_numberOfFlashes>5</_numberOfFlashes>
+  <_playerCurrentHealth>2</_playerCurrentHealth>
+  <_playerMaxHealth>0</_playerMaxHealth>
   <PlayerPosition>
-    <x>21.1508923</x>
-    <y>-1.05339932</y>
+    <x>-2.0686655</x>
+    <y>-1.38339925</y>
     <z>0</z>
   </PlayerPosition>
   <SceneToLoad>2</SceneToLoad>
