@@ -27,17 +27,14 @@ public class BossPlatfrom : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("xdd");
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
-            Debug.Log("xxd");
             DeactiveCogwheel();
         }
     }
 
     private void DeactiveCogwheel()
     {
-        Debug.Log("asd");
         var cogwheel = cogwheels.First();
         cogwheel.SetActive(false);
         cogwheels.Remove(cogwheel);
