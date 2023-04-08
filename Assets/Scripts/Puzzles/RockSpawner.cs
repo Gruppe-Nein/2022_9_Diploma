@@ -1,9 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Pool;
-using static UnityEngine.GridBrushBase;
 
 public class RockSpawner : MonoBehaviour
 {
@@ -11,14 +7,15 @@ public class RockSpawner : MonoBehaviour
 
     #region PARAMETERS
     [SerializeField] private float _delay;
-    private float _nextTime;
+    private Vector3 _offset = new Vector3 (0, -2, 0);
+    // private float _nextTime;
     #endregion
 
     private void Start()
     {
         StartCoroutine(SpawnRock());
         
-        //_nextTime = Time.time + _cooldown;
+        // _nextTime = Time.time + _cooldown;
     }
 
     private void Update()
@@ -33,6 +30,6 @@ public class RockSpawner : MonoBehaviour
     private IEnumerator SpawnRock()
     {
         yield return new WaitForSeconds(_delay);
-        Instantiate(_rock, transform.position, transform.rotation);
+        Instantiate(_rock, transform.position + _offset, transform.rotation);
     }
 }

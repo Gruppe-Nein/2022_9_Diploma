@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fallable : MonoBehaviour
@@ -9,6 +7,10 @@ public class Fallable : MonoBehaviour
         if(collision.gameObject.CompareTag("EnemyPhys"))
         { 
             Destroy(collision.gameObject); 
+        }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameEventSystem.Instance.PlayerFallDown();
         }
     }
 }

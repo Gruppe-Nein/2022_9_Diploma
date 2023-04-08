@@ -20,7 +20,7 @@ public class LeverMechanism : MonoBehaviour
     private void Awake()
     {
         _sp = GetComponent<SpriteRenderer>();
-
+        _sp.color = Color.red;
     }
 
     private void Start()
