@@ -5,7 +5,9 @@ using UnityEngine;
 public class CodePuzzleEventChannel : ScriptableObject
 {
     /// <summary>
-    /// Code for 3 Levers: R B G
+    /// Solution for 3 Levers: R(ed) B(lue) G(reen)
+    /// Solution for 4 Levers: Y(ellow) C(yan) M(argenta) O(rnage)
+    /// Solution for 6 Levers: P(urple) Bu(rgundy) Pi(nk) Br(own) Bl(ack) L(ight Green)
     /// </summary>
     [Tooltip("Current puzzle's solution. Order of code numbers sended by triggers")]
     [SerializeField] public int[] code;
