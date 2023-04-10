@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548c2eda759cf0c42824a000ef7ab78f, type: 3}
   m_Name: Puzzle_Code_3
   m_EditorClassIdentifier: 
-  code: 030000000100000002000000
+  code: 010000000200000003000000

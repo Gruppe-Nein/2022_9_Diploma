@@ -7,13 +7,22 @@ public class RockSpawner : MonoBehaviour
 
     #region PARAMETERS
     [SerializeField] private float _delay;
-    private Vector3 _offset = new Vector3 (0, -2, 0);
+    [SerializeField] private Vector3 _offset = new Vector3 (0, -5, 0);
+    [SerializeField] private bool _flip = false;
+    [SerializeField] private float _degree = 0;
+
     // private float _nextTime;
     #endregion
 
     private void Start()
     {
-        StartCoroutine(SpawnRock());
+        if (_flip)
+        {
+            FlipX();
+        }
+        Quaternion rotation = Quaternion.Euler(0, 0, _degree);
+
+        StartCoroutine(SpawnRock(rotation));
         
         // _nextTime = Time.time + _cooldown;
     }
@@ -27,9 +36,18 @@ public class RockSpawner : MonoBehaviour
         }*/
     }
 
-    private IEnumerator SpawnRock()
+    private void FlipX()
+    {
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+    }
+
+    private IEnumerator SpawnRock(Quaternion rotation)
     {
         yield return new WaitForSeconds(_delay);
-        Instantiate(_rock, transform.position + _offset, transform.rotation);
+        _rock = Instantiate(_rock, transform.position + _offset, rotation, transform);
+
+
     }
 }

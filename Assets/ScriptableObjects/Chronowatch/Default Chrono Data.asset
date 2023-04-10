@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b638cc86747fb43823171cda710bca, type: 3}
   m_Name: Default Chrono Data
   m_EditorClassIdentifier: 
-  projectileSpeed: 1200
-  projectileReturnSpeed: 1000
+  projectileSpeed: 20
+  projectileReturnSpeed: 15
   offsetPosition: {x: -0.65, y: 0.65, z: 0}
   thresholdDistance: 6
   chronoZoneActiveTime: 5
