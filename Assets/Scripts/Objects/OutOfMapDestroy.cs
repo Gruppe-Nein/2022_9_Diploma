@@ -10,5 +10,9 @@ public class OutOfMapDestroy : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            GameEventSystem.Instance.PlayerTakeDamage(10);
+        }
     }
 }
