@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <_canTakeDamage>true</_canTakeDamage>
+  <_iFramesDuration>2</_iFramesDuration>
+  <_numberOfFlashes>5</_numberOfFlashes>
+  <_playerCurrentHealth>2</_playerCurrentHealth>
+  <_playerMaxHealth>0</_playerMaxHealth>
+  <PlayerPosition>
+    <x>-20</x>
+    <y>-0.41339916</y>
+    <z>0</z>
+  </PlayerPosition>
+  <SceneToLoad>2</SceneToLoad>
+  <StateToLoad>Gameplay</StateToLoad>
+  <GameDifficulty>Easy</GameDifficulty>
+  <PlayerHealth>2</PlayerHealth>
+</GameData>

@@ -47,7 +47,7 @@ public class CWatchProjectile : MonoBehaviour
 
         _rigibBody = GetComponent<Rigidbody2D>();
         _rigibBody.freezeRotation = true;
-        _rigibBody.velocity = transform.right * Time.deltaTime * _cData.projectileSpeed;
+        _rigibBody.velocity = transform.right * _cData.projectileSpeed;
 
         _returnToPlayer = false;
 
@@ -59,7 +59,7 @@ public class CWatchProjectile : MonoBehaviour
         //Returns chronowatch back to its original position
         if (_returnToPlayer)
         {
-            _rigibBody.velocity = ((_player.transform.position + _cData.offsetPosition) - transform.position) * Time.deltaTime * _cData.projectileReturnSpeed;
+            _rigibBody.velocity = ((_player.transform.position + _cData.offsetPosition) - transform.position) * _cData.projectileReturnSpeed;
             
             float distance = Vector3.Distance(transform.position, _player.transform.position + _cData.offsetPosition);
 

@@ -29,7 +29,7 @@ public class GameEventSystem : MonoBehaviour
 
     private void Awake()
     {
-        // Error occurs becasue of the multiple instances of GameEventSystem, Ignore it. 
+        // Error occurs because of the multiple instances of GameEventSystem, Ignore it. 
         // Need it to launch scene separately, will delete it when building final version.
         if (Instance == null)
         {
@@ -68,7 +68,16 @@ public class GameEventSystem : MonoBehaviour
         }
         Debug.Log($"Current health: {_gameData.PlayerHealth}");
     }
+    public void PlayerRestoreHealthCheckpoint(int amount)
+    {
+        _gameData.GetHealth(amount);
+        Debug.Log($"Current health: {_gameData.PlayerHealth}");
+    }
 
+    public void PlayerFallDown()
+    {
+        OnPlayerDead?.Invoke();
+    }
     public void PlayerRestoreHealthCheckpoint(int amount)
     {
         _gameData.GetHealth(amount);

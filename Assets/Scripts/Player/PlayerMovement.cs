@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, ITeleportable
 {
     public PlayerData Data;
     [SerializeField] private InputEventChannel _inputEventChannel;
@@ -68,11 +68,6 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _sr = GetComponent<SpriteRenderer>();
-
-        /*GameEventSystem.Instance.OnSaveData += SaveGame;
-        GameEventSystem.Instance.OnLoadData += LoadGame;
-
-        GameEventSystem.Instance.LoadData();*/
     }
     void Start()
     {
@@ -447,6 +442,15 @@ public class PlayerMovement : MonoBehaviour
     {
         StartCoroutine(Invunerability(data));
         StartCoroutine(Knock(data));
+    }
+    
+    /// <summary>
+    /// ITeleportable interface method implementation.
+    /// </summary>
+    /// <param name="position">Destination for teleport</param>
+    public void Teleport(Vector3 position)
+    {
+        transform.position = position;
     }
 
     private IEnumerator Knock(GameData data)

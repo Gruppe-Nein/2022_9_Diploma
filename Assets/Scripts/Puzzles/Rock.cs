@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Rock : MonoBehaviour
+public class Rock : MonoBehaviour, ITeleportable
 {
     #region SCRIPTABLE OBJECTS
     [SerializeField] private ChronoEventChannel _cChannel;
@@ -23,7 +21,7 @@ public class Rock : MonoBehaviour
 
     private void LateUpdate()
     {
-        _rigidbody.velocity = Vector2.up * -1f * _speed;
+        _rigidbody.velocity = Vector2.down * _speed;
     }
 
     #region ROCK TIME ZONE BEHAVIOR
@@ -32,13 +30,15 @@ public class Rock : MonoBehaviour
         if (isActive)
         {
             _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-        } else
+        }
+        else
         {
             _rigidbody.constraints = RigidbodyConstraints2D.None;
 
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
@@ -53,41 +53,14 @@ public class Rock : MonoBehaviour
             FreezeRock(false);
         }
     }
-    /*
-    private void FreezeRock(bool isActive)
-    {
-        if (isActive && transform.parent != null)
-        {
-            if (transform.parent.name == "ChronoZone(Clone)")
-            {
-                _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-            }
-        }
-        else if (_rigidbody.constraints == RigidbodyConstraints2D.FreezeAll)
-        {
-            _rigidbody.constraints = RigidbodyConstraints2D.None;
-
-        }
-    }
-
-    private void OnEnable()
-    {
-        _cChannel.OnChronoZoneActive += FreezeRock;
-    }
-
-    private void OnDestroy()
-    {
-        _cChannel.OnChronoZoneActive -= FreezeRock;
-    }*/
     #endregion
 
-    #region PORTAL METHODS
-    private void OnTriggerEnter2D(Collider2D collision)
+    /// <summary>
+    /// ITeleportable interface method implementation.
+    /// </summary>
+    /// <param name="position">Destination for teleport</param>
+    public void Teleport(Vector3 position)
     {
-        if (collision.CompareTag("Portal"))
-        {
-            transform.position = collision.GetComponent<Teleportal>().getAnotherPortal().position;
-        }
+        transform.position = position;
     }
-    #endregion
 }
