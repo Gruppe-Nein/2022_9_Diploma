@@ -68,11 +68,6 @@ public class GameEventSystem : MonoBehaviour
         }
         Debug.Log($"Current health: {_gameData.PlayerHealth}");
     }
-    public void PlayerRestoreHealthCheckpoint(int amount)
-    {
-        _gameData.GetHealth(amount);
-        Debug.Log($"Current health: {_gameData.PlayerHealth}");
-    }
 
     public void PlayerFallDown()
     {
