@@ -12,14 +12,13 @@ public abstract class EnemyBrain : MonoBehaviour
 
     #region Properties
     public float MoveSpeed;
+    public float ChargeSpeed;
     protected float _speed;
     [SerializeField] protected float AggroRange;
     [SerializeField] protected bool ShowAggroRange;
     #endregion
 
-    #region StateParameters
-    [HideInInspector] public bool IsChasing;
-    #endregion
+    
 
     #region Scriptable Objects
     [SerializeField] protected ChronoEventChannel _cChannel;

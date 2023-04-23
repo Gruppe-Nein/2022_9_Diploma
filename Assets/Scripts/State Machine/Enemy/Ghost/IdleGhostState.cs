@@ -17,7 +17,7 @@ public class IdleGhostState : State
     }
     public override void LogicUpdate()
     {
-        playerInRange = brain.IsChasing;
+        playerInRange = (brain as GhostBrain).IsChasing;
         base.LogicUpdate();
         if (playerInRange)
         {
