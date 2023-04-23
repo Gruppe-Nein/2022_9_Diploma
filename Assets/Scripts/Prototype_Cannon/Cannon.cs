@@ -9,7 +9,7 @@ public class Cannon : MonoBehaviour
     #endregion
 
     #region SCRIPTABLE OBJECTS
-    [SerializeField] private ChronoEventChannel _cChannel;
+    //[SerializeField] private ChronoEventChannel _cChannel;
     #endregion
 
     #region PARAMETERS

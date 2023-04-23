@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Cannonball : MonoBehaviour
+public class Cannonball : MonoBehaviour, ITeleportable
 {
     #region COMPONENTS
     private Rigidbody2D _rb;
@@ -22,9 +22,20 @@ public class Cannonball : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
         _cannonballVector = transform.right * _speed;
+        Debug.Log("CANNONVECTOR: " + _cannonballVector);
         _rb.velocity = _cannonballVector;
         _canDamage = true;
+    }
+
+    private void Update()
+    {
+        _cannonballVector = transform.right * _speed;
+        _rb.velocity = _cannonballVector;
     }
 
     #region CANNONBALL TIME ZONE BEHAVIOR
@@ -89,7 +100,7 @@ public class Cannonball : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Ballbarrier"))
         {
             _pool.Release(this);
         }
@@ -97,6 +108,12 @@ public class Cannonball : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && _canDamage)
         {
             GameEventSystem.Instance.PlayerTakeDamage(1);
+            _pool.Release(this);
+        }
+
+        if (collision.gameObject.CompareTag("Destructable"))
+        {
+            Destroy(collision.gameObject);
             _pool.Release(this);
         }
 
@@ -122,4 +139,11 @@ public class Cannonball : MonoBehaviour
         }
     }
     #endregion
+
+    public void Teleport(Vector3 position)
+    {
+        Debug.Log("TELEPORTATION");
+        Debug.Log("position: " + position);
+        transform.position = position;
+    }
 }

@@ -25,6 +25,11 @@ public class PlatfromPatrolling : MonoBehaviour
     private float _endPointCheckRadius = 0.2f;
     [SerializeField] private LayerMask _groundLayer;
 
+    public Vector2 getVelocity()
+    {
+        return _rBody2D.velocity;
+    }
+
     private void Awake()
     {
         _rBody2D = GetComponent<Rigidbody2D>();

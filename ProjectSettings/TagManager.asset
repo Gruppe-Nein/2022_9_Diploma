@@ -16,6 +16,9 @@ TagManager:
   - Ghost
   - EnemyPhys
   - ChronoZone
+  - ShootingZone
+  - Destructable
+  - Ballbarrier
   layers:
   - Default
   - TransparentFX
