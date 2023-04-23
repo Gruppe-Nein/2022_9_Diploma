@@ -46,6 +46,7 @@ public class GameEventSystem : MonoBehaviour
     #region playerActions
     public event Action<GameData> OnPlayerTakeDamage;
     public event Action<GameData> OnPlayerRestoreHealth;
+    public event Action<bool> OnPlayerInSafeZone;
     public event Action OnPlayerDead;
     #endregion
 
@@ -77,6 +78,17 @@ public class GameEventSystem : MonoBehaviour
     {
         OnPlayerDead?.Invoke();
     }
+    public void PlayerRestoreHealthCheckpoint(int amount)
+    {
+        _gameData.GetHealth(amount);
+        //Debug.Log($"Current health: {_gameData.PlayerHealth}");
+    }
+
+    public void SetPlayerInSafeZone(bool isInSafeZone)
+    {
+        OnPlayerInSafeZone?.Invoke(isInSafeZone);
+    }
+
 
     public void NewGame(int difficulty)
     {

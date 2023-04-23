@@ -7,6 +7,7 @@ public class GhostBrain : EnemyBrain
     
     public IdleGhostState IdleGhostState;
     public ChasingState ChasingState;
+    public AttackGhostState AttackState;
 
     #region Components
     //[HideInInspector] public GameObject player;
@@ -15,6 +16,14 @@ public class GhostBrain : EnemyBrain
     public ChasingState ChasingState;*/
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public GhostMovement movement;
+    #endregion
+
+    #region StateParameters
+    [HideInInspector] public bool IsChasing;
+    [HideInInspector] public bool IsAttacking;
+    [HideInInspector] public bool isDisabled;
+    [SerializeField] public float AttackRange;
+    
     #endregion
 
     /*#region Properties
@@ -42,21 +51,30 @@ public class GhostBrain : EnemyBrain
         stateMachine = new StateMachine();
         IdleGhostState = new IdleGhostState(this, stateMachine);
         ChasingState = new ChasingState(this, stateMachine);
+        AttackState = new AttackGhostState(this, stateMachine);
 
         /*stateMachine.states.Add(IdleGhostState);
         stateMachine.states.Add(ChasingState);*/
 
         stateMachine.Initialize(IdleGhostState);
-        
+        GameEventSystem.Instance.OnPlayerInSafeZone += SetDisabled;
     }
 
     void Update()
     {
-        //Debug.Log(stateMachine.CurrentState);
+        Debug.Log(stateMachine.CurrentState);
         stateMachine.CurrentState.HandleInput();
         stateMachine.CurrentState.LogicUpdate();
 
-        IsChasing = Vector2.Distance(rb.position, player.transform.position) < AggroRange;
+        IsAttacking = Vector2.Distance(rb.position, player.transform.position) < AttackRange;
+        IsChasing = Vector2.Distance(rb.position, player.transform.position) < AggroRange && !IsAttacking;
+        
+        
+    }
+
+    private void SetDisabled(bool active)
+    {
+        isDisabled = active;
     }
 
     void FixedUpdate()
@@ -123,6 +141,9 @@ public class GhostBrain : EnemyBrain
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, AggroRange);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, AttackRange);
         }
     }
 }
