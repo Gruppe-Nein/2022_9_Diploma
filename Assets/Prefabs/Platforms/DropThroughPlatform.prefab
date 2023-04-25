@@ -131,7 +131,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 2
+  m_SideArc: 0
 --- !u!114 &3577573861391892243
 MonoBehaviour:
   m_ObjectHideFlags: 0
