@@ -57,7 +57,7 @@ public class PlatfromPatrolling : MonoBehaviour
     {
         if (_isStopped && _platformSpeed > 0.1)
         {
-            _platformSpeed -= _cData.velocityFactor;            
+            _platformSpeed *= _cData.velocityFactor;            
         } 
         else if (_isStopped && _platformSpeed < 0.1)
         {

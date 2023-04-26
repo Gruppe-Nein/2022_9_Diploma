@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <_canTakeDamage>false</_canTakeDamage>
+  <_canTakeDamage>true</_canTakeDamage>
   <_iFramesDuration>2</_iFramesDuration>
   <_numberOfFlashes>5</_numberOfFlashes>
   <_playerCurrentHealth>2</_playerCurrentHealth>

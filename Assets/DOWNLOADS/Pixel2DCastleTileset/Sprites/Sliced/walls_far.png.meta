@@ -13535,8 +13535,8 @@ TextureImporter:
       walls_far_452: 21300904
       walls_far_128: 21300256
       walls_far_393: 21300786
-      walls_far_390: 21300780
       walls_far_245: 21300490
+      walls_far_390: 21300780
       walls_far_204: 21300408
       walls_far_200: 21300400
       walls_far_342: 21300684
@@ -13769,19 +13769,18 @@ TextureImporter:
       walls_far_207: 21300414
       walls_far_364: 21300728
       walls_far_24: 21300048
-      walls_far_101: 21300202
-      walls_far_94: 21300188
       walls_far_228: 21300456
+      walls_far_94: 21300188
+      walls_far_101: 21300202
+      walls_far_16: 21300032
       walls_far_201: 21300402
-      walls_far_135: 21300270
+      walls_far_335: 21300670
       walls_far_373: 21300746
       walls_far_140: 21300280
       walls_far_305: 21300610
-      walls_far_16: 21300032
-      walls_far_148: 21300296
+      walls_far_512: 21301024
       walls_far_418: 21300836
       walls_far_268: 21300536
-      walls_far_512: 21301024
       walls_far_43: 21300086
       walls_far_387: 21300774
       walls_far_380: 21300760
@@ -13808,34 +13807,35 @@ TextureImporter:
       walls_far_155: 21300310
       walls_far_309: 21300618
       walls_far_141: 21300282
-      walls_far_100: 21300200
+      walls_far_148: 21300296
       walls_far_394: 21300788
       walls_far_378: 21300756
       walls_far_166: 21300332
       walls_far_433: 21300866
       walls_far_232: 21300464
-      walls_far_182: 21300364
-      walls_far_308: 21300616
       walls_far_413: 21300826
+      walls_far_182: 21300364
       walls_far_50: 21300100
       walls_far_10: 21300020
       walls_far_400: 21300800
       walls_far_287: 21300574
       walls_far_494: 21300988
+      walls_far_308: 21300616
       walls_far_325: 21300650
       walls_far_11: 21300022
       walls_far_125: 21300250
-      walls_far_335: 21300670
+      walls_far_135: 21300270
       walls_far_368: 21300736
       walls_far_157: 21300314
       walls_far_510: 21301020
       walls_far_26: 21300052
+      walls_far_156: 21300312
       walls_far_0: 21300000
       walls_far_430: 21300860
-      walls_far_156: 21300312
       walls_far_295: 21300590
       walls_far_234: 21300468
       walls_far_129: 21300258
+      walls_far_100: 21300200
       walls_far_389: 21300778
       walls_far_526: 21301052
       walls_far_48: 21300096
