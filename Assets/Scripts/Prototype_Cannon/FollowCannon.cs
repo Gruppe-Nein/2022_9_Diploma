@@ -1,15 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Pool;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class FollowCannon : MonoBehaviour
 {
     #region SCRIPTABLE OBJECT
     [Tooltip("ISO channel for communication between zone and cannon within this zone.")]
     [SerializeField] FollowCannonEventChannel _followEventChannel;
+    [SerializeField] ChronoData _cData;
     #endregion
 
     [SerializeField] private float _rotationSpeed;
@@ -18,7 +16,7 @@ public class FollowCannon : MonoBehaviour
     [SerializeField] private Transform _shootingPoint;
     private bool _isActive;
     private bool _isStopped;
-    private int _counter;
+    private float _velocityController;
 
     [SerializeField] private float _cooldown;
     [SerializeField] private float _time;
@@ -34,7 +32,7 @@ public class FollowCannon : MonoBehaviour
     {
         _isActive = false;
         _isStopped = false;
-        _counter = 1;
+        _velocityController = 1;
         _followEventChannel.OnEnterZoneFollow += Follow;
     }
 
@@ -45,6 +43,17 @@ public class FollowCannon : MonoBehaviour
             return;
         }
 
+        if (_isStopped && _velocityController > 0.1)
+        {
+            _velocityController *= _cData.velocityFactor;
+        }
+        else if (_isStopped && _velocityController < 0.1)
+        {
+            _velocityController = 0;
+        }
+
+        Debug.Log("_velocityController: " + _velocityController);
+
         //Vector directed from the cannon to the targer object
         Vector3 direction = (_target.position - _shootingPoint.position).normalized;
 
@@ -53,7 +62,7 @@ public class FollowCannon : MonoBehaviour
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // Rotate to the target rotation at the set speed until the expected rotation value is reached
-        _shootingPoint.rotation = Quaternion.Slerp(_shootingPoint.rotation, q, Time.deltaTime * _rotationSpeed * _counter);
+        _shootingPoint.rotation = Quaternion.Slerp(_shootingPoint.rotation, q, Time.deltaTime * _rotationSpeed * _velocityController);
     }
 
     private void Follow(bool isFollowing, Transform target)
@@ -70,18 +79,15 @@ public class FollowCannon : MonoBehaviour
     {
         while (true)
         {
-            //
             if (!_isStopped)
             {
                 yield return new WaitForSeconds(_cooldown);
                 _pool.Get();
-                //Instantiate(_cannonball, _shootingPoint.position, _shootingPoint.rotation);
                 _isActive = false;
                 yield return new WaitForSeconds(_time);
                 _isActive = true;
             }
             yield return new WaitForSeconds(_time);
-
         }
     }
 
@@ -96,23 +102,11 @@ public class FollowCannon : MonoBehaviour
     }
 
     #region CANNON TIME ZONE BEHAVIOR
-    private void StopShoot(bool stop)
-    {
-        if (stop)
-        {
-            _isStopped = true;
-        }
-        else
-        {
-            _isStopped = false;
-        }
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
-            StopShoot(true);
-            _counter = 0;
+            _isStopped = true;
         }
     }
 
@@ -120,8 +114,8 @@ public class FollowCannon : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
-            StopShoot(false);
-            _counter = 1;
+            _isStopped = false;
+            _velocityController = 1;
         }
     }
     #endregion
@@ -151,5 +145,4 @@ public class FollowCannon : MonoBehaviour
         Destroy(ball.gameObject);
     }
     #endregion
-
 }

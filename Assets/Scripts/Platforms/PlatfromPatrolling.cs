@@ -16,9 +16,7 @@ public class PlatfromPatrolling : MonoBehaviour
 
     #region LOCAL PARAMETERS
     [SerializeField] private float _speed;
-
     private bool _isStopped;
-
     private float _platformSpeed;
     private Vector3 _targetPos;
     private Rigidbody2D _rBody2D;
@@ -41,9 +39,7 @@ public class PlatfromPatrolling : MonoBehaviour
     private void Start()
     {
         _platformSpeed = _speed;
-
         _isStopped = false;
-
         _targetPos = _posA.position;
         CalculateDirection();
     }
@@ -65,12 +61,10 @@ public class PlatfromPatrolling : MonoBehaviour
         }
         _rBody2D.velocity = _moveDirection * _platformSpeed;
     }
-
     private void CalculateDirection()
     {
         _moveDirection = (_targetPos - transform.position).normalized;
     }
-
     private void CheckOverlapCircle()
     {
         if (Physics2D.OverlapCircle(_posA.position, _endPointCheckRadius, _groundLayer))
@@ -88,59 +82,21 @@ public class PlatfromPatrolling : MonoBehaviour
     }
 
     #region PLATFORM TIME ZONE BEHAVIOR
-    //private void StopPlatform(bool isActive)
-    //{
-    //    if (isActive)
-    //    {
-    //        _platformSpeed = 0;
-    //    }
-    //    else
-    //    {
-    //        _platformSpeed = _speed;
-    //    }
-    //}
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
-            //StopPlatform(true);
             _isStopped = true;
         }
     }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
-            //StopPlatform(false);
             _platformSpeed = _speed;
             _isStopped = false;            
         }
     }
-    /*
-    private void StopPlatform(bool isActive)
-    {
-        if (isActive && transform.parent.name == "ChronoZone(Clone)")
-        {
-            _platformSpeed = 0;
-        }
-        else if (!isActive)
-        {
-            _platformSpeed = _speed;
-        }
-    }
-
-    private void OnEnable()
-    {
-        _cChannel.OnChronoZoneActive += StopPlatform;
-    }
-
-    private void OnDisable()
-    {
-        _cChannel.OnChronoZoneActive -= StopPlatform;
-    }
-    */
     #endregion
 
     private void OnDrawGizmos()
@@ -149,5 +105,4 @@ public class PlatfromPatrolling : MonoBehaviour
         Gizmos.DrawWireSphere(_posA.position, _endPointCheckRadius);
         Gizmos.DrawWireSphere(_posB.position, _endPointCheckRadius);
     }
-
 }

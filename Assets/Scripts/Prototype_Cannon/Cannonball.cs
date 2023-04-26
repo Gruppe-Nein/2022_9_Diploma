@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Pool;
 
 public class Cannonball : MonoBehaviour, ITeleportable
@@ -9,12 +10,13 @@ public class Cannonball : MonoBehaviour, ITeleportable
     #endregion
 
     #region SCRIPTABLE OBJECTS
-    [SerializeField] private ChronoEventChannel _cChannel;
+    [SerializeField] private ChronoData _cData;
     #endregion
 
     #region PARAMETERS
-    [SerializeField] private int _speed;
-    private Vector3 _cannonballVector;
+    [SerializeField] private float _speed;
+    private float _maxSpeed;
+    private bool _isStopped;
     private bool _canDamage;
     private IObjectPool<Cannonball> _pool;
     #endregion
@@ -26,40 +28,37 @@ public class Cannonball : MonoBehaviour, ITeleportable
 
     private void Start()
     {
-        _cannonballVector = transform.right * _speed;
-        Debug.Log("CANNONVECTOR: " + _cannonballVector);
-        _rb.velocity = _cannonballVector;
+        _maxSpeed = _speed;
+        _rb.velocity = transform.right * _speed;
         _canDamage = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        _cannonballVector = transform.right * _speed;
-        _rb.velocity = _cannonballVector;
+        if (_isStopped && _speed > 0.1)
+        {
+            _speed *= _cData.velocityFactor;
+        }
+        else if (_isStopped && _speed < 0.1)
+        {
+            _speed = 0;
+        }
+        _rb.velocity = transform.right * _speed;
     }
 
     #region CANNONBALL TIME ZONE BEHAVIOR
-
     private void FreezeProjectile(bool isActive)
     {
         if (isActive)
         {
-            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            _isStopped = true;
             _canDamage = false;
         }
         else
-        {            
-            _rb.constraints = RigidbodyConstraints2D.None;
-            _rb.velocity = _cannonballVector;
+        {                       
+            _isStopped = false;
             _canDamage = true;
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("ChronoZone"))
-        {
-            FreezeProjectile(true);
+            _speed = _maxSpeed;
         }
     }
 
@@ -100,6 +99,11 @@ public class Cannonball : MonoBehaviour, ITeleportable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("ChronoZone"))
+        {
+            FreezeProjectile(true);
+        }
+
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Ballbarrier"))
         {
             _pool.Release(this);
@@ -117,13 +121,13 @@ public class Cannonball : MonoBehaviour, ITeleportable
             _pool.Release(this);
         }
 
-        ContinueMovement(collision);
+        //ContinueMovement(collision);
     }
 
     #region POOL METHODS
     private void OnBecameVisible()
     {
-        _rb.velocity = _cannonballVector;
+        _speed = _maxSpeed;
     }
 
     public void SetPool(IObjectPool<Cannonball> pool)
@@ -131,19 +135,17 @@ public class Cannonball : MonoBehaviour, ITeleportable
         _pool = pool;
     }
 
-    private void ContinueMovement(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Projectile"))
-        {
-            _rb.velocity = _cannonballVector;
-        }
-    }
+    //private void ContinueMovement(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Projectile"))
+    //    {
+    //        _speed = _maxSpeed;
+    //    }
+    //}
     #endregion
 
     public void Teleport(Vector3 position)
     {
-        Debug.Log("TELEPORTATION");
-        Debug.Log("position: " + position);
         transform.position = position;
     }
 }

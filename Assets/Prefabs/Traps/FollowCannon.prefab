@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _followEventChannel: {fileID: 0}
+  _cData: {fileID: 11400000, guid: 9d7219fff61097a4f8c24d3bde8eaf36, type: 2}
   _rotationSpeed: 3
   _cannonball: {fileID: 2818313844139898542, guid: 44c2be94bfc1d8748b064ba9f89d241b, type: 3}
   _shootingPoint: {fileID: 4061465245405386977}

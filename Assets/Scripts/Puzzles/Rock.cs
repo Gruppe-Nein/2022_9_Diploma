@@ -43,18 +43,18 @@ public class Rock : MonoBehaviour, ITeleportable
     }
 
     #region ROCK TIME ZONE BEHAVIOR
-    private void FreezeRock(bool isActive)
-    {
-        if (isActive)
-        {
-            _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-        }
-        else
-        {
-            _rigidbody.constraints = RigidbodyConstraints2D.None;
+    //private void FreezeRock(bool isActive)
+    //{
+    //    if (isActive)
+    //    {
+    //        _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+    //    }
+    //    else
+    //    {
+    //        _rigidbody.constraints = RigidbodyConstraints2D.None;
 
-        }
-    }
+    //    }
+    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

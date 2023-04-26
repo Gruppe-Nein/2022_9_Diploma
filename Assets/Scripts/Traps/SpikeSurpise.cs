@@ -4,38 +4,46 @@ using UnityEngine;
 
 public class SpikeSurpise : MonoBehaviour
 {
-    Animator m_Animator;
+    #region SCRIPTABLE OBJECTS
+    [SerializeField] private ChronoData _cData;
+    #endregion
+
+    private bool _isStopped;
+    private Animator m_Animator;
 
     private void Awake()
     {
         m_Animator = GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Start()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        _isStopped = false;
+    }
+
+    private void Update()
+    {
+        if (_isStopped && m_Animator.speed > 0.1)
         {
-            GameEventSystem.Instance.PlayerTakeDamage(1);
+            m_Animator.speed *= _cData.velocityFactor;
+        }
+        else if (_isStopped && m_Animator.speed < 0.1)
+        {
+            m_Animator.speed = 0;
         }
     }
 
     #region CANNON TIME ZONE BEHAVIOR
-    private void StopAnimation(bool isActive)
-    {
-        if (isActive)
-        {
-            m_Animator.speed = 0;
-        }
-        else
-        {
-            m_Animator.speed = 1f;
-        }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
-            StopAnimation(true);
+            _isStopped = true;
+        }
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameEventSystem.Instance.PlayerTakeDamage(1);
         }
     }
 
@@ -43,7 +51,8 @@ public class SpikeSurpise : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
-            StopAnimation(false);
+            _isStopped = false;
+            m_Animator.speed = 1f;
         }
     }
     #endregion
