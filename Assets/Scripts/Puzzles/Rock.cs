@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Rock : MonoBehaviour, ITeleportable
 {
     #region SCRIPTABLE OBJECTS
-    [SerializeField] private ChronoEventChannel _cChannel;
+    //[SerializeField] private ChronoEventChannel _cChannel;
+    [SerializeField] private ChronoData _cData;
     #endregion
 
     #region COMPONENTS
@@ -12,6 +14,8 @@ public class Rock : MonoBehaviour, ITeleportable
 
     #region PARAMETERS
     [SerializeField] private float _speed;
+    private float  _maxSpeed;
+    private bool _isStopped;
     #endregion
 
     private void Awake()
@@ -19,8 +23,22 @@ public class Rock : MonoBehaviour, ITeleportable
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void LateUpdate()
+    private void Start()
     {
+        _isStopped = false;
+        _maxSpeed = _speed;
+    }
+
+    private void FixedUpdate()
+    {
+        if (_isStopped && _speed > 0.1)
+        {
+            _speed *= _cData.velocityFactor;
+        }
+        else if (_isStopped && _speed < 0.1)
+        {
+            _speed = 0;
+        }
         _rigidbody.velocity = Vector2.down * _speed;
     }
 
@@ -42,7 +60,8 @@ public class Rock : MonoBehaviour, ITeleportable
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
-            FreezeRock(true);
+            //FreezeRock(true);
+            _isStopped = true;
         }
     }
 
@@ -50,7 +69,9 @@ public class Rock : MonoBehaviour, ITeleportable
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
-            FreezeRock(false);
+            _isStopped = false;
+            _speed = _maxSpeed;
+            //FreezeRock(false);
         }
     }
     #endregion

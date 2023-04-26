@@ -18,3 +18,4 @@ MonoBehaviour:
   thresholdDistance: 6
   chronoZoneActiveTime: 5
   activTimeOut: 5
+  velocityFactor: 0.9

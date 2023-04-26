@@ -11,11 +11,14 @@ public class PlatfromPatrolling : MonoBehaviour
     #endregion
 
     #region SCRIPTABLE OBJECTS
-    [SerializeField] private ChronoEventChannel _cChannel;
+    [SerializeField] private ChronoData _cData;
     #endregion
 
     #region LOCAL PARAMETERS
     [SerializeField] private float _speed;
+
+    private bool _isStopped;
+
     private float _platformSpeed;
     private Vector3 _targetPos;
     private Rigidbody2D _rBody2D;
@@ -38,6 +41,9 @@ public class PlatfromPatrolling : MonoBehaviour
     private void Start()
     {
         _platformSpeed = _speed;
+
+        _isStopped = false;
+
         _targetPos = _posA.position;
         CalculateDirection();
     }
@@ -49,6 +55,14 @@ public class PlatfromPatrolling : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_isStopped && _platformSpeed > 0.1)
+        {
+            _platformSpeed -= _cData.velocityFactor;            
+        } 
+        else if (_isStopped && _platformSpeed < 0.1)
+        {
+            _platformSpeed = 0;
+        }
         _rBody2D.velocity = _moveDirection * _platformSpeed;
     }
 
@@ -74,23 +88,24 @@ public class PlatfromPatrolling : MonoBehaviour
     }
 
     #region PLATFORM TIME ZONE BEHAVIOR
-    private void StopPlatform(bool isActive)
-    {
-        if (isActive)
-        {
-            _platformSpeed = 0;
-        }
-        else
-        {
-            _platformSpeed = _speed;
-        }
-    }
+    //private void StopPlatform(bool isActive)
+    //{
+    //    if (isActive)
+    //    {
+    //        _platformSpeed = 0;
+    //    }
+    //    else
+    //    {
+    //        _platformSpeed = _speed;
+    //    }
+    //}
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
-            StopPlatform(true);
+            //StopPlatform(true);
+            _isStopped = true;
         }
     }
 
@@ -98,7 +113,9 @@ public class PlatfromPatrolling : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
-            StopPlatform(false);
+            //StopPlatform(false);
+            _platformSpeed = _speed;
+            _isStopped = false;            
         }
     }
     /*

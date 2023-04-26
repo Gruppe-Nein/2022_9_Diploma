@@ -90,7 +90,6 @@ public class MoveOnEnterPlatform : MonoBehaviour
     }
 
     #region PLATFORM TIME ZONE BEHAVIOR
-
     private void StopPlatform(bool isActive)
     {
         if (isActive)

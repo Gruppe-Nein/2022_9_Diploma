@@ -230,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _posA: {fileID: 6164822400237027229}
   _posB: {fileID: 6164822399832790268}
-  _cChannel: {fileID: 11400000, guid: b224aa37d8d35674581d1c579baff9c1, type: 2}
+  _cData: {fileID: 11400000, guid: 9d7219fff61097a4f8c24d3bde8eaf36, type: 2}
   _speed: 5
   _groundLayer:
     serializedVersion: 2

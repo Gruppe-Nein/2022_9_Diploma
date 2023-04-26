@@ -22,4 +22,8 @@ public class ChronoData : ScriptableObject
     [Space(5)]
     [Header("Activation timeout")]
     public float activTimeOut = 5f;
+
+    [Space(5)]
+    [Header("Velocity Stopping factor")]
+    public float velocityFactor = 0.25f;
 }
