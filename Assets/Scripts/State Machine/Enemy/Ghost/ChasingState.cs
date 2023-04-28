@@ -11,12 +11,6 @@ public class ChasingState : State
     {
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-        //speed = brain.MoveSpeed;
-    }
-
     public override void LogicUpdate()
     {
         playerInRange = brain.IsChasing;
