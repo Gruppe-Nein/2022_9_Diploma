@@ -98,6 +98,7 @@ public class GhostBrain : EnemyBrain
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
+            
             StopGhost(true);
         }
     }

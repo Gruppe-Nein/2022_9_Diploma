@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.TextCore.Text;
-
 public class IdleGhostState : State
 {
     private bool playerInRange;
@@ -11,14 +6,10 @@ public class IdleGhostState : State
     {
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
     public override void LogicUpdate()
     {
-        playerInRange = (brain as GhostBrain).IsChasing;
         base.LogicUpdate();
+        playerInRange = brain.IsChasing;
         if (playerInRange)
         {
             stateMachine.ChangeState((brain as GhostBrain).ChasingState);

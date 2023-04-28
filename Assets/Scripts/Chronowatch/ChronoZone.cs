@@ -68,7 +68,7 @@ public class ChronoZone : MonoBehaviour
             }
             yield return new WaitForSeconds(0.5f);
             _circleCollider.radius = _radius;            
-        }        
+        }    
         _cChannel.ChronoZoneDeploy(false);
         Destroy(gameObject);
     }
