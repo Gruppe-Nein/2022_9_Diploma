@@ -6,8 +6,8 @@
   <_playerCurrentHealth>2</_playerCurrentHealth>
   <_playerMaxHealth>0</_playerMaxHealth>
   <PlayerPosition>
-    <x>-.-</x>
-    <y>0.0</y>
+    <x>0</x>
+    <y>0</y>
     <z>0</z>
   </PlayerPosition>
   <SceneToLoad>4</SceneToLoad>

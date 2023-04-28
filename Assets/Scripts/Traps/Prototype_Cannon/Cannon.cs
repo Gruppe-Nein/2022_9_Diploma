@@ -8,10 +8,6 @@ public class Cannon : MonoBehaviour
     [SerializeField] private Cannonball _cannonball;
     #endregion
 
-    #region SCRIPTABLE OBJECTS
-    [SerializeField] private ChronoEventChannel _cChannel;
-    #endregion
-
     #region PARAMETERS
     [SerializeField] private float _cooldown;
     private float _nextTime;
@@ -66,31 +62,6 @@ public class Cannon : MonoBehaviour
             StopShoot(false);
         }
     }
-    /*
-    private void StopShoot(bool isActive)
-    {
-        if (isActive && transform.parent != null)
-        {
-            if (transform.parent.name == "ChronoZone(Clone)")
-            {
-                _isShooting = false;
-            }            
-        } 
-        else
-        {
-            _isShooting = true;
-        }        
-    }
-    private void OnEnable()
-    {
-        _cChannel.OnChronoZoneActive += StopShoot;
-    }
-
-    private void OnDisable()
-    {
-        _cChannel.OnChronoZoneActive -= StopShoot;
-    }
-    */
     #endregion
 
     #region POOL METHODS

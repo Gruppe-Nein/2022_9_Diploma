@@ -22,6 +22,8 @@ public class Teleportal : MonoBehaviour
     private ITeleportable _player;
     #endregion
 
+    [SerializeField] PlatfromPatrolling _platform;
+
     private void Start()
     {
         _inputEventChannel.onInteractButtonPressed += UsePortal;
@@ -32,11 +34,19 @@ public class Teleportal : MonoBehaviour
         _inputEventChannel.onInteractButtonPressed -= UsePortal;
     }
 
+    private void Update()
+    {
+        if (_platform != null)
+        {
+            transform.Translate(_platform.getVelocity() * Time.deltaTime);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out ITeleportable tObject))
         {
-            if(_restrictPlayer && !collision.gameObject.CompareTag("Player"))
+            if(!collision.gameObject.CompareTag("Player"))
             {
                 StartTeleportaion(tObject);
             }

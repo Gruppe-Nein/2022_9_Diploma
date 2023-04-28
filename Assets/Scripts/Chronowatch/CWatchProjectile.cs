@@ -25,6 +25,7 @@ public class CWatchProjectile : MonoBehaviour
 
     #region PARAMETERS
     private bool _returnToPlayer;
+    private bool _onCooldown;
     #endregion
 
     void Start()
@@ -50,6 +51,7 @@ public class CWatchProjectile : MonoBehaviour
         _rigibBody.velocity = transform.right * _cData.projectileSpeed;
 
         _returnToPlayer = false;
+        _onCooldown = false;
 
         StartCoroutine(ActivationTimeOut());
     }
@@ -74,8 +76,9 @@ public class CWatchProjectile : MonoBehaviour
 
     public void ForceDeployChronoZone(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !_onCooldown)
         {
+            _onCooldown = true;
             DeployChronoZone();
         }
     }

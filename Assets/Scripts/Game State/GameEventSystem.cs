@@ -84,7 +84,6 @@ public class GameEventSystem : MonoBehaviour
         OnPlayerInSafeZone?.Invoke(isInSafeZone);
     }
 
-
     public void NewGame(int difficulty)
     {
         _gameData = new GameData();

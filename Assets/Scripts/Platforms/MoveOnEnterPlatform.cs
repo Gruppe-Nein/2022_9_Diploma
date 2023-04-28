@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,13 +11,13 @@ public class MoveOnEnterPlatform : MonoBehaviour
     [SerializeField] private Transform _posB;
     #endregion
 
-   
     #region SCRIPTABLE OBJECTS
-    [SerializeField] private ChronoEventChannel _cChannel;
+    [SerializeField] private ChronoData _cData;
     #endregion
 
     #region LOCAL PARAMETERS
     [SerializeField] private float _speed;
+    private bool _isStopped;
     private float _platformSpeed;
     private Vector3 _targetPos;
     private Rigidbody2D _rBody2D;
@@ -38,9 +37,8 @@ public class MoveOnEnterPlatform : MonoBehaviour
 
     private void Start()
     {
-
         _isActivated = false;
-
+        _isStopped = false;
         _platformSpeed = _speed;
         _targetPos = _posA.position;
         CalculateDirection();
@@ -54,8 +52,15 @@ public class MoveOnEnterPlatform : MonoBehaviour
             return;
         }
         CheckOverlapCircle();
-        _rBody2D.velocity = _moveDirection * _platformSpeed;
-        
+        if (_isStopped && _platformSpeed > 0.1)
+        {
+            _platformSpeed *= _cData.velocityFactor;
+        }
+        else if (_isStopped && _platformSpeed < 0.1)
+        {
+            _platformSpeed = 0;
+        }
+        _rBody2D.velocity = _moveDirection * _platformSpeed; 
     }
 
     private void CalculateDirection()
@@ -90,24 +95,11 @@ public class MoveOnEnterPlatform : MonoBehaviour
     }
 
     #region PLATFORM TIME ZONE BEHAVIOR
-
-    private void StopPlatform(bool isActive)
-    {
-        if (isActive)
-        {
-            _platformSpeed = 0;
-        }
-        else
-        {
-            _platformSpeed = _speed;
-        }
-    }
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
-            StopPlatform(true);
+            _isStopped = true;
         }
     }
 
@@ -115,7 +107,8 @@ public class MoveOnEnterPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
-            StopPlatform(false);
+            _platformSpeed = _speed;
+            _isStopped = false;
         }
     }
     #endregion
@@ -126,7 +119,4 @@ public class MoveOnEnterPlatform : MonoBehaviour
         Gizmos.DrawWireSphere(_posA.position, _endPointCheckRadius);
         Gizmos.DrawWireSphere(_posB.position, _endPointCheckRadius);
     }
-
-   
-
 }
