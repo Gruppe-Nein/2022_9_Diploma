@@ -50,10 +50,19 @@ public class GameEventSystem : MonoBehaviour
     public event Action OnPlayerDead;
     #endregion
 
+    public event Action<GameObject> OnPiggybankDestroy;
+
     #region SaveAndLoad
     public event Action<GameData> OnLoadData;
     public event Action<GameData> OnSaveData;
     #endregion
+
+    public void PiggybankDestroy(GameObject piggyBank)
+    {
+        piggyBank.SetActive(false);
+        
+        OnPiggybankDestroy?.Invoke(piggyBank);
+    }
 
     public void PlayerTakeDamage(int damage)
     {

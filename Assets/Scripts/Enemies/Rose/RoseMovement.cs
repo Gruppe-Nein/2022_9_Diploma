@@ -1,20 +1,33 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RoseMovement : MonoBehaviour
 {
-    private GhostBrain _gb;
+    private RoseBrain _rb;
+    public bool reached = true;
 
     private void Awake()
     {
-        _gb = GetComponent<GhostBrain>();
+        _rb = GetComponent<RoseBrain>();
     }
 
-    public void MoveToPiggybank(float speed, GameObject piggyBank)
+    public void MoveTo(float speed, Vector3 piggyBank, bool isMovingToPiggy)
     {
-        Vector2 target = piggyBank.transform.position;
-        Vector2 newPos = Vector2.MoveTowards(_gb.rb.position, target, speed * Time.deltaTime);
-        _gb.rb.MovePosition(newPos);
+        Vector2 target = piggyBank;
+        Vector2 newPos = Vector2.MoveTowards(_rb.rb.position, target, speed * Time.deltaTime);
+        _rb.rb.MovePosition(newPos);
+
+        if (_rb.transform.position == piggyBank && !_rb.CandyEaten && isMovingToPiggy && reached)
+        {
+            Debug.Log("ddx");
+            StartCoroutine(EatCandy());
+            reached = false;
+        }
+    }
+
+    private IEnumerator EatCandy()
+    {
+        yield return new WaitForSeconds(5);
+        _rb.CandyEaten = true;
     }
 }
