@@ -24,7 +24,7 @@ public class DoorTrigger : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(PortalB.transform.position, PortalB.GetComponent<BoxCollider2D>().size);
 
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.cyan;
         Gizmos.DrawLine(PortalA.transform.position, PortalB.transform.position);
     }
 }
