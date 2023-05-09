@@ -10,6 +10,7 @@ public class LevelLoadingTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+
             GameEventSystem.Instance.LoadScene(_sceneIndex.levelIndex);
         }
     }

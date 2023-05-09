@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 860a11f19bf94334fbc05a70c84bb225, type: 3}
-  m_Name: Loading Data
+  m_Script: {fileID: 11500000, guid: 8413286cfadcf7e47a8044b271de819c, type: 3}
+  m_Name: Basement
   m_EditorClassIdentifier: 
-  sceneToLoad: 6
-  stateToLoad: 3
+  levelIndex: 5

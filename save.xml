@@ -10,7 +10,7 @@
     <y>0</y>
     <z>0</z>
   </PlayerPosition>
-  <SceneToLoad>4</SceneToLoad>
+  <SceneToLoad>6</SceneToLoad>
   <StateToLoad>Gameplay</StateToLoad>
   <GameDifficulty>Easy</GameDifficulty>
   <PlayerHealth>2</PlayerHealth>

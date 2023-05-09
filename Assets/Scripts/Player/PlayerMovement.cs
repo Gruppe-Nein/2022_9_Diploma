@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 
 public class PlayerMovement : MonoBehaviour, ITeleportable
 {
@@ -76,7 +77,7 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
         GameEventSystem.Instance.OnSaveData += SaveGame;
         GameEventSystem.Instance.OnLoadData += LoadGame;
 
-        GameEventSystem.Instance.LoadData();
+        GameEventSystem.Instance.OnLevelWasLoaded();
     }
 
     private void OnDisable()
@@ -87,6 +88,7 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
     // Update is called once per frame
     void Update()
     {
+
         #region TIMERS
         _lastOnGroundTime -= Time.deltaTime;
         _lastOnWallTime -= Time.deltaTime;
@@ -430,6 +432,7 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
     void LoadGame(GameData data)
     {
         transform.position = data.PlayerPosition;
+        Debug.Log(transform.position);
     }
     void SaveGame(GameData data)
     {
