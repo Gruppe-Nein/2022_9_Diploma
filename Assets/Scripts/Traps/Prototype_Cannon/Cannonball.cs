@@ -7,6 +7,7 @@ public class Cannonball : MonoBehaviour, ITeleportable
 {
     #region COMPONENTS
     private Rigidbody2D _rb;
+    private Animator m_Animator;
     #endregion
 
     #region SCRIPTABLE OBJECTS
@@ -24,6 +25,7 @@ public class Cannonball : MonoBehaviour, ITeleportable
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        m_Animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -38,10 +40,12 @@ public class Cannonball : MonoBehaviour, ITeleportable
         if (_isStopped && _speed > 0.1)
         {
             _speed *= _cData.velocityFactor;
+            m_Animator.speed *= _cData.velocityFactor;
         }
         else if (_isStopped && _speed < 0.1)
         {
             _speed = 0;
+            m_Animator.speed = 0;
         }
         _rb.velocity = transform.right * _speed;
     }
@@ -59,6 +63,7 @@ public class Cannonball : MonoBehaviour, ITeleportable
             _isStopped = false;
             _canDamage = true;
             _speed = _maxSpeed;
+            m_Animator.speed = 1f;
         }
     }
 
