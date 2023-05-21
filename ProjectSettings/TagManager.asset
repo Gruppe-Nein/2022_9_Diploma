@@ -19,6 +19,9 @@ TagManager:
   - ShootingZone
   - Destructable
   - Ballbarrier
+  - StoneHead
+  - BossCogwheel
+  - StoneWall
   layers:
   - Default
   - TransparentFX

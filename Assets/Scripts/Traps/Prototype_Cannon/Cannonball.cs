@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Pool;
@@ -111,22 +110,38 @@ public class Cannonball : MonoBehaviour, ITeleportable
 
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Ballbarrier"))
         {
-            _pool.Release(this);
+            SetAnimation();
+            //_pool.Release(this);
         }
 
         if (collision.gameObject.CompareTag("Player") && _canDamage)
         {
+            SetAnimation();
             GameEventSystem.Instance.PlayerTakeDamage(1);
-            _pool.Release(this);
+            //_pool.Release(this);
         }
 
         if (collision.gameObject.CompareTag("Destructable"))
         {
+            SetAnimation();
             Destroy(collision.gameObject);
-            _pool.Release(this);
+            //_pool.Release(this);
         }
 
         //ContinueMovement(collision);
+    }
+
+    private void SetAnimation()
+    {
+        _speed = 0;
+        m_Animator.SetBool("hit", true);
+    }
+
+    private void ResetAnimation()
+    {
+        m_Animator.SetBool("hit", false);
+        _speed = _maxSpeed;
+        _pool.Release(this);
     }
 
     #region POOL METHODS

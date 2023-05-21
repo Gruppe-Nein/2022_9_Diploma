@@ -964,5 +964,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basement_Room
       objectReference: {fileID: 0}
+    - target: {fileID: 5876364142139796439, guid: 8491f69df5918934a9e8f3abbe828343, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831612711889078732, guid: 8491f69df5918934a9e8f3abbe828343, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831612712264584440, guid: 8491f69df5918934a9e8f3abbe828343, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8491f69df5918934a9e8f3abbe828343, type: 3}
