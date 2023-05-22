@@ -11,8 +11,6 @@ public class StonePlayerCrush : MonoBehaviour
     {
         if (collidedWithObjectA && collidedWithObjectB)
         {
-            // Perform actions when collided with both Object A and Object B
-            Debug.Log("Collided with Object A and Object B simultaneously!");
             GameEventSystem.Instance.PlayerTakeDamage(2);
 
             // Reset collision flags

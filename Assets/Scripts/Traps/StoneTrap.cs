@@ -148,12 +148,10 @@ public class StoneTrap : MonoBehaviour
             ResetWaiting();
 
             _canFollow = false;
-            Debug.Log("HIT GROUND");
         }
         if (_spiked && collision.gameObject.CompareTag("Player"))
         {
             GameEventSystem.Instance.PlayerTakeDamage(2);
-            Debug.Log("HIT PLAYER");
         }
     }
 
