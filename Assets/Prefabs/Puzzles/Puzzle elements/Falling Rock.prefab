@@ -78,8 +78,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108afeb54a16585488b09a216d335f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputEventChannel: {fileID: 11400000, guid: b36333aa290224c419dbaa20647ef54f, type: 2}
   _anotherPortal: {fileID: 7328797479252159166}
   _restrictPlayer: 1
+  _platform: {fileID: 0}
 --- !u!58 &7328797478960283556
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -144,6 +146,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rock: {fileID: 1720367406766569108, guid: 1d0a2ca88a3450b418ab360dca18984e, type: 3}
   _delay: 2
+  _offset: {x: 0, y: -5, z: 0}
+  _flip: 0
+  _degree: 0
 --- !u!114 &7328797479252159166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,8 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108afeb54a16585488b09a216d335f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputEventChannel: {fileID: 0}
   _anotherPortal: {fileID: 7328797478960283557}
   _restrictPlayer: 1
+  _platform: {fileID: 0}
 --- !u!58 &7328797479252159153
 CircleCollider2D:
   m_ObjectHideFlags: 0
