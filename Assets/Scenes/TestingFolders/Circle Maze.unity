@@ -585,6 +585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions: {fileID: 0}
   _loadingData: {fileID: 0}
+  _cEventChannel: {fileID: 0}
 --- !u!114 &568291791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -825,6 +826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 85ea17087c8f7f84ebba61cc6557c3bf, type: 2}
+  _inputEventChannel: {fileID: 0}
   _groundCheckPoint: {fileID: 1476883481}
   _groundCheckSize: {x: 0.5, y: 0.03}
   _frontWallCheckPoint: {fileID: 712146991}
@@ -1619,6 +1621,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3267805645556382114, guid: bd44a38f0aae1a54b83f52c609c0e80c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.23
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd44a38f0aae1a54b83f52c609c0e80c, type: 3}
 --- !u!1001 &4531806791959126371
@@ -1746,6 +1752,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5013237875212298980, guid: 18714b7f9437bd64a96ab5d87fe070a5, type: 3}
+      propertyPath: openDoor.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1361058598}
+    - target: {fileID: 5013237875212298980, guid: 18714b7f9437bd64a96ab5d87fe070a5, type: 3}
+      propertyPath: closeDoor.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1361058598}
+    - target: {fileID: 5013237875212298980, guid: 18714b7f9437bd64a96ab5d87fe070a5, type: 3}
+      propertyPath: openDoor.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013237875212298980, guid: 18714b7f9437bd64a96ab5d87fe070a5, type: 3}
+      propertyPath: closeDoor.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013237875212298980, guid: 18714b7f9437bd64a96ab5d87fe070a5, type: 3}
+      propertyPath: openDoor.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DoorMechanism, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013237875212298980, guid: 18714b7f9437bd64a96ab5d87fe070a5, type: 3}
+      propertyPath: closeDoor.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DoorMechanism, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013237875212298980, guid: 18714b7f9437bd64a96ab5d87fe070a5, type: 3}
+      propertyPath: openDoor.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013237875212298980, guid: 18714b7f9437bd64a96ab5d87fe070a5, type: 3}
+      propertyPath: closeDoor.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8752612168416888424, guid: 18714b7f9437bd64a96ab5d87fe070a5, type: 3}
       propertyPath: m_Name
       value: Lever
