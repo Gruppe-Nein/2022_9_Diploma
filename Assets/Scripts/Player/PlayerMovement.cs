@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
         GameEventSystem.Instance.OnSaveData += SaveGame;
         GameEventSystem.Instance.OnLoadData += LoadGame;
 
-        GameEventSystem.Instance.LoadData();
+        GameEventSystem.Instance.OnLevelWasLoaded();
     }
 
     private void OnDisable()

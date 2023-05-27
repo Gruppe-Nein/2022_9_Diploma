@@ -18,13 +18,19 @@ public class LevelLoader : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(LoadSceneAsynchronously(_loadingData.sceneToLoad, _loadingData.stateToLoad));        
+        StartCoroutine(LoadSceneAsynchronously(_loadingData.sceneToLoad, _loadingData.stateToLoad));
     }
 
     IEnumerator LoadSceneAsynchronously(int scene, GameState state)
     {
         AsyncOperation loadingOperation = SceneManager.LoadSceneAsync(scene);
         loadingOperation.allowSceneActivation = false;
+
+        if (GameManager.Instance.CurrentGameState == GameState.NewLevel)
+        {
+            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            GameEventSystem.Instance.setPlayerDefaultPosition();
+        }
 
         _progressBar.value = 0;
         float progress = 0f;
@@ -43,7 +49,3 @@ public class LevelLoader : MonoBehaviour
         }
     }
 }
-
-
-
-

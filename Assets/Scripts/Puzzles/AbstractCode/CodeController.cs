@@ -32,7 +32,7 @@ public class CodeController : MonoBehaviour
         _solutionCode = new int[_codePuzzleEventChannel.code.Length];
         _actualCode = _codePuzzleEventChannel.code;
 
-        Debug.Log(_solutionCode.Length);        
+        //Debug.Log(_solutionCode.Length);        
     }
 
     private void OnDestroy()

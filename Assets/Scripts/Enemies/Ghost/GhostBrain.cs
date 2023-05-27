@@ -62,7 +62,7 @@ public class GhostBrain : EnemyBrain
 
     void Update()
     {
-        Debug.Log(stateMachine.CurrentState);
+        //Debug.Log(stateMachine.CurrentState);
         stateMachine.CurrentState.HandleInput();
         stateMachine.CurrentState.LogicUpdate();
 
