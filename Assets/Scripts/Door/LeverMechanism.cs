@@ -16,11 +16,13 @@ public class LeverMechanism : MonoBehaviour
     private bool _canBePushed = false;
 
     private SpriteRenderer _sp;
+    private Animator _animator;
 
     private void Awake()
     {
         _sp = GetComponent<SpriteRenderer>();
-        _sp.color = Color.red;
+        //_sp.color = Color.red;
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -34,15 +36,17 @@ public class LeverMechanism : MonoBehaviour
         {
             if (_isTriggered == false)
             {
+                _animator.SetBool("Activate", true);
                 openDoor.Invoke();
                 _isTriggered = true;
-                _sp.color = Color.green;
+                //_sp.color = Color.green;
             }
             else
             {
+                _animator.SetBool("Activate", false);
                 closeDoor.Invoke();
                 _isTriggered = false;
-                _sp.color = Color.red;
+                //_sp.color = Color.red;
             }
 
         }
@@ -66,6 +70,6 @@ public class LeverMechanism : MonoBehaviour
 
     private void OnDisable()
     {
-        _inputEventChannel.onInteractButtonPressed += activateLever;
+        _inputEventChannel.onInteractButtonPressed -= activateLever;
     }
 }

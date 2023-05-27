@@ -22,7 +22,7 @@ public class Teleportal : MonoBehaviour
     private ITeleportable _player;
     #endregion
 
-    [SerializeField] private PlatfromPatrolling _platform;
+    [SerializeField] PlatfromPatrolling _platform;
 
     private void Start()
     {
@@ -36,13 +36,9 @@ public class Teleportal : MonoBehaviour
 
     private void Update()
     {
-        if (_platform)
+        if (_platform != null)
         {
             transform.Translate(_platform.getVelocity() * Time.deltaTime);
-        }
-        else
-        {
-            
         }
     }
 
