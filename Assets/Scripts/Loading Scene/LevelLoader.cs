@@ -26,11 +26,6 @@ public class LevelLoader : MonoBehaviour
         AsyncOperation loadingOperation = SceneManager.LoadSceneAsync(scene);
         loadingOperation.allowSceneActivation = false;
 
-        if (GameManager.Instance.CurrentGameState == GameState.NewLevel)
-        {
-            GameEventSystem.Instance.setPlayerDefaultPosition();
-        }
-
         _progressBar.value = 0;
         float progress = 0f;
 

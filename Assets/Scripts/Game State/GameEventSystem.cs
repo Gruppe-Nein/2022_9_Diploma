@@ -41,7 +41,6 @@ public class GameEventSystem : MonoBehaviour
             Destroy(gameObject);
         }
         _cRebinds = new ControlBindings();
-        _gameData = new GameData();
     }
 
     #region playerActions
@@ -96,6 +95,7 @@ public class GameEventSystem : MonoBehaviour
 
     public void NewGame(int difficulty)
     {
+        _gameData = new GameData();
         if (difficulty == (int)GameDifficulty.Easy)
         {
             _gameData.SetDifficilty(GameDifficulty.Easy);
@@ -112,20 +112,9 @@ public class GameEventSystem : MonoBehaviour
     {
         _loadingData.sceneToLoad = levelIndex;
         _loadingData.stateToLoad = GameState.Gameplay;
-        //Instance.SaveData();
-        //GameManager.Instance.SetGameState(GameState.Loading);
-        GameManager.Instance.SetGameState(GameState.NewLevel);
-        SceneManager.LoadScene(1);
-    }
-
-    public void OnLevelWasLoaded()
-    {
-        OnLoadData?.Invoke(_gameData);
-    }
-
-    public void setPlayerDefaultPosition()
-    {
-        _gameData.PlayerPosition = Vector3.zero;
+        Instance.SaveData();
+        GameManager.Instance.SetGameState(GameState.Loading);
+        SceneManager.LoadScene(levelIndex);
     }
 
     #region SAVING and LOADING GAME DATA METHODS
@@ -143,7 +132,7 @@ public class GameEventSystem : MonoBehaviour
                 _loadingData.stateToLoad = _gameData.StateToLoad;
             }
             stream.Close();
-            Debug.Log(_gameData.PlayerPosition);
+
             OnLoadData?.Invoke(_gameData);
             _cEventChannel.CheckPointRestore(true);
         }

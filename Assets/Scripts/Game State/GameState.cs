@@ -6,6 +6,5 @@ public enum GameState
     Loading,
     Gameplay,
     Pause,
-    Dialogue,
-    NewLevel
+    Dialogue
 }

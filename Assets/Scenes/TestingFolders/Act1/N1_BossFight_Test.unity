@@ -130,21 +130,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 950462916585260312, guid: 2f06fb26d1fe4bb40a5463dd4df05272, type: 3}
-      propertyPath: _speed
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1226246021175223776, guid: 2f06fb26d1fe4bb40a5463dd4df05272, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1226246021175223776, guid: 2f06fb26d1fe4bb40a5463dd4df05272, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 22.517
       objectReference: {fileID: 0}
     - target: {fileID: 1226246021175223776, guid: 2f06fb26d1fe4bb40a5463dd4df05272, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 20.53
       objectReference: {fileID: 0}
     - target: {fileID: 1226246021175223776, guid: 2f06fb26d1fe4bb40a5463dd4df05272, type: 3}
       propertyPath: m_LocalPosition.z
@@ -181,14 +177,6 @@ PrefabInstance:
     - target: {fileID: 1226246021175223777, guid: 2f06fb26d1fe4bb40a5463dd4df05272, type: 3}
       propertyPath: m_Name
       value: N1_Bossfight
-      objectReference: {fileID: 0}
-    - target: {fileID: 3693339617807950229, guid: 2f06fb26d1fe4bb40a5463dd4df05272, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3693339617807950229, guid: 2f06fb26d1fe4bb40a5463dd4df05272, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f06fb26d1fe4bb40a5463dd4df05272, type: 3}

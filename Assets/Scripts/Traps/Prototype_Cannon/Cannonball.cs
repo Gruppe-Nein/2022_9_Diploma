@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Pool;
@@ -6,7 +7,6 @@ public class Cannonball : MonoBehaviour, ITeleportable
 {
     #region COMPONENTS
     private Rigidbody2D _rb;
-    private Animator m_Animator;
     #endregion
 
     #region SCRIPTABLE OBJECTS
@@ -24,7 +24,6 @@ public class Cannonball : MonoBehaviour, ITeleportable
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        m_Animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -39,12 +38,10 @@ public class Cannonball : MonoBehaviour, ITeleportable
         if (_isStopped && _speed > 0.1)
         {
             _speed *= _cData.velocityFactor;
-            m_Animator.speed *= _cData.velocityFactor;
         }
         else if (_isStopped && _speed < 0.1)
         {
             _speed = 0;
-            m_Animator.speed = 0;
         }
         _rb.velocity = transform.right * _speed;
     }
@@ -62,7 +59,6 @@ public class Cannonball : MonoBehaviour, ITeleportable
             _isStopped = false;
             _canDamage = true;
             _speed = _maxSpeed;
-            m_Animator.speed = 1f;
         }
     }
 
@@ -110,38 +106,22 @@ public class Cannonball : MonoBehaviour, ITeleportable
 
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Ballbarrier"))
         {
-            SetAnimation();
-            //_pool.Release(this);
+            _pool.Release(this);
         }
 
         if (collision.gameObject.CompareTag("Player") && _canDamage)
         {
-            SetAnimation();
             GameEventSystem.Instance.PlayerTakeDamage(1);
-            //_pool.Release(this);
+            _pool.Release(this);
         }
 
         if (collision.gameObject.CompareTag("Destructable"))
         {
-            SetAnimation();
             Destroy(collision.gameObject);
-            //_pool.Release(this);
+            _pool.Release(this);
         }
 
         //ContinueMovement(collision);
-    }
-
-    private void SetAnimation()
-    {
-        _speed = 0;
-        m_Animator.SetBool("hit", true);
-    }
-
-    private void ResetAnimation()
-    {
-        m_Animator.SetBool("hit", false);
-        _speed = _maxSpeed;
-        _pool.Release(this);
     }
 
     #region POOL METHODS

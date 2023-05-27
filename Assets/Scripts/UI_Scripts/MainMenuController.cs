@@ -89,11 +89,11 @@ public class MainMenuController : MonoBehaviour
 
     public void NewGame(int difficulty)
     {       
-        _loadingData.sceneToLoad = 6/*_sceneIndexes[1].levelIndex*/;
+        _loadingData.sceneToLoad = _sceneIndexes[1].levelIndex;
         _loadingData.stateToLoad = GameState.Gameplay;
         GameEventSystem.Instance.NewGame(difficulty);
         GameManager.Instance.SetGameState(GameState.Loading);
-        SceneManager.LoadScene(_sceneIndexes[0].levelIndex);
+        SceneManager.LoadScene(_sceneIndexes[0].levelIndex); ;
     }
 
     public void Continue()

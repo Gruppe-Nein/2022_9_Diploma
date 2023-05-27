@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-
     public SpriteRenderer _sr { get; private set; }
     void Start()
     {
