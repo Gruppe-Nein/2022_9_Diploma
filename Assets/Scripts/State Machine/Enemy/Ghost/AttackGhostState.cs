@@ -41,6 +41,6 @@ public class AttackGhostState : State
     private Vector3 GetDestPoint()
     {
         Vector3 direction = (brain.player.transform.position - brain.transform.position).normalized;
-        return brain.transform.position + direction * 50f;
+        return brain.transform.position + direction * 25f;
     }
 }

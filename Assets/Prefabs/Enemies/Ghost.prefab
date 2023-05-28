@@ -102,12 +102,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   MoveSpeed: 3
-  AggroRange: 20
+  ChargeSpeed: 13
+  AggroRange: 50
   ShowAggroRange: 1
-  IsChasing: 0
   _cChannel: {fileID: 11400000, guid: b224aa37d8d35674581d1c579baff9c1, type: 2}
   rb: {fileID: 0}
   movement: {fileID: 0}
+  IsChasing: 0
+  IsAttacking: 0
+  isDisabled: 0
+  AttackRange: 15
 --- !u!114 &8326909985570611025
 MonoBehaviour:
   m_ObjectHideFlags: 0
