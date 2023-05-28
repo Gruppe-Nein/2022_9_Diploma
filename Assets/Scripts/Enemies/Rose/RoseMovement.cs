@@ -17,9 +17,12 @@ public class RoseMovement : MonoBehaviour
         Vector2 newPos = Vector2.MoveTowards(_rb.rb.position, target, speed * Time.deltaTime);
         _rb.rb.MovePosition(newPos);
 
+        /*Debug.Log($"movement reached {_rb.transform.position == piggyBank}");
+        Debug.Log($"movement eaten {!_rb.CandyEaten}");
+        Debug.Log($"movement reached reached {reached}");*/
         if (_rb.transform.position == piggyBank && !_rb.CandyEaten && isMovingToPiggy && reached)
         {
-            Debug.Log("ddx");
+            //Debug.Log("ddx");
             StartCoroutine(EatCandy());
             reached = false;
         }

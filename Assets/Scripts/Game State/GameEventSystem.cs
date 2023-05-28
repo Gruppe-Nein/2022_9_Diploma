@@ -76,7 +76,7 @@ public class GameEventSystem : MonoBehaviour
             else
                 OnPlayerTakeDamage?.Invoke(_gameData);
         }
-        Debug.Log($"Current health: {_gameData.PlayerHealth}");
+        //Debug.Log($"Current health: {_gameData.PlayerHealth}");
     }
 
     public void PlayerFallDown()
@@ -143,7 +143,7 @@ public class GameEventSystem : MonoBehaviour
                 _loadingData.stateToLoad = _gameData.StateToLoad;
             }
             stream.Close();
-            Debug.Log(_gameData.PlayerPosition);
+            //Debug.Log(_gameData.PlayerPosition);
             OnLoadData?.Invoke(_gameData);
             _cEventChannel.CheckPointRestore(true);
         }
