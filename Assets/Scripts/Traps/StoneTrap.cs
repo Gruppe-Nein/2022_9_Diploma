@@ -17,7 +17,7 @@ public class StoneTrap : MonoBehaviour
     private int _currentPoint = 0;
     private int _currentDirModifier = 1;
 
-    private float _waitTime = 0.5f; // in seconds
+    private float _waitTime = 1f; // in seconds
     private float _waitCounter = 0f;
     private bool _waiting = false;
 
