@@ -7,6 +7,9 @@ using UnityEngine.Rendering.Universal;
 public class FlickeringLight : MonoBehaviour
 {
     private Light2D _light;
+    [SerializeField] private float _minIntensity;
+    [SerializeField] private float _maxIntensity;
+
 
     private void Start()
     {
@@ -18,7 +21,7 @@ public class FlickeringLight : MonoBehaviour
     {
         while (true)
         {
-            _light.intensity = Random.Range(2f, 3f);
+            _light.intensity = Random.Range(_minIntensity, _maxIntensity);
             yield return new WaitForSeconds(0.1f);
         }
     }
