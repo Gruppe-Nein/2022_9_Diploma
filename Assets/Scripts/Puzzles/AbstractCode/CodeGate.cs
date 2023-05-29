@@ -13,6 +13,7 @@ public class CodeGate : MonoBehaviour
     //TEMPORAL PARAMETER
     private SpriteRenderer _spriteRenderer;
     private BoxCollider2D _boxCollider;
+    private Animator _animator;
     #endregion
 
     private void Start()
@@ -20,6 +21,7 @@ public class CodeGate : MonoBehaviour
         _codePuzzleEventChannel.OnCheckCodeEvent += CheckCode;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _boxCollider = GetComponent<BoxCollider2D>();
+        _animator = GetComponent<Animator>();
         _spriteRenderer.color = Color.red;
     }
 
@@ -33,6 +35,7 @@ public class CodeGate : MonoBehaviour
         if (isCorrect)
         {
             _spriteRenderer.color = Color.green;
+            _animator.SetBool("isOpening", true);
             _boxCollider.enabled = false;
         }
         else

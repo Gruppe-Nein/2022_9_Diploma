@@ -25,12 +25,14 @@ public class CodeLever : MonoBehaviour
     private bool _isTriggered = false;
     private bool _canBePushed = false;
     private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
     #endregion
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRenderer.color = Color.red;
+        _animator = GetComponent<Animator>();
+        //_spriteRenderer.color = Color.red;
     }
 
     private void Start()
@@ -54,12 +56,12 @@ public class CodeLever : MonoBehaviour
         if (_isReady && _canBePushed && context.performed)
         {
             if (_isTriggered == false)
-            {                
+            {
                 Activate();
                 _codePuzzleEventChannel.CodeNumEventAdd(_leverNum);
             }
             else
-            {                
+            {
                 Reset();
                 _codePuzzleEventChannel.CodeNumEventRemove(_leverNum);
             }
@@ -86,14 +88,16 @@ public class CodeLever : MonoBehaviour
     /// </summary>
     private void Activate()
     {
+        _animator.SetBool("Activate", true);
         _isTriggered = true;
-        _spriteRenderer.color = Color.green;
+        //_spriteRenderer.color = Color.green;
     }
 
     private void Reset()
     {
+        _animator.SetBool("Activate", false);
         _isTriggered = false;
-        _spriteRenderer.color = Color.red;
+        //_spriteRenderer.color = Color.red;
     }
     #endregion
 
