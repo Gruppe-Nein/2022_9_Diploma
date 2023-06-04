@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8326909985570611025}
   - component: {fileID: 4310947117998454318}
   - component: {fileID: 4786335662920599673}
+  - component: {fileID: 7511776118848910357}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Ghost
@@ -77,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 682612882, guid: c1678426c5732464cb4e43d384c30969, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -161,3 +162,23 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0038935547, y: 0.000959396}
   m_Size: {x: 0.5792574, y: 0.5792574}
   m_Direction: 1
+--- !u!95 &7511776118848910357
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4310947117998454324}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
