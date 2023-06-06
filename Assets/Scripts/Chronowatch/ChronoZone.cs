@@ -16,6 +16,8 @@ public class ChronoZone : MonoBehaviour
 
     #region LOCAL VARIABLES
     private float _radius;
+    private Animator _spriteAnimator;
+    private Animator _spriteAnimator1;
     //private Dictionary<string, Transform> _parents;
     #endregion
 
@@ -23,13 +25,15 @@ public class ChronoZone : MonoBehaviour
     {
         _circleCollider = GetComponent<CircleCollider2D>();
         _radius = _circleCollider.radius;
+        _spriteAnimator = this.transform.GetChild(0).gameObject.GetComponent<Animator>();
+        _spriteAnimator1 = this.transform.GetChild(1).gameObject.GetComponent<Animator>();
         //_parents = new Dictionary<string, Transform>();
-
         _cChannel.onCheckPointRestore += RestoreWatch;
     }
 
     void Start()
     {
+        
         StartCoroutine(ActiveTime());
     }
 
@@ -70,6 +74,8 @@ public class ChronoZone : MonoBehaviour
             _circleCollider.radius = _radius;            
         }    
         _cChannel.ChronoZoneDeploy(false);
+        _spriteAnimator.ResetTrigger("IsDeployed");
+        _spriteAnimator1.ResetTrigger("IsDeployed");
         Destroy(gameObject);
     }
 

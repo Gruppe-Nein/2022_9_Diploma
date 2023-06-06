@@ -30,6 +30,7 @@ public class CWatchProjectile : MonoBehaviour
 
     void Start()
     {
+        
         _player = GameObject.FindGameObjectWithTag("Player");
         Physics2D.IgnoreCollision(_player.GetComponent<Collider2D>(), _cCollider);
 
@@ -93,7 +94,7 @@ public class CWatchProjectile : MonoBehaviour
         _rigibBody.velocity = Vector2.zero;
         _cCollider.enabled = false;
         _spriteRenderer.sprite = _sprites[1];
-        Instantiate(_cZone, transform.position, transform.rotation);        
+        Instantiate(_cZone, transform.position, transform.rotation); 
     }
 
     private IEnumerator ActivationTimeOut()
