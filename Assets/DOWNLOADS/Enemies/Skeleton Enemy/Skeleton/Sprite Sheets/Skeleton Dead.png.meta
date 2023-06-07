@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -127,7 +127,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Skeleton Dead_13
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 0
+        width: 25
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69c26ad613fccab4ca2c164706bb0dc7
+      internalID: 482440803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -138,7 +159,26 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Skeleton Dead_6: 1076837959
+      Skeleton Dead_14: -423366161
+      Skeleton Dead_9: -1135434052
+      Skeleton Dead_18: -1063899348
+      Skeleton Dead_3: 1997514036
+      Skeleton Dead_4: -1638740625
+      Skeleton Dead_1: 373667096
+      Skeleton Dead_2: 44665934
+      Skeleton Dead_10: 88237937
+      Skeleton Dead_17: 1940094202
+      Skeleton Dead_8: 1218617979
+      Skeleton Dead_15: 1060462678
+      Skeleton Dead_7: -509304803
+      Skeleton Dead_0: 1552709400
+      Skeleton Dead_12: 478036839
+      Skeleton Dead_5: 1107531077
+      Skeleton Dead_13: 482440803
+      Skeleton Dead_11: -369225061
+      Skeleton Dead_16: -875967335
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
