@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -112,7 +112,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -7139,33 +7139,33 @@ TextureImporter:
       environment_20: 522304308
       environment_99: 197936268
       environment_32: 761574493
+      environment_268: 1816930897
       environment_27: -1033420992
-      environment_43: 1906559203
       environment_195: -853275924
-      environment_49: -443682241
+      environment_43: 1906559203
       environment_169: -1661208449
       environment_92: 596888344
-      environment_227: 97138761
+      environment_49: -443682241
       environment_104: -20277587
-      environment_132: -625048831
+      environment_227: 97138761
       environment_188: 1280286069
       environment_9: -854129374
       environment_179: -711974187
       environment_51: 1623594869
+      environment_132: -625048831
       environment_192: 1322811882
-      environment_268: 1816930897
+      environment_280: 971849311
       environment_187: 205698613
       environment_223: -254947141
       environment_130: -1955922439
       environment_244: 1645665768
-      environment_280: 971849311
+      environment_329: -176060993
       environment_196: -761919737
       environment_234: -1723810976
       environment_165: -328375777
       environment_243: 1350437128
       environment_283: 1867717684
       environment_93: 745008583
-      environment_329: -176060993
       environment_167: -1401449447
       environment_44: -1658322765
       environment_175: -1277817763
@@ -7228,18 +7228,19 @@ TextureImporter:
       environment_117: -797510150
       environment_166: 1813578315
       environment_64: 669635190
-      environment_69: 1540127105
       environment_221: 1801065487
-      environment_106: -1050841536
+      environment_224: -1764486473
+      environment_69: 1540127105
       environment_0: 870725401
       environment_204: 1437740337
       environment_170: 611482802
+      environment_106: -1050841536
       environment_299: 1645339784
-      environment_162: 973332291
       environment_116: 453320345
       environment_6: -732394571
+      environment_162: 973332291
+      environment_306: 414357132
       environment_114: -253398789
-      environment_224: -1764486473
       environment_142: -423627411
       environment_207: 184937989
       environment_181: -1090222232
@@ -7272,10 +7273,9 @@ TextureImporter:
       environment_124: -1765834483
       environment_156: 508876580
       environment_79: 1684047346
-      environment_306: 414357132
+      environment_313: -1836198926
       environment_48: 938181069
       environment_97: 2128694119
-      environment_313: -1836198926
       environment_16: 141686262
       environment_76: -1618029638
       environment_265: 1362754814

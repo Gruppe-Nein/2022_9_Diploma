@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -3895,8 +3895,8 @@ TextureImporter:
       ground_159: -1343038808
       ground_6: -643438754
       ground_110: 516564259
-      ground_122: -1902503025
       ground_51: 46329436
+      ground_122: -1902503025
       ground_133: -41677048
       ground_69: 1779326706
       ground_55: 419511715

@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -2397,17 +2397,17 @@ TextureImporter:
       House-kitchen-Sheet2_9: 1438863752
       House-kitchen-Sheet2_5: -272526160
       House-kitchen-Sheet2_34: -1847996402
-      House-kitchen-Sheet2_30: 404265973
       House-kitchen-Sheet2_40: 1963798150
-      House-kitchen-Sheet2_80: -930529170
       House-kitchen-Sheet2_58: 1810270204
+      House-kitchen-Sheet2_80: -930529170
       House-kitchen-Sheet2_73: -1924274678
+      House-kitchen-Sheet2_98: -423994257
       House-kitchen-Sheet2_78: -412642764
       House-kitchen-Sheet2_28: -846996596
-      House-kitchen-Sheet2_50: -1070719357
+      House-kitchen-Sheet2_30: 404265973
       House-kitchen-Sheet2_12: -1607773229
+      House-kitchen-Sheet2_50: -1070719357
       House-kitchen-Sheet2_63: 685343839
-      House-kitchen-Sheet2_98: -423994257
       House-kitchen-Sheet2_38: -361280247
       House-kitchen-Sheet2_13: -1275284922
       House-kitchen-Sheet2_4: 2121651001

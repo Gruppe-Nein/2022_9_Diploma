@@ -1691,7 +1691,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -1747,7 +1747,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -1759,7 +1759,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
@@ -1771,7 +1771,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
@@ -1783,7 +1783,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -13507,7 +13507,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      walls_far_110: 21300220
+      walls_far_478: 21300956
       walls_far_523: 21301046
       walls_far_168: 21300336
       walls_far_371: 21300742
@@ -13535,9 +13535,9 @@ TextureImporter:
       walls_far_452: 21300904
       walls_far_128: 21300256
       walls_far_393: 21300786
-      walls_far_245: 21300490
       walls_far_390: 21300780
       walls_far_204: 21300408
+      walls_far_245: 21300490
       walls_far_200: 21300400
       walls_far_342: 21300684
       walls_far_210: 21300420
@@ -13774,7 +13774,7 @@ TextureImporter:
       walls_far_101: 21300202
       walls_far_16: 21300032
       walls_far_201: 21300402
-      walls_far_335: 21300670
+      walls_far_135: 21300270
       walls_far_373: 21300746
       walls_far_140: 21300280
       walls_far_305: 21300610
@@ -13824,7 +13824,7 @@ TextureImporter:
       walls_far_325: 21300650
       walls_far_11: 21300022
       walls_far_125: 21300250
-      walls_far_135: 21300270
+      walls_far_335: 21300670
       walls_far_368: 21300736
       walls_far_157: 21300314
       walls_far_510: 21301020
@@ -13843,8 +13843,8 @@ TextureImporter:
       walls_far_178: 21300356
       walls_far_451: 21300902
       walls_far_247: 21300494
-      walls_far_142: 21300284
       walls_far_257: 21300514
+      walls_far_142: 21300284
       walls_far_143: 21300286
       walls_far_5: 21300010
       walls_far_354: 21300708
@@ -14063,7 +14063,7 @@ TextureImporter:
       walls_far_74: 21300148
       walls_far_541: 21301082
       walls_far_543: 21301086
-      walls_far_478: 21300956
+      walls_far_110: 21300220
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

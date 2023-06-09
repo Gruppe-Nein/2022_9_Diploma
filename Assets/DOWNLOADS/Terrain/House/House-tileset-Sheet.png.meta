@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -1941,26 +1941,26 @@ TextureImporter:
       House-tileset-Sheet_40: -1739348585
       House-tileset-Sheet_66: 941537583
       House-tileset-Sheet_64: 1802026727
-      House-tileset-Sheet_79: -1147578497
+      House-tileset-Sheet_83: -1961543514
       House-tileset-Sheet_6: -633904064
       House-tileset-Sheet_34: 1712993036
-      House-tileset-Sheet_83: -1961543514
       House-tileset-Sheet_76: 2020215080
       House-tileset-Sheet_29: 67126238
       House-tileset-Sheet_82: -119721443
-      House-tileset-Sheet_77: 404074361
+      House-tileset-Sheet_79: -1147578497
       House-tileset-Sheet_20: 1886627286
       House-tileset-Sheet_54: -1730671954
       House-tileset-Sheet_63: 48052527
       House-tileset-Sheet_16: -549828112
       House-tileset-Sheet_45: 1657643657
-      House-tileset-Sheet_48: 1091874828
+      House-tileset-Sheet_77: 404074361
       House-tileset-Sheet_1: 1809909664
-      House-tileset-Sheet_19: 1150167417
+      House-tileset-Sheet_48: 1091874828
       House-tileset-Sheet_26: 1434912406
+      House-tileset-Sheet_19: 1150167417
       House-tileset-Sheet_4: 1924715153
-      House-tileset-Sheet_47: -733430006
       House-tileset-Sheet_70: 366514840
+      House-tileset-Sheet_47: -733430006
       House-tileset-Sheet_8: 397207310
       House-tileset-Sheet_62: -1728310284
       House-tileset-Sheet_56: 329962558

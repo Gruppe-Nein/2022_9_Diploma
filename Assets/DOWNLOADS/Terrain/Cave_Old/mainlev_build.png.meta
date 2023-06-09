@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -19177,12 +19177,12 @@ TextureImporter:
       mainlev_build_140: -521706101
       mainlev_build_390: -1994814706
       mainlev_build_2: -464488577
-      mainlev_build_62: -1796627134
       mainlev_build_372: -186259410
-      mainlev_build_818: 1897501567
+      mainlev_build_62: -1796627134
       mainlev_build_80: 1098470208
       mainlev_build_158: 2031322754
       mainlev_build_820: 298815812
+      mainlev_build_818: 1897501567
       mainlev_build_177: 365026930
       mainlev_build_3: 16572950
       mainlev_build_1: -644901184
@@ -19286,8 +19286,8 @@ TextureImporter:
       mainlev_build_16: 2022434037
       mainlev_build_556: 29467136
       mainlev_build_166: -1984400353
-      mainlev_build_105: -942225718
       mainlev_build_502: -1590915094
+      mainlev_build_105: -942225718
       mainlev_build_30: 1580987258
       mainlev_build_113: -976811519
       mainlev_build_762: 1619000402
@@ -19304,9 +19304,9 @@ TextureImporter:
       mainlev_build_627: -817070084
       mainlev_build_65: 601685065
       mainlev_build_344: 926930011
-      mainlev_build_463: -75309567
       mainlev_build_767: -507760220
       mainlev_build_886: -602131480
+      mainlev_build_463: -75309567
       mainlev_build_646: -1532298208
       mainlev_build_235: 1912350567
       mainlev_build_215: 1942597347
@@ -19401,21 +19401,21 @@ TextureImporter:
       mainlev_build_329: -2103024116
       mainlev_build_388: -1850888549
       mainlev_build_95: 1132399313
-      mainlev_build_190: 1109543372
       mainlev_build_582: -1338901594
-      mainlev_build_775: -1560833612
+      mainlev_build_190: 1109543372
       mainlev_build_403: 859648718
+      mainlev_build_775: -1560833612
       mainlev_build_486: -1287174226
+      mainlev_build_814: 1592239174
       mainlev_build_29: -1758692863
       mainlev_build_304: 2106547661
       mainlev_build_229: -102441438
-      mainlev_build_535: -1600366654
       mainlev_build_698: 1802806616
-      mainlev_build_14: -1774791871
-      mainlev_build_625: 1165198053
-      mainlev_build_375: 124205702
-      mainlev_build_814: 1592239174
       mainlev_build_765: 54699014
+      mainlev_build_14: -1774791871
+      mainlev_build_375: 124205702
+      mainlev_build_625: 1165198053
+      mainlev_build_535: -1600366654
       mainlev_build_608: -74186672
       mainlev_build_213: 1206318883
       mainlev_build_355: 2121635093
@@ -19452,17 +19452,17 @@ TextureImporter:
       mainlev_build_758: -1583683246
       mainlev_build_894: -1786389850
       mainlev_build_42: -2044167715
-      mainlev_build_185: 2071148628
-      mainlev_build_578: -2081089499
       mainlev_build_630: -877684523
-      mainlev_build_741: -1053009038
-      mainlev_build_764: 1405580993
+      mainlev_build_185: 2071148628
       mainlev_build_864: -975782907
+      mainlev_build_764: 1405580993
+      mainlev_build_578: -2081089499
       mainlev_build_645: -942735300
       mainlev_build_35: 125543556
       mainlev_build_103: 701175183
       mainlev_build_332: -1478557294
       mainlev_build_120: -710802763
+      mainlev_build_741: -1053009038
       mainlev_build_421: 297671882
       mainlev_build_333: 1057986757
       mainlev_build_137: 1044944690
@@ -19725,9 +19725,9 @@ TextureImporter:
       mainlev_build_622: 1254826887
       mainlev_build_675: -942041194
       mainlev_build_700: -235326126
-      mainlev_build_681: 2075142838
-      mainlev_build_843: 1963062399
       mainlev_build_847: -1070803913
+      mainlev_build_843: 1963062399
+      mainlev_build_681: 2075142838
       mainlev_build_123: -20772875
       mainlev_build_745: 395720669
       mainlev_build_552: 1436523630
@@ -19768,8 +19768,8 @@ TextureImporter:
       mainlev_build_674: 689966471
       mainlev_build_527: -159280329
       mainlev_build_200: -852603511
-      mainlev_build_511: 777013823
       mainlev_build_708: -1726245455
+      mainlev_build_511: 777013823
       mainlev_build_69: -505618694
       mainlev_build_696: 332308351
       mainlev_build_275: 1196848632

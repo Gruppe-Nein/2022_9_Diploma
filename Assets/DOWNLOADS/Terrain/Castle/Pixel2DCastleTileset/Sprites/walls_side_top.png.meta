@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -112,7 +112,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -8155,8 +8155,8 @@ TextureImporter:
       walls_side_top_165: -1726375165
       walls_side_top_295: -798757214
       walls_side_top_104: -1753949970
-      walls_side_top_138: 1621848826
       walls_side_top_182: 1206387525
+      walls_side_top_138: 1621848826
       walls_side_top_326: -197711422
       walls_side_top_369: 819558869
       walls_side_top_117: -2078512315
@@ -8200,16 +8200,16 @@ TextureImporter:
       walls_side_top_0: -272510396
       walls_side_top_305: 1708250701
       walls_side_top_122: -359577285
-      walls_side_top_136: 1497617106
       walls_side_top_178: -1771670149
       walls_side_top_84: 1336306297
       walls_side_top_107: -1720318668
-      walls_side_top_195: 1876509763
-      walls_side_top_325: 490059622
+      walls_side_top_136: 1497617106
       walls_side_top_341: 1737413948
       walls_side_top_153: 745209827
       walls_side_top_210: 1244787680
+      walls_side_top_195: 1876509763
       walls_side_top_45: -2101544685
+      walls_side_top_325: 490059622
       walls_side_top_1: -1298977378
       walls_side_top_15: -1714056544
       walls_side_top_72: 1949435068
@@ -8231,9 +8231,9 @@ TextureImporter:
       walls_side_top_127: 213844212
       walls_side_top_142: 1969457358
       walls_side_top_214: 480273435
-      walls_side_top_247: 341522627
-      walls_side_top_253: 1161624446
       walls_side_top_259: -782974186
+      walls_side_top_253: 1161624446
+      walls_side_top_247: 341522627
       walls_side_top_233: 1839662450
       walls_side_top_298: 471290506
       walls_side_top_23: -1812179937
@@ -8263,9 +8263,9 @@ TextureImporter:
       walls_side_top_28: -2108437801
       walls_side_top_42: 1329970191
       walls_side_top_8: -1287295412
+      walls_side_top_216: 1936204354
       walls_side_top_79: 552906501
       walls_side_top_260: 483811765
-      walls_side_top_216: 1936204354
       walls_side_top_176: 803806084
       walls_side_top_340: 1086456644
       walls_side_top_256: -1868617614
@@ -8277,8 +8277,8 @@ TextureImporter:
       walls_side_top_240: 1442124658
       walls_side_top_237: -86096536
       walls_side_top_254: -715233793
-      walls_side_top_203: 1662970403
       walls_side_top_264: 1790434021
+      walls_side_top_203: 1662970403
       walls_side_top_109: -1856193404
       walls_side_top_143: -693794380
       walls_side_top_2: -1104022958

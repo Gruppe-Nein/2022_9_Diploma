@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -1778,7 +1778,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       House-living room-Sheet_56: 1103226128
-      House-living room-Sheet_77: -886917172
+      House-living room-Sheet_19: -1259949492
       House-living room-Sheet_39: -471321372
       House-living room-Sheet_44: -1376540583
       House-living room-Sheet_51: -784305608
@@ -1817,8 +1817,8 @@ TextureImporter:
       House-living room-Sheet_73: -1448262912
       House-living room-Sheet_37: 1847035217
       House-living room-Sheet_71: 1251905032
-      House-living room-Sheet_35: -2119750495
       House-living room-Sheet_40: -1359462640
+      House-living room-Sheet_35: -2119750495
       House-living room-Sheet_6: -531040652
       House-living room-Sheet_43: -953943931
       House-living room-Sheet_13: -1300108575
@@ -1854,7 +1854,7 @@ TextureImporter:
       House-living room-Sheet_15: -1173710322
       House-living room-Sheet_0: 632393795
       House-living room-Sheet_11: 1951497423
-      House-living room-Sheet_19: -1259949492
+      House-living room-Sheet_77: -886917172
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

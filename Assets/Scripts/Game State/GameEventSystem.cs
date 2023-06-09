@@ -40,8 +40,12 @@ public class GameEventSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        _cRebinds = new ControlBindings();
         _gameData = new GameData();
+    }
+
+    private void Start()
+    {
+        _cRebinds = new ControlBindings();
     }
 
     #region playerActions

@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -112,7 +112,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -11684,8 +11684,8 @@ TextureImporter:
       env_objects_483: -1752220294
       env_objects_477: 485535228
       env_objects_408: 1653532948
-      env_objects_238: -450849006
       env_objects_481: -807297383
+      env_objects_238: -450849006
       env_objects_77: -1618945556
       env_objects_378: 1923521054
       env_objects_137: 1184082436
@@ -11695,12 +11695,12 @@ TextureImporter:
       env_objects_18: 123253810
       env_objects_110: -64399124
       env_objects_170: 1956426428
-      env_objects_321: 1530349645
+      env_objects_435: 920766969
       env_objects_464: 1378289338
       env_objects_367: -1158380278
       env_objects_17: -1148886497
       env_objects_71: -108606748
-      env_objects_435: 920766969
+      env_objects_321: 1530349645
       env_objects_401: 1317304872
       env_objects_46: -513034460
       env_objects_450: 1476451336
@@ -11839,14 +11839,14 @@ TextureImporter:
       env_objects_329: -797461354
       env_objects_351: -1548721450
       env_objects_116: -317542815
-      env_objects_234: 1960171572
       env_objects_320: -1518687843
+      env_objects_234: 1960171572
       env_objects_241: 504040045
       env_objects_68: -1484272201
       env_objects_12: 1882398171
       env_objects_91: 264187345
-      env_objects_167: 112763332
       env_objects_331: 1412036579
+      env_objects_167: 112763332
       env_objects_166: -539827955
       env_objects_377: 1487147713
       env_objects_103: -1760841458
@@ -11872,17 +11872,17 @@ TextureImporter:
       env_objects_352: -1377639635
       env_objects_438: -1005594804
       env_objects_9: 452837327
-      env_objects_230: 566742076
       env_objects_531: -1722058536
       env_objects_254: 1346338825
       env_objects_395: 1573609448
       env_objects_88: -1683400199
-      env_objects_250: 1870876181
       env_objects_451: 2082539822
-      env_objects_287: -1299612368
+      env_objects_250: 1870876181
+      env_objects_230: 566742076
       env_objects_28: 417154609
       env_objects_191: -517275274
       env_objects_51: -848118263
+      env_objects_287: -1299612368
       env_objects_33: -448511946
       env_objects_13: -1731928418
       env_objects_301: -940225664

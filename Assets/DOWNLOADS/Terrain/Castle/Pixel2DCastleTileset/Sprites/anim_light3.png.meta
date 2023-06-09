@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -1437,9 +1437,9 @@ TextureImporter:
       anim_light3_19: 852995464
       anim_light3_17: 979855867
       anim_light3_25: 391469225
-      anim_light3_39: -361483616
-      anim_light3_35: -2114183405
       anim_light3_48: -379078074
+      anim_light3_35: -2114183405
+      anim_light3_39: -361483616
       anim_light3_42: 283946510
       anim_light3_30: -867833072
       anim_light3_11: 1601045024

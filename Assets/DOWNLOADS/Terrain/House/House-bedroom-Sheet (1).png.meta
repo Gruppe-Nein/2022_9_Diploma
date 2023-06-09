@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -2066,8 +2066,8 @@ TextureImporter:
       House-bedroom-Sheet (1)_24: 168403798
       House-bedroom-Sheet (1)_15: 145814634
       House-bedroom-Sheet (1)_37: -234903977
-      House-bedroom-Sheet (1)_87: -1401712404
       House-bedroom-Sheet (1)_31: -1525425657
+      House-bedroom-Sheet (1)_87: -1401712404
       House-bedroom-Sheet (1)_3: -1928334441
       House-bedroom-Sheet (1)_36: -905196356
       House-bedroom-Sheet (1)_76: 1371496926
@@ -2110,8 +2110,8 @@ TextureImporter:
       House-bedroom-Sheet (1)_55: -1328053366
       House-bedroom-Sheet (1)_19: -2056183773
       House-bedroom-Sheet (1)_17: 772815892
-      House-bedroom-Sheet (1)_13: 1976502009
       House-bedroom-Sheet (1)_82: 1538606978
+      House-bedroom-Sheet (1)_13: 1976502009
       House-bedroom-Sheet (1)_45: 726483280
       House-bedroom-Sheet (1)_68: -688226583
       House-bedroom-Sheet (1)_40: 816690403

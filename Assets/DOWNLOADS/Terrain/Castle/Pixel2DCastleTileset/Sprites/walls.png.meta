@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -112,7 +112,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -11837,7 +11837,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       walls_285: -1948396753
-      walls_376: 1070676805
+      walls_210: 1042533104
       walls_180: 153815401
       walls_87: -1342272211
       walls_536: 812527825
@@ -11873,8 +11873,8 @@ TextureImporter:
       walls_235: -1963994478
       walls_172: 119708311
       walls_523: -715250191
-      walls_127: 362487406
       walls_525: 1637831133
+      walls_127: 362487406
       walls_48: 498123947
       walls_293: -1246488127
       walls_425: 1972678261
@@ -11983,8 +11983,8 @@ TextureImporter:
       walls_107: -184931483
       walls_515: -656641828
       walls_11: 75790607
-      walls_171: 2002663327
       walls_397: -241216612
+      walls_171: 2002663327
       walls_430: 1758224430
       walls_432: -1094932079
       walls_266: 1737113677
@@ -12158,19 +12158,19 @@ TextureImporter:
       walls_202: 1052028741
       walls_347: -692855668
       walls_108: -604848168
-      walls_130: -2107983704
       walls_241: -1240109687
+      walls_130: -2107983704
       walls_178: -577594909
       walls_44: 1959430020
       walls_362: -221792984
       walls_54: 70261012
       walls_182: -1583342262
       walls_251: -1809478674
-      walls_265: 2120167584
-      walls_292: -351469126
       walls_364: -1906077571
+      walls_265: 2120167584
       walls_319: 1997386731
       walls_25: 1237322924
+      walls_292: -351469126
       walls_166: 1670972318
       walls_95: 1103374068
       walls_129: 1543932682
@@ -12392,7 +12392,7 @@ TextureImporter:
       walls_352: 1831672933
       walls_480: -1429822182
       walls_3: 621039597
-      walls_210: 1042533104
+      walls_376: 1070676805
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
