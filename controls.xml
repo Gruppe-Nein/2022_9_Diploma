@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
 <ControlBindings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <rebinds>{"bindings":[{"action":"Player Controls/Jump","id":"087c961e-b1da-433f-a947-76d43205dc57","path":"&lt;Keyboard&gt;/q","interactions":"","processors":""}]}</rebinds>
+  <rebinds />
 </ControlBindings>
