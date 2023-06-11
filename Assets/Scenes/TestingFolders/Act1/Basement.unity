@@ -3421,7 +3421,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5177434966425597808, guid: be20e31ff1089f44e9f5a54c559ffcdf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be20e31ff1089f44e9f5a54c559ffcdf, type: 3}
@@ -134803,7 +134803,7 @@ Tilemap:
       - {fileID: 21300000, guid: 589f5c2f0c9325c41807af4d2171e4a5, type: 3}
       - {fileID: 21300000, guid: 827b3243ee3f6124a876e0e5797e152b, type: 3}
       - {fileID: 21300000, guid: cc619f221172f0349a7aa90238342a62, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -67, y: -17, z: 0}
