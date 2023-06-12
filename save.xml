@@ -6,11 +6,11 @@
   <_playerCurrentHealth>2</_playerCurrentHealth>
   <_playerMaxHealth>0</_playerMaxHealth>
   <PlayerPosition>
-    <x>4.732541</x>
-    <y>-13.9145288</y>
+    <x>-127.055511</x>
+    <y>-131.5101</y>
     <z>1.19541764</z>
   </PlayerPosition>
-  <SceneToLoad>5</SceneToLoad>
+  <SceneToLoad>4</SceneToLoad>
   <StateToLoad>Gameplay</StateToLoad>
   <GameDifficulty>Easy</GameDifficulty>
   <PlayerHealth>2</PlayerHealth>

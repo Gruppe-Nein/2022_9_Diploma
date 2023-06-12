@@ -105,7 +105,7 @@ public class DialogueController : MonoBehaviour
                 break;
             }
             _dialogue.maxVisibleCharacters += 1;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
 
         _canContinue = true;
