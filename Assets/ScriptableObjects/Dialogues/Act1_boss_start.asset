@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f3c32340dc0f140a689cf02208362a, type: 3}
+  m_Name: Act1_boss_start
+  m_EditorClassIdentifier: 
+  DialogueText:
+  - _actor: {fileID: 11400000, guid: bfe4c5334aff16f479ab373fb42a8483, type: 2}
+    _line: Hello there
+  - _actor: {fileID: 11400000, guid: db31189699923d8428bc9f1298c7285b, type: 2}
+    _line: General Maxwell
+  - _actor: {fileID: 11400000, guid: bfe4c5334aff16f479ab373fb42a8483, type: 2}
+    _line: What ?!
+  - _actor: {fileID: 11400000, guid: db31189699923d8428bc9f1298c7285b, type: 2}
+    _line: What ?!
+  - _actor: {fileID: 11400000, guid: e251fd8280ce7724d8deba7517d9c2a0, type: 2}
+    _line: I sense the demon power in her. WE have to save her
+  - _actor: {fileID: 11400000, guid: bfe4c5334aff16f479ab373fb42a8483, type: 2}
+    _line: We can't kill her, she  is my sister !
+  - _actor: {fileID: 11400000, guid: e251fd8280ce7724d8deba7517d9c2a0, type: 2}
+    _line: Then find a way how to get her down
+  - _actor: {fileID: 11400000, guid: db31189699923d8428bc9f1298c7285b, type: 2}
+    _line: HAhahahahahahahaha, you will never get me...
