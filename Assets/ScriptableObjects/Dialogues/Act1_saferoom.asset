@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f3c32340dc0f140a689cf02208362a, type: 3}
+  m_Name: Act1_saferoom
+  m_EditorClassIdentifier: 
+  DialogueText:
+  - _actor: {fileID: 11400000, guid: bfe4c5334aff16f479ab373fb42a8483, type: 2}
+    _line: Where the hell am I ?
+  - _actor: {fileID: 11400000, guid: bfe4c5334aff16f479ab373fb42a8483, type: 2}
+    _line: "Feels like home, but this room doesn\u2019t look like any other in the
+      building."
+  - _actor: {fileID: 11400000, guid: e251fd8280ce7724d8deba7517d9c2a0, type: 2}
+    _line: This is the closest safe room to which I was able to time-phase us.
+  - _actor: {fileID: 11400000, guid: e251fd8280ce7724d8deba7517d9c2a0, type: 2}
+    _line: "Regarding the decor change. I suspect the demon started to warp everything
+      according to its\u2019 preferences."
+  - _actor: {fileID: 11400000, guid: bfe4c5334aff16f479ab373fb42a8483, type: 2}
+    _line: Great, that makes search for Rosy a bit problematic.
+  - _actor: {fileID: 11400000, guid: e251fd8280ce7724d8deba7517d9c2a0, type: 2}
+    _line: Not quite, I sense a strong demonic presence somewhere below us... Perhaps,
+      basement.
+  - _actor: {fileID: 11400000, guid: bfe4c5334aff16f479ab373fb42a8483, type: 2}
+    _line: Basement, got it.

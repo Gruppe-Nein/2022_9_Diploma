@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Rose
   m_EditorClassIdentifier: 
   _actor: Rosemary
-  _actorImage: {fileID: 21300000, guid: b95dd9e5d821ee84f994dbfade27e501, type: 3}
+  _actorImage: {fileID: 21300000, guid: 79b134060a223564b99da0cd73af6342, type: 3}
