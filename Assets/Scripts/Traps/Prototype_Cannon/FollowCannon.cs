@@ -52,7 +52,7 @@ public class FollowCannon : MonoBehaviour
             _velocityController = 0;
         }
 
-        Debug.Log("_velocityController: " + _velocityController);
+        //Debug.Log("_velocityController: " + _velocityController);
 
         //Vector directed from the cannon to the targer object
         Vector3 direction = (_target.position - _shootingPoint.position).normalized;

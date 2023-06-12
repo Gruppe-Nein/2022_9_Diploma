@@ -531,4 +531,31 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
         Gizmos.DrawWireCube(_frontWallCheckPoint.position, _wallCheckSize);
         Gizmos.DrawWireCube(_backWallCheckPoint.position, _wallCheckSize);
     }
+
+    #region GETTER
+    public Vector2 MoveInput
+    {
+        get { return _moveInput; }
+    }
+
+    public bool GetIsJumping
+    {
+        get { return IsJumping;  }
+    }
+
+    public bool GetIsGrounded
+    {
+        get {  return _lastOnGroundTime > 0; }
+    }
+
+    public bool GetIsFalling
+    {
+        get { return _rb.velocity.y < 0; }
+    }
+
+    public bool GetIsSliding
+    {
+        get { return IsSliding; }
+    }
+    #endregion
 }

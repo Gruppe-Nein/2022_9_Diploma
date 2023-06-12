@@ -4,6 +4,7 @@ public class Checkpoint : MonoBehaviour
 {
     public SpriteRenderer _sr { get; private set; }
     private Animator _spriteAnimator;
+    private bool isEnabled = false;
     void Start()
     {
         _spriteAnimator = this.transform.GetChild(0).gameObject.GetComponent<Animator>();
@@ -12,9 +13,15 @@ public class Checkpoint : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            isEnabled = true;
             _spriteAnimator.SetTrigger("Activated");
             GameEventSystem.Instance.SaveData();
             GameEventSystem.Instance.PlayerRestoreHealthCheckpoint(1);
         }
+    }
+
+    public bool GetIsEnabled
+    {
+        get { return isEnabled; }
     }
 }
