@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cData: {fileID: 11400000, guid: 9d7219fff61097a4f8c24d3bde8eaf36, type: 2}
-  _speed: 10
+  _speed: 6
 --- !u!61 &9222435617104528175
 BoxCollider2D:
   m_ObjectHideFlags: 0
