@@ -5,7 +5,6 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour
 {
     [SerializeField] GameObject PortalA;
-
     [SerializeField] GameObject PortalB;
 
 

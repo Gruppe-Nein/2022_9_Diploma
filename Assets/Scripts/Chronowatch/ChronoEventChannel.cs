@@ -7,7 +7,9 @@ public class ChronoEventChannel : ScriptableObject
 {
     public event Action<bool> onWatchProjectileDeploy;
     public event Action<bool> onChronoZoneDeploy;
-    public event Action<bool> onCheckPointRestore;    
+    public event Action<bool> onCheckPointRestore;
+
+    public event Action<bool> onRoomChanging;
 
     public void WatchProjectileDeploy(bool isDeployed)
     {
@@ -22,5 +24,10 @@ public class ChronoEventChannel : ScriptableObject
     public void CheckPointRestore(bool reset)
     {
         onCheckPointRestore?.Invoke(reset);
+    }
+
+    public void ChangingRoom(bool changing)
+    {
+        onRoomChanging?.Invoke(changing);
     }
 }
