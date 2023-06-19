@@ -6,6 +6,8 @@ public class RoseBrain : EnemyBrain
     public IdleRoseState IdleRoseState;
     public MoveToState MoveToState;
 
+    public GameObject rosePlatformPosition;
+
     #region Components
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public RoseMovement movement;
@@ -14,7 +16,7 @@ public class RoseBrain : EnemyBrain
     [HideInInspector] public bool PiggyDestroyed;
     [HideInInspector] public bool CandyEaten;
     [HideInInspector] public GameObject Piggybank;
-    [HideInInspector] public Vector3 StartPos;
+    //[HideInInspector] public Vector3 StartPos;
 
 
     private void Awake()
@@ -33,7 +35,12 @@ public class RoseBrain : EnemyBrain
 
         GameEventSystem.Instance.OnPiggybankDestroy += PiggybankDestroyed;
 
-        StartPos = transform.position;
+        //StartPos = transform.position;
+    }
+
+    public String checkState()
+    {
+        return stateMachine.CurrentState.GetType().Name;
     }
 
     private void PiggybankDestroyed(GameObject obj)

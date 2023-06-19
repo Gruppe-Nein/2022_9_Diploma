@@ -14,7 +14,6 @@ public class HintPopup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("xdd");
         if (collision.CompareTag("Player"))
         {
             _spriteAnimator.SetTrigger("ShowHint");

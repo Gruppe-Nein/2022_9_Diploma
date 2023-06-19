@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f3c32340dc0f140a689cf02208362a, type: 3}
+  m_Name: Act1_boss_firstPiggy
+  m_EditorClassIdentifier: 
+  DialogueText:
+  - _actor: {fileID: 11400000, guid: bfe4c5334aff16f479ab373fb42a8483, type: 2}
+    _line: Oh a piggy bank! If I throw my watch I can distract Rose and stop the
+      cogwheels on the platform.

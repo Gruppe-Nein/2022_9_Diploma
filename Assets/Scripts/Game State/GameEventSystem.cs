@@ -109,6 +109,7 @@ public class GameEventSystem : MonoBehaviour
         {
             _gameData.SetDifficilty(GameDifficulty.Normal);
         }
+        _gameData.PlayerPosition = Vector3.zero;
         SaveData();
     }
 

@@ -33,9 +33,6 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
     private float _wallJumpStartTime;
     private int _lastWallJumpDir;
 
-    // Actual free falling
-    private bool _isTrulyFalling;
-
     #endregion
 
     #region INPUT
@@ -244,7 +241,7 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
 
         _animator.SetBool("IsRunning", _moveInput.x != 0);
         _animator.SetBool("IsGrounded", _lastOnGroundTime > 0);
-        _animator.SetBool("IsFalling", _rb.velocity.y < 0 && _isTrulyFalling);
+        _animator.SetBool("IsFalling", _rb.velocity.y < 0 && _lastOnGroundTime <= 0);
         _animator.SetBool("IsJumping", IsJumping);
         _animator.SetBool("IsSliding", IsSliding);
         _animator.SetBool("IsWallJumping", IsWallJumping);
@@ -415,7 +412,6 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        _isTrulyFalling = false;
         if (collision.gameObject.tag == "Platform")
         {
             _platformRBody2D = collision.gameObject.GetComponent<Rigidbody2D>();
@@ -424,7 +420,6 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
     }
     void OnCollisionExit2D(Collision2D collision)
     {
-        _isTrulyFalling = true;
         if (collision.gameObject.tag == "Platform")
         {
             _IsOnPlatform = false;

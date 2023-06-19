@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -37,7 +36,7 @@ public class DialogueController : MonoBehaviour
         _instaPrint = false;
     }
 
-    public void StartDialogue(DialogueSO dialogue)
+    private void StartDialogue(DialogueSO dialogue)
     {
         //Time.timeScale = 0;
         Debug.Log("Dialogue event trigger received and its length = " + dialogue.GetLength());

@@ -24,7 +24,8 @@ public class IdleRoseState : State
         else if(ReturnToStart)
         {
             //Debug.Log("Idle move to start");
-            (brain as RoseBrain).MoveToState.SetDestPoint((brain as RoseBrain).StartPos);
+            //(brain as RoseBrain).MoveToState.SetDestPoint((brain as RoseBrain).StartPos);
+            (brain as RoseBrain).MoveToState.SetDestPoint((brain as RoseBrain).rosePlatformPosition.transform.position);
             (brain as RoseBrain).MoveToState.SetIsMovingToPiggy(false);
             stateMachine.ChangeState((brain as RoseBrain).MoveToState);
         }
