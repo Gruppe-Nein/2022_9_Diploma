@@ -234,10 +234,16 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
             Run(Data.wallJumpRunLerp);
         else
             Run(1);
-        
+
         // Slide
         if (IsSliding)
+        {
+            _rb.sharedMaterial.friction = 0;
             Slide();
+        }
+        else _rb.sharedMaterial.friction = Data.nonSlideFriction;
+
+
 
         _animator.SetBool("IsRunning", _moveInput.x != 0);
         _animator.SetBool("IsGrounded", _lastOnGroundTime > 0);
