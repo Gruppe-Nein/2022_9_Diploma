@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <GameData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <_canTakeDamage>true</_canTakeDamage>
+  <_canTakeDamage>false</_canTakeDamage>
   <_iFramesDuration>2</_iFramesDuration>
   <_numberOfFlashes>5</_numberOfFlashes>
   <_playerCurrentHealth>2</_playerCurrentHealth>
   <_playerMaxHealth>0</_playerMaxHealth>
   <PlayerPosition>
-    <x>-4.269665</x>
-    <y>-2.71469784</y>
-    <z>0</z>
+    <x>-292.554321</x>
+    <y>8.726478</y>
+    <z>1.19541764</z>
   </PlayerPosition>
   <SceneToLoad>4</SceneToLoad>
   <StateToLoad>Gameplay</StateToLoad>
