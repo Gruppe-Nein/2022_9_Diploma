@@ -86,6 +86,7 @@ public class CWatchProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        _onCooldown = true;
         DeployChronoZone();
     }
 
