@@ -17,15 +17,25 @@ public class Rose_Animation_Manager : MonoBehaviour
     {
         if (_rose.checkState() == "IdleRoseState")
         {
-            _roseAnimator.ResetTrigger("MoveToState");
+            _roseAnimator.ResetTrigger("MoveToLeftState");
+            _roseAnimator.ResetTrigger("MoveToLeftState");
             _roseAnimator.SetTrigger("IdleRoseState");
         }
 
-        if( _rose.checkState() == "MoveToState")
+        if( _rose.checkState() == "MoveToLeftState")
         {
             _roseAnimator.ResetTrigger("IdleRoseState");
-            _roseAnimator.SetTrigger("MoveToState");
+            _roseAnimator.ResetTrigger("MoveToRightState");
+            _roseAnimator.SetTrigger("MoveToLeftState");
             
-        }    
+        }
+        if (_rose.checkState() == "MoveToRightState")
+        {
+            _roseAnimator.ResetTrigger("IdleRoseState");
+            _roseAnimator.ResetTrigger("MoveToLeftState");
+            _roseAnimator.SetTrigger("MoveToRightState");
+           
+        }
+
     }
 }

@@ -5,6 +5,8 @@ public class RoseBrain : EnemyBrain
 {
     public IdleRoseState IdleRoseState;
     public MoveToState MoveToState;
+    public MoveToLeftState MoveToLeftState;
+    public MoveToRightState MoveToRightState;
 
     public GameObject rosePlatformPosition;
 
@@ -31,6 +33,8 @@ public class RoseBrain : EnemyBrain
         stateMachine = new StateMachine();
         IdleRoseState = new IdleRoseState(this, stateMachine);
         MoveToState = new MoveToState(this, stateMachine);
+        MoveToLeftState = new MoveToLeftState(this, stateMachine);
+        MoveToRightState = new MoveToRightState(this, stateMachine); 
         stateMachine.Initialize(IdleRoseState);
 
         GameEventSystem.Instance.OnPiggybankDestroy += PiggybankDestroyed;
