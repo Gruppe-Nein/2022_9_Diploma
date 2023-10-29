@@ -461,7 +461,7 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
 
     private IEnumerator Invunerability(GameData data)
     {
-        //Debug.Log("Invun");
+        Debug.Log("Invun");
         data._canTakeDamage = false;
         for (int i = 0; i < data._numberOfFlashes; i++)
         {
@@ -472,7 +472,7 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
         }
         
         data._canTakeDamage = true;
-        //Debug.Log("Vun");
+        Debug.Log("Vun");
     }
 
     public void PlayerDeath()
