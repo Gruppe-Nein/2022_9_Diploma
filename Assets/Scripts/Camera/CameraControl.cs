@@ -1,20 +1,23 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CameraControl : MonoBehaviour
 {
-    [SerializeField] private GameObject _cinemaVM;
+    [SerializeField] private CinemachineVirtualCamera camera1;
+    [SerializeField] private CinemachineVirtualCamera camera2;
+    [SerializeField] private CinemachineVirtualCamera camera3;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _cinemaVM.SetActive(false);
+        camera1.Priority = 5;
+        camera2.Priority = 15;
+        camera3.Priority = 10;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _cinemaVM.SetActive(true);
+        camera1.Priority = 15;
+        camera2.Priority = 5;
+        camera3.Priority = 10;
     }
 }

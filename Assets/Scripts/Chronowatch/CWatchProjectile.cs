@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,7 +12,8 @@ public class CWatchProjectile : MonoBehaviour
 
     #region REFERENCES
     private GameObject _player;
-    private GameObject _skipGround;
+    private GameObject _skipMazeWalls;
+    private GameObject _skipMazeGround;
     [SerializeField] private ChronoZone _cZone;
     [SerializeField] private CircleCollider2D _cCollider;
     [SerializeField] private Sprite[] _sprites;
@@ -34,11 +36,11 @@ public class CWatchProjectile : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         Physics2D.IgnoreCollision(_player.GetComponent<Collider2D>(), _cCollider);
 
-        _skipGround = GameObject.FindGameObjectWithTag("SkippableGround");        
-        if (_skipGround != null)
-        {
-            Physics2D.IgnoreCollision(_skipGround.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        }
+        _skipMazeGround = GameObject.FindGameObjectWithTag("SkippableGround");
+        _skipMazeWalls = GameObject.FindGameObjectWithTag("SkippableWalls");
+
+        disableCollisition(_skipMazeGround);
+        disableCollisition(_skipMazeWalls);
         
         _spriteRenderer = GetComponent<SpriteRenderer>(); 
         if (transform.localRotation.z > 0.5f || transform.localRotation.z < -0.5f)
@@ -81,6 +83,14 @@ public class CWatchProjectile : MonoBehaviour
         {
             _onCooldown = true;
             DeployChronoZone();
+        }
+    }
+
+    private void disableCollisition(GameObject skipObject)
+    {
+        if (skipObject != null)
+        {
+            Physics2D.IgnoreCollision(skipObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 
