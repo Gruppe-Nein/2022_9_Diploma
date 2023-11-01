@@ -56,6 +56,8 @@ public class GameEventSystem : MonoBehaviour
     #endregion
 
     public event Action<GameObject> OnPiggybankDestroy;
+    public event Action<bool, bool> OnMazeEncounter;
+
 
     #region SaveAndLoad
     public event Action<GameData> OnLoadData;
@@ -67,6 +69,11 @@ public class GameEventSystem : MonoBehaviour
         piggyBank.SetActive(false);
 
         OnPiggybankDestroy?.Invoke(piggyBank);
+    }
+
+    public void MazeEncounter(bool zoomOut, bool inMaze)
+    {
+        OnMazeEncounter?.Invoke(zoomOut, inMaze);
     }
 
     public void PlayerTakeDamage(int damage)

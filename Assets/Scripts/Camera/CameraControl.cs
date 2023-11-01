@@ -1,23 +1,23 @@
-using Cinemachine;
+using System;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera camera1;
-    [SerializeField] private CinemachineVirtualCamera camera2;
-    [SerializeField] private CinemachineVirtualCamera camera3;
+    [SerializeField] Animator _animator;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Start()
     {
-        camera1.Priority = 5;
-        camera2.Priority = 15;
-        camera3.Priority = 10;
+        GameEventSystem.Instance.OnMazeEncounter += ChangeMazeCamera;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void ChangeMazeCamera(bool zoomOut, bool inMaze)
     {
-        camera1.Priority = 15;
-        camera2.Priority = 5;
-        camera3.Priority = 10;
+        _animator.SetBool("zoomOut", zoomOut);
+        _animator.SetBool("inMaze", inMaze);
+    }
+
+    private void OnDisable()
+    {
+        GameEventSystem.Instance.OnMazeEncounter -= ChangeMazeCamera;
     }
 }
