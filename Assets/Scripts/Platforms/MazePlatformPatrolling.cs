@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 
-public class PlatfromPatrolling : MonoBehaviour
+public class MazePlatformPatrolling : MonoBehaviour
 {
     #region PLATFORM END POINTS
     [SerializeField] private Transform _posA;
@@ -21,7 +19,6 @@ public class PlatfromPatrolling : MonoBehaviour
     private float _platformSpeed;
     private Vector3 _targetPos;
     private Rigidbody2D _rBody2D;
-    private Vector3 _moveDirection;
     #endregion
 
     private float _endPointCheckRadius = 0.2f;
@@ -41,45 +38,29 @@ public class PlatfromPatrolling : MonoBehaviour
     {
         _platformSpeed = _speed;
         _isStopped = false;
-        _targetPos = _posA.position;
-        CalculateDirection();
+        _targetPos = _posA.localPosition;
     }
 
     private void Update()
     {
-        CheckOverlapCircle();
-    }
+        if (Vector3.Distance(_posA.localPosition, transform.localPosition) <= 0.5f)
+        {
+            _targetPos = _posB.localPosition;
+        }
+        else if (Vector3.Distance(_posB.localPosition, transform.localPosition) <= 0.5f)
+        {
+            _targetPos = _posA.localPosition;
+        }
 
-    private void FixedUpdate()
-    {
         if (_isStopped && _platformSpeed > 0.1)
         {
-            _platformSpeed *= _cData.velocityFactor;            
-        } 
+            _platformSpeed *= _cData.velocityFactor;
+        }
         else if (_isStopped && _platformSpeed < 0.1)
         {
             _platformSpeed = 0;
         }
-        _rBody2D.velocity = _moveDirection * _platformSpeed;
-    }
-    private void CalculateDirection()
-    {
-        _moveDirection = (_targetPos - transform.position).normalized;
-    }
-    private void CheckOverlapCircle()
-    {
-        if (Physics2D.OverlapCircle(_posA.position, _endPointCheckRadius, _groundLayer))
-        {
-            _targetPos = _posB.position;
-            CalculateDirection();
-            return;
-        }
-        if (Physics2D.OverlapCircle(_posB.position, _endPointCheckRadius, _groundLayer))
-        {
-            _targetPos = _posA.position;
-            CalculateDirection();
-            return;
-        }
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, _targetPos, _platformSpeed * Time.deltaTime);
     }
 
     #region PLATFORM TIME ZONE BEHAVIOR
@@ -95,7 +76,7 @@ public class PlatfromPatrolling : MonoBehaviour
         if (collision.gameObject.CompareTag("ChronoZone"))
         {
             _platformSpeed = _speed;
-            _isStopped = false;            
+            _isStopped = false;
         }
     }
     #endregion
