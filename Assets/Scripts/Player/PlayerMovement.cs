@@ -300,6 +300,13 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
     private void Run(float lerpAmount)
     {
         float targetSpeed = _moveInput.x * Data.runMaxSpeed;
+
+        if (_IsOnPlatform)
+        {
+            targetSpeed += _platformRBody2D.velocity.x;
+        }
+
+
         targetSpeed = Mathf.Lerp(_rb.velocity.x, targetSpeed, lerpAmount);
 
         #region Calculate AccelRate
@@ -330,18 +337,7 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
         #endregion
 
         float speedDif = targetSpeed - _rb.velocity.x;
-
-        //float movement = speedDif * accelRate; <-- previous methods
-        float movement;
-
-        if (_IsOnPlatform)
-        {
-            movement = (speedDif + _platformRBody2D.velocity.x) * accelRate;
-        } else
-        {
-            movement = speedDif * accelRate;
-        }
-
+        float movement = speedDif * accelRate;
         _rb.AddForce(movement * Vector2.right, ForceMode2D.Force);
     }
 
