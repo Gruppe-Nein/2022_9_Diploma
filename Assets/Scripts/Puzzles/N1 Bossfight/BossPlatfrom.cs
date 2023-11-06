@@ -63,7 +63,7 @@ public class BossPlatfrom : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("ChronoZone") && _rose.checkState() == "MoveToState")
+        if (collision.gameObject.CompareTag("ChronoZone") && _rose.checkState() == "MoveToLeftState" || _rose.checkState() == "MoveToRightState")
         {
             DeactiveCogwheel();
         }
