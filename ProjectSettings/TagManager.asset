@@ -22,6 +22,7 @@ TagManager:
   - StoneHead
   - BossCogwheel
   - StoneWall
+  - SkippableWalls
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - Fallable
   - Player
   - Enemy
-  - 
+  - Interactables
   - 
   - 
   - 

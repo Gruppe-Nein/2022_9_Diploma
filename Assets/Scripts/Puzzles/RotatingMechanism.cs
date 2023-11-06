@@ -14,6 +14,8 @@ public class RotatingMechanism : MonoBehaviour
     private Vector3 _rotCenter = new Vector3(0,0,-1);
     #endregion
 
+    [SerializeField] private GameObject[] _gears;
+
     #region SCRIPTABLE OBJECTS
     [SerializeField] private ChronoData _cData;
     #endregion
@@ -35,6 +37,13 @@ public class RotatingMechanism : MonoBehaviour
             _velocityController = 0;
         }
         transform.RotateAround(transform.position, _rotCenter, Time.deltaTime * _rotSpeed * _velocityController);
+        _gears[0].transform.Rotate(0, 0, 1 * _velocityController);
+        _gears[1].transform.Rotate(0, 0, -1 * _velocityController);
+        _gears[2].transform.Rotate(0, 0, 1 * _velocityController);
+        _gears[3].transform.Rotate(0, 0, 1 * _velocityController);
+        _gears[4].transform.Rotate(0, 0, 1 * _velocityController);
+        _gears[5].transform.Rotate(0, 0, -1 * _velocityController);
+        _gears[6].transform.Rotate(0, 0, -1 * _velocityController);
     }
 
     #region MECHANISM TIME ZONE BEHAVIOR
@@ -48,7 +57,7 @@ public class RotatingMechanism : MonoBehaviour
     //        _defaultSpeed = _rotSpeed;
     //    }
     //}
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("ChronoZone"))
         {

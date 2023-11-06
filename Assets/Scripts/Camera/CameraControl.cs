@@ -1,20 +1,23 @@
-using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CameraControl : MonoBehaviour
 {
-    [SerializeField] private GameObject _cinemaVM;
+    [SerializeField] Animator _animator;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Start()
     {
-        _cinemaVM.SetActive(false);
+        GameEventSystem.Instance.OnMazeEncounter += ChangeMazeCamera;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void ChangeMazeCamera(bool zoomOut, bool inMaze)
     {
-        _cinemaVM.SetActive(true);
+        _animator.SetBool("zoomOut", zoomOut);
+        _animator.SetBool("inMaze", inMaze);
+    }
+
+    private void OnDisable()
+    {
+        GameEventSystem.Instance.OnMazeEncounter -= ChangeMazeCamera;
     }
 }
