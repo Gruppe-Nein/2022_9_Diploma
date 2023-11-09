@@ -41,8 +41,6 @@ public class CWatchProjectile : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(_deployPosition);
-
         _player = GameObject.FindGameObjectWithTag("Player");
         Physics2D.IgnoreCollision(_player.GetComponent<Collider2D>(), _cCollider);
 
@@ -93,7 +91,7 @@ public class CWatchProjectile : MonoBehaviour
         }
     }
 
-    public void ForceDeployChronoZone(InputAction.CallbackContext context)
+    public void ReturnWatchBeforeDeployingChronoZone(InputAction.CallbackContext context)
     {
         if (context.performed && !_onCooldown)
         {
@@ -153,13 +151,13 @@ public class CWatchProjectile : MonoBehaviour
     {
         _cChannel.onChronoZoneDeploy += DestroyWatch;
         _cChannel.onCheckPointRestore += RestoreWatch;
-        _iEventChannel.onShootButtonPressed += ForceDeployChronoZone;
+        _iEventChannel.onReturnButtonPressed += ReturnWatchBeforeDeployingChronoZone;
     }
 
     private void OnDestroy()
     {
         _cChannel.onChronoZoneDeploy -= DestroyWatch;
         _cChannel.onCheckPointRestore -= RestoreWatch;
-        _iEventChannel.onShootButtonPressed -= ForceDeployChronoZone;
+        _iEventChannel.onReturnButtonPressed -= ReturnWatchBeforeDeployingChronoZone;
     }
 }

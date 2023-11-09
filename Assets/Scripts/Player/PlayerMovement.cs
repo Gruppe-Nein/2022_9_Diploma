@@ -279,7 +279,7 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
             OnJumpUpInput();
         }
     }
-    public void ReturnWatchBefore(InputAction.CallbackContext context)
+    public void ReturnWatch(InputAction.CallbackContext context)
     {
         _inputEventChannel.ReturnButtonPressed(context);
     }
