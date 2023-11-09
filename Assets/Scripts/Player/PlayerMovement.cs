@@ -279,9 +279,9 @@ public class PlayerMovement : MonoBehaviour, ITeleportable
             OnJumpUpInput();
         }
     }
-    public void ShootWatch(InputAction.CallbackContext context)
+    public void ReturnWatchBefore(InputAction.CallbackContext context)
     {
-        _inputEventChannel.ShootButtonPressed(context);
+        _inputEventChannel.ReturnButtonPressed(context);
     }
     public void Pause(InputAction.CallbackContext context)
     {
