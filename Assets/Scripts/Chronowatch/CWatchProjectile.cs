@@ -84,7 +84,7 @@ public class CWatchProjectile : MonoBehaviour
             }
         }
 
-        if(Vector2.Distance(transform.position, _deployPosition) <= 0.5f && !_onCooldown)
+        if(Vector2.Distance(transform.position, _deployPosition) <= 0.2f && !_onCooldown)
         {
             _onCooldown = true;
             DeployChronoZone();
