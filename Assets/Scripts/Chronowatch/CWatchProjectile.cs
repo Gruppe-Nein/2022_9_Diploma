@@ -28,11 +28,19 @@ public class CWatchProjectile : MonoBehaviour
     #region PARAMETERS
     private bool _returnToPlayer;
     private bool _onCooldown;
+    private Vector2 _deployPosition;
     #endregion
+
+    public static Action<CWatchProjectile> Instantiator(Vector2 deployPosition)
+    {
+        return (self) =>
+        {
+            self._deployPosition = deployPosition;
+        };
+    }
 
     void Start()
     {
-        
         _player = GameObject.FindGameObjectWithTag("Player");
         Physics2D.IgnoreCollision(_player.GetComponent<Collider2D>(), _cCollider);
 
@@ -75,15 +83,22 @@ public class CWatchProjectile : MonoBehaviour
                 _cChannel.WatchProjectileDeploy(false);
             }
         }
-    }
 
-    public void ForceDeployChronoZone(InputAction.CallbackContext context)
-    {
-        if (context.performed && !_onCooldown)
+        if(Vector2.Distance(transform.position, _deployPosition) <= 0.2f && !_onCooldown)
         {
             _onCooldown = true;
             DeployChronoZone();
         }
+    }
+
+    public void ReturnWatchBeforeDeployingChronoZone(InputAction.CallbackContext context)
+    {
+        if (context.performed && !_onCooldown)
+        {
+            _onCooldown = true;
+            _cChannel.ChronoZoneDeploy(false);
+            _cChannel.WatchProjectileDeploy(false);
+        }        
     }
 
     private void disableCollisition(GameObject skipObject)
@@ -136,13 +151,13 @@ public class CWatchProjectile : MonoBehaviour
     {
         _cChannel.onChronoZoneDeploy += DestroyWatch;
         _cChannel.onCheckPointRestore += RestoreWatch;
-        _iEventChannel.onShootButtonPressed += ForceDeployChronoZone;
+        _iEventChannel.onReturnButtonPressed += ReturnWatchBeforeDeployingChronoZone;
     }
 
     private void OnDestroy()
     {
         _cChannel.onChronoZoneDeploy -= DestroyWatch;
         _cChannel.onCheckPointRestore -= RestoreWatch;
-        _iEventChannel.onShootButtonPressed -= ForceDeployChronoZone;
+        _iEventChannel.onReturnButtonPressed -= ReturnWatchBeforeDeployingChronoZone;
     }
 }

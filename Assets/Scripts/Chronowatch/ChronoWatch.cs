@@ -39,6 +39,7 @@ public class ChronoWatch : MonoBehaviour
         ChronoWatchAiming();
     }
 
+
     private void ChronoWatchAiming()
     {
         _mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -62,7 +63,9 @@ public class ChronoWatch : MonoBehaviour
         if (context.performed && !_onCooldown)
         {
             _cChannel.WatchProjectileDeploy(true);
-            Instantiate(_watchProjectile, transform.position, _rotationAim);
+            CustomInstantiator<CWatchProjectile> projectile = new CustomInstantiator<CWatchProjectile>(CWatchProjectile.Instantiator(_mousePosition), _watchProjectile);
+            projectile.Instantiate(transform.position, _rotationAim);
+            //Instantiate(_watchProjectile, transform.position, _rotationAim);
         }
     }
 
