@@ -63,6 +63,12 @@ public class MoveOnEnterPlatform : MonoBehaviour
         _rBody2D.velocity = _moveDirection * _platformSpeed; 
     }
 
+    public void setSpeed(float speed)
+    {
+        _speed = speed;
+        _platformSpeed = speed;
+    }
+
     private void CalculateDirection()
     {
         _moveDirection = (_targetPos - transform.position).normalized;
