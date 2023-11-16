@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class CWatchProjectile : MonoBehaviour
 {
@@ -59,7 +60,8 @@ public class CWatchProjectile : MonoBehaviour
 
         _rigibBody = GetComponent<Rigidbody2D>();
         _rigibBody.freezeRotation = true;
-        _rigibBody.velocity = transform.right * _cData.projectileSpeed;
+        
+        //_rigibBody.velocity = transform.right * _cData.projectileSpeed;
 
         _returnToPlayer = false;
         _onCooldown = false;
@@ -69,6 +71,8 @@ public class CWatchProjectile : MonoBehaviour
 
     public void Update()
     {
+        transform.position = Vector3.MoveTowards(transform.position, _deployPosition, _cData.projectileSpeed * Time.deltaTime);
+
         //Returns chronowatch back to its original position
         if (_returnToPlayer)
         {
@@ -82,9 +86,9 @@ public class CWatchProjectile : MonoBehaviour
                 Destroy(gameObject);
                 _cChannel.WatchProjectileDeploy(false);
             }
-        }
+        }        
 
-        if(Vector2.Distance(transform.position, _deployPosition) <= 0.2f && !_onCooldown)
+        if (Vector2.Distance(transform.position, _deployPosition) <= 0.1f && !_onCooldown)
         {
             _onCooldown = true;
             DeployChronoZone();
@@ -117,9 +121,11 @@ public class CWatchProjectile : MonoBehaviour
 
     private void DeployChronoZone()
     {
-        _rigibBody.velocity = Vector2.zero;
+        //_rigibBody.velocity = Vector2.zero;
+        _deployPosition = transform.position;
         _cCollider.enabled = false;
-        _spriteRenderer.sprite = _sprites[1];
+        _spriteRenderer.enabled = false;
+        //_spriteRenderer.sprite = _sprites[1];
         Instantiate(_cZone, transform.position, transform.rotation); 
     }
 
@@ -134,7 +140,8 @@ public class CWatchProjectile : MonoBehaviour
 
     private void DestroyWatch(bool isDeployed)
     {
-        _spriteRenderer.sprite = _sprites[0];
+        _spriteRenderer.enabled = true;
+        //_spriteRenderer.sprite = _sprites[0];
         _returnToPlayer = true;
     }
 

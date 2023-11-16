@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class MoveOnEnterPlatform : MonoBehaviour
 {
@@ -85,15 +81,13 @@ public class MoveOnEnterPlatform : MonoBehaviour
     private void CheckOverlapCircle()
     {
         if (Physics2D.OverlapCircle(_posA.position, _endPointCheckRadius, _groundLayer))
-        {
-            
+        {  
             _targetPos = _posB.position;
             CalculateDirection();
             return;
         }
         if (Physics2D.OverlapCircle(_posB.position, _endPointCheckRadius, _groundLayer))
         {
-           
             _targetPos = _posA.position;
             CalculateDirection();
             return;
