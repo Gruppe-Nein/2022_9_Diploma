@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Deply Chronowatch",
+                    "name": "Return Chronowatch",
                     "type": "Button",
                     "id": "e3ef278e-e1b5-4c2f-99e7-7e298b1a8e9a",
                     "expectedControlType": "Button",
@@ -145,7 +145,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Deply Chronowatch",
+                    "action": "Return Chronowatch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

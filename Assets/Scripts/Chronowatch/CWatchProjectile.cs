@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class CWatchProjectile : MonoBehaviour
 {
@@ -28,11 +29,19 @@ public class CWatchProjectile : MonoBehaviour
     #region PARAMETERS
     private bool _returnToPlayer;
     private bool _onCooldown;
+    private Vector2 _deployPosition;
     #endregion
+
+    public static Action<CWatchProjectile> Instantiator(Vector2 deployPosition)
+    {
+        return (self) =>
+        {
+            self._deployPosition = deployPosition;
+        };
+    }
 
     void Start()
     {
-        
         _player = GameObject.FindGameObjectWithTag("Player");
         Physics2D.IgnoreCollision(_player.GetComponent<Collider2D>(), _cCollider);
 
@@ -51,7 +60,8 @@ public class CWatchProjectile : MonoBehaviour
 
         _rigibBody = GetComponent<Rigidbody2D>();
         _rigibBody.freezeRotation = true;
-        _rigibBody.velocity = transform.right * _cData.projectileSpeed;
+        
+        //_rigibBody.velocity = transform.right * _cData.projectileSpeed;
 
         _returnToPlayer = false;
         _onCooldown = false;
@@ -61,6 +71,8 @@ public class CWatchProjectile : MonoBehaviour
 
     public void Update()
     {
+        transform.position = Vector3.MoveTowards(transform.position, _deployPosition, _cData.projectileSpeed * Time.deltaTime);
+
         //Returns chronowatch back to its original position
         if (_returnToPlayer)
         {
@@ -74,16 +86,23 @@ public class CWatchProjectile : MonoBehaviour
                 Destroy(gameObject);
                 _cChannel.WatchProjectileDeploy(false);
             }
-        }
-    }
+        }        
 
-    public void ForceDeployChronoZone(InputAction.CallbackContext context)
-    {
-        if (context.performed && !_onCooldown)
+        if (Vector2.Distance(transform.position, _deployPosition) <= 0.1f && !_onCooldown)
         {
             _onCooldown = true;
             DeployChronoZone();
         }
+    }
+
+    public void ReturnWatchBeforeDeployingChronoZone(InputAction.CallbackContext context)
+    {
+        if (context.performed && !_onCooldown)
+        {
+            _onCooldown = true;
+            _cChannel.ChronoZoneDeploy(false);
+            _cChannel.WatchProjectileDeploy(false);
+        }        
     }
 
     private void disableCollisition(GameObject skipObject)
@@ -102,9 +121,11 @@ public class CWatchProjectile : MonoBehaviour
 
     private void DeployChronoZone()
     {
-        _rigibBody.velocity = Vector2.zero;
+        //_rigibBody.velocity = Vector2.zero;
+        _deployPosition = transform.position;
         _cCollider.enabled = false;
-        _spriteRenderer.sprite = _sprites[1];
+        _spriteRenderer.enabled = false;
+        //_spriteRenderer.sprite = _sprites[1];
         Instantiate(_cZone, transform.position, transform.rotation); 
     }
 
@@ -119,7 +140,8 @@ public class CWatchProjectile : MonoBehaviour
 
     private void DestroyWatch(bool isDeployed)
     {
-        _spriteRenderer.sprite = _sprites[0];
+        _spriteRenderer.enabled = true;
+        //_spriteRenderer.sprite = _sprites[0];
         _returnToPlayer = true;
     }
 
@@ -136,13 +158,13 @@ public class CWatchProjectile : MonoBehaviour
     {
         _cChannel.onChronoZoneDeploy += DestroyWatch;
         _cChannel.onCheckPointRestore += RestoreWatch;
-        _iEventChannel.onShootButtonPressed += ForceDeployChronoZone;
+        _iEventChannel.onReturnButtonPressed += ReturnWatchBeforeDeployingChronoZone;
     }
 
     private void OnDestroy()
     {
         _cChannel.onChronoZoneDeploy -= DestroyWatch;
         _cChannel.onCheckPointRestore -= RestoreWatch;
-        _iEventChannel.onShootButtonPressed -= ForceDeployChronoZone;
+        _iEventChannel.onReturnButtonPressed -= ReturnWatchBeforeDeployingChronoZone;
     }
 }

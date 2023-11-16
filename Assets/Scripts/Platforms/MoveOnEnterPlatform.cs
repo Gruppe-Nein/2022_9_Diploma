@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class MoveOnEnterPlatform : MonoBehaviour
 {
@@ -63,6 +59,12 @@ public class MoveOnEnterPlatform : MonoBehaviour
         _rBody2D.velocity = _moveDirection * _platformSpeed; 
     }
 
+    public void setSpeed(float speed)
+    {
+        _speed = speed;
+        _platformSpeed = speed;
+    }
+
     private void CalculateDirection()
     {
         _moveDirection = (_targetPos - transform.position).normalized;
@@ -79,15 +81,13 @@ public class MoveOnEnterPlatform : MonoBehaviour
     private void CheckOverlapCircle()
     {
         if (Physics2D.OverlapCircle(_posA.position, _endPointCheckRadius, _groundLayer))
-        {
-            
+        {  
             _targetPos = _posB.position;
             CalculateDirection();
             return;
         }
         if (Physics2D.OverlapCircle(_posB.position, _endPointCheckRadius, _groundLayer))
         {
-           
             _targetPos = _posA.position;
             CalculateDirection();
             return;

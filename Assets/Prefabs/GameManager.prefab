@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5177434966425597806}
   - component: {fileID: 5177434966425597809}
   - component: {fileID: 5177434966425597807}
+  - component: {fileID: 3692675707309842345}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -60,3 +61,17 @@ MonoBehaviour:
   actions: {fileID: -944628639613478452, guid: cbeabe625c10dfa49a6684679391b7c5, type: 3}
   _loadingData: {fileID: 11400000, guid: b2b408d6340cd1f4a99bf9158e59c33a, type: 2}
   _cEventChannel: {fileID: 11400000, guid: b224aa37d8d35674581d1c579baff9c1, type: 2}
+--- !u!114 &3692675707309842345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177434966425597808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9758f8875a99e459747834c1cffdb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainCursorTexture: {fileID: 2800000, guid: b688c504189d81745aa26afdbdf9ce1f, type: 3}
+  _crosshairCursorTexture: {fileID: 2800000, guid: 6345276e1181b8342a8860666e4a858e, type: 3}

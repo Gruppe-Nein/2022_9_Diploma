@@ -7,6 +7,7 @@ public class ChronoZone : MonoBehaviour
 {
     #region COMPONENTS
     private CircleCollider2D _circleCollider;
+    [SerializeField] private SpriteRenderer _openedWatch;
     #endregion
 
     #region SCRIPTABLE OBJECTS
@@ -33,8 +34,13 @@ public class ChronoZone : MonoBehaviour
 
     void Start()
     {
-        
         StartCoroutine(ActiveTime());
+
+        if (transform.localRotation.z > 0.5f || transform.localRotation.z < -0.5f)
+        {
+            _openedWatch.flipX = true;
+            _openedWatch.flipY = true;
+        }
     }
 
     /*private void OnTriggerEnter2D(Collider2D collision)

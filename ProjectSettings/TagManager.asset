@@ -23,6 +23,7 @@ TagManager:
   - BossCogwheel
   - StoneWall
   - SkippableWalls
+  - Maze
   layers:
   - Default
   - TransparentFX

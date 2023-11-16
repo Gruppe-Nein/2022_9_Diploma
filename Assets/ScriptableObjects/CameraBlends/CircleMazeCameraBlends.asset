@@ -25,21 +25,10 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - m_From: CM vcam MazeZoomOut
-    m_To: CM vcam Default
-    m_Blend:
-      m_Style: 1
-      m_Time: 1
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
-  - m_From: CM vcam MazeZoomOut
     m_To: CM vcam Maze
     m_Blend:
       m_Style: 1
-      m_Time: 2
+      m_Time: 1
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []
@@ -50,7 +39,18 @@ MonoBehaviour:
     m_To: CM vcam MazeZoomOut
     m_Blend:
       m_Style: 1
-      m_Time: 2
+      m_Time: 1
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - m_From: CM vcam Default
+    m_To: CM vcam MazeFirstView
+    m_Blend:
+      m_Style: 1
+      m_Time: 3
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []
@@ -58,7 +58,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - m_From: '**ANY CAMERA**'
-    m_To: CM vcam Maze
+    m_To: CM vcam Default
     m_Blend:
       m_Style: 1
       m_Time: 2
