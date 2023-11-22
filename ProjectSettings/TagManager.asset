@@ -61,11 +61,11 @@ TagManager:
   - name: Background
     uniqueID: 2734733587
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: BackgroundObj
     uniqueID: 2155859593
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: WallsGround
     uniqueID: 3920676471
