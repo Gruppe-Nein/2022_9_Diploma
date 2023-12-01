@@ -21,6 +21,7 @@ public class MoveToState : State
         Debug.Log($"current {(brain as RoseBrain).transform.position}");
         Debug.Log($"dest {DestPoint}");*/
         //Debug.Log($"eaten {(brain as RoseBrain).CandyEaten}" );
+        // Going to piggybank
         if (IsMovingToPiggy && (brain as RoseBrain).transform.position == DestPoint && (brain as RoseBrain).CandyEaten)
         {
             (brain as RoseBrain).PiggyDestroyed = false;
@@ -30,10 +31,12 @@ public class MoveToState : State
             //Debug.Log("move return");
             stateMachine.ChangeState((brain as RoseBrain).IdleRoseState);
         }
+        // Coming back
         else if (!IsMovingToPiggy && (brain as RoseBrain).transform.position == DestPoint)
         {
             //Debug.Log("Idle return");
             (brain as RoseBrain).IdleRoseState.SetReturnToStart(false);
+
             stateMachine.ChangeState((brain as RoseBrain).IdleRoseState);
         }
     }

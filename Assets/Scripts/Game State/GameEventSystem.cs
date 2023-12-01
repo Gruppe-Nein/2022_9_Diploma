@@ -18,7 +18,7 @@ public class GameEventSystem : MonoBehaviour
     #region PARAMETERS
     [SerializeField] private GameData _gameData;
     private ControlBindings _cRebinds;
-
+    
 
     #endregion
 
@@ -56,6 +56,7 @@ public class GameEventSystem : MonoBehaviour
     #endregion
 
     public event Action<GameObject> OnPiggybankDestroy;
+    public event Action OnRoseReturnToStart;
     public event Action<bool, bool> OnMazeEncounter;
     public event Action<bool> OnMazeFirstView;
 
@@ -67,9 +68,15 @@ public class GameEventSystem : MonoBehaviour
 
     public void PiggybankDestroy(GameObject piggyBank)
     {
-        piggyBank.SetActive(false);
+        //lastPiggybank = piggyBank;
+        //piggyBank.SetActive(false);
 
         OnPiggybankDestroy?.Invoke(piggyBank);
+    }
+
+    public void RoseReturnToStart()
+    {
+        OnRoseReturnToStart?.Invoke();
     }
 
     public void MazeEncounter(bool zoomOut, bool inMaze)
