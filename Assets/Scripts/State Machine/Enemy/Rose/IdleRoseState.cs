@@ -8,11 +8,24 @@ public class IdleRoseState : State
     {
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        // respawn piggybank if cog not destroyed
+        if (!ReturnToStart)
+        {
+            Debug.Log("!ReturnToStart");
+            (brain as RoseBrain).StartPositionReturn();
+        }
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        //Debug.Log("Idle");
+
         PiggybankDestroyed = (brain as RoseBrain).PiggyDestroyed;
+        // On platform
         if (PiggybankDestroyed)
         {
             if((brain as RoseBrain).Piggybank.transform.position.x > (brain as RoseBrain).transform.position.x)
@@ -22,7 +35,8 @@ public class IdleRoseState : State
                 //Debug.Log((brain as RoseBrain).Piggybank.transform.position);
                 (brain as RoseBrain).MoveToRightState.SetIsMovingToPiggy(true);
                 stateMachine.ChangeState((brain as RoseBrain).MoveToRightState);
-            }else if((brain as RoseBrain).Piggybank.transform.position.x < (brain as RoseBrain).transform.position.x)
+            }
+            else if((brain as RoseBrain).Piggybank.transform.position.x < (brain as RoseBrain).transform.position.x)
             {
                 //Debug.Log("Idle move to pig LEFT");
                 (brain as RoseBrain).MoveToLeftState.SetDestPoint((brain as RoseBrain).Piggybank.transform.position);
@@ -30,9 +44,8 @@ public class IdleRoseState : State
                 (brain as RoseBrain).MoveToLeftState.SetIsMovingToPiggy(true);
                 stateMachine.ChangeState((brain as RoseBrain).MoveToLeftState);
             }
-
-
         }
+        // on piggybank
         else if (ReturnToStart)
         {
             if ((brain as RoseBrain).rosePlatformPosition.transform.position.x > (brain as RoseBrain).transform.position.x)
@@ -49,7 +62,6 @@ public class IdleRoseState : State
                 (brain as RoseBrain).MoveToLeftState.SetIsMovingToPiggy(false);
                 stateMachine.ChangeState((brain as RoseBrain).MoveToLeftState);
             }
-
             //Debug.Log("Idle move to start");
             //(brain as RoseBrain).MoveToState.SetDestPoint((brain as RoseBrain).StartPos);
            /* (brain as RoseBrain).MoveToState.SetDestPoint((brain as RoseBrain).rosePlatformPosition.transform.position);

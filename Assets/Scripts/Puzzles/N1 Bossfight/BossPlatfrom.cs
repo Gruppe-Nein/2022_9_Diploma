@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class BossPlatfrom : MonoBehaviour
 {
-    private List<GameObject> cogwheels = new List<GameObject>();
+    [HideInInspector] public List<GameObject> cogwheels = new List<GameObject>();
     [SerializeField] RoseBrain _rose;
     private bool _cogIsActive;
 

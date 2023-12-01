@@ -18,6 +18,7 @@ public class RoseBrain : EnemyBrain
     [HideInInspector] public bool PiggyDestroyed;
     [HideInInspector] public bool CandyEaten;
     [HideInInspector] public GameObject Piggybank;
+    //[SerializeField] private GameObject platform;
     //[HideInInspector] public Vector3 StartPos;
 
 
@@ -53,6 +54,10 @@ public class RoseBrain : EnemyBrain
         Piggybank = obj;
     }
 
+    public void StartPositionReturn()
+    {
+        GameEventSystem.Instance.RoseReturnToStart();
+    }
     void Update()
     {        
         stateMachine.CurrentState.HandleInput();
@@ -62,5 +67,4 @@ public class RoseBrain : EnemyBrain
     {
         stateMachine.CurrentState.PhysicsUpdate();
     }
-
 }
