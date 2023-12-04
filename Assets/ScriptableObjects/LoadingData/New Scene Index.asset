@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8413286cfadcf7e47a8044b271de819c, type: 3}
   m_Name: New Scene Index
   m_EditorClassIdentifier: 
-  levelIndex: 7
+  levelIndex: 6
