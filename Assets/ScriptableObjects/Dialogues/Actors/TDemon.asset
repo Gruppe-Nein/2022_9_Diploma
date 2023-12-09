@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TDemon
   m_EditorClassIdentifier: 
   _actor: Time Demon
-  _actorImage: {fileID: 21300000, guid: ea90a70d5fc054a4fa81d95779201dbc, type: 3}
+  _actorImage: {fileID: 21300000, guid: 43bbec7d4e820db47aead727c532fbf9, type: 3}
