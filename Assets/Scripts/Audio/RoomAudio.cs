@@ -11,18 +11,6 @@ public class RoomAudio : MonoBehaviour
     #region LOCAL VARIABLES
 
     #endregion
-    #region SOUND_ENABLE/DISABLE
-
-    #endregion
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
