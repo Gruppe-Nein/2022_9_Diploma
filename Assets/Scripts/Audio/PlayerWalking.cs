@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 public class PlayerWalking : MonoBehaviour
 {
     #region REFERENCES
-    public AudioSource playerFootsteps;
-    public AudioSource playerJumping;
-    public AudioSource playerLanding;
-    public PlayerMovement playerMovement;
-
+    [SerializeField] AudioSource playerFootsteps;
+    [SerializeField] AudioSource playerJumping;
+    [SerializeField] AudioSource playerLanding;
+    [SerializeField] AudioSource playerDamage;
+    [SerializeField] PlayerMovement playerMovement;
     #endregion
 
     #region INPUT
@@ -20,6 +20,7 @@ public class PlayerWalking : MonoBehaviour
     private Vector2 _moveInput;
     private float landingSoundDelay = 0.5f;
     #endregion
+
     private void Start()
     {
         PlayerMovement playerMovement = GetComponent<PlayerMovement>();
@@ -37,8 +38,6 @@ public class PlayerWalking : MonoBehaviour
             playerFootsteps.enabled = false;
         }
         
-        
-
         if (playerMovement.GetIsJumping && !playerMovement.GetIsGrounded)
         {
            hasJumped = true;
