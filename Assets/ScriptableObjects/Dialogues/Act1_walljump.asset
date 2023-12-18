@@ -25,8 +25,7 @@ MonoBehaviour:
     _line: Ok, let's do it... How do I do it?
   - _actor: {fileID: 11400000, guid: e251fd8280ce7724d8deba7517d9c2a0, type: 2}
     _line: You jump onto one wall then you keep holding onto the wall. Then you jump
-      onto the other wall. Repeat the process. Jump onto one wall then jump onto
-      the other and keep holding onto it.
+      onto the other wall. Repeat the process.
   - _actor: {fileID: 11400000, guid: bfe4c5334aff16f479ab373fb42a8483, type: 2}
     _line: I jump onto one wall and then onto another and so on.
   - _actor: {fileID: 11400000, guid: e251fd8280ce7724d8deba7517d9c2a0, type: 2}
