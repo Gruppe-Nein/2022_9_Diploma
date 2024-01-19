@@ -7,5 +7,6 @@ public enum GameState
     Gameplay,
     Pause,
     Dialogue,
-    NewLevel
+    NewLevel,
+    Credits
 }
