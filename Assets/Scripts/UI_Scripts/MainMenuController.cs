@@ -108,6 +108,11 @@ public class MainMenuController : MonoBehaviour
         //It doesn't work in Editor mode.
         Application.Quit();
     }
+    public void LoadCreditsScene()
+    {
+        int creditsSceneIndex = 8;
+        SceneManager.LoadScene(creditsSceneIndex);
+    }
 
     private enum MenuCounter
     {
