@@ -3,15 +3,15 @@
   <_canTakeDamage>true</_canTakeDamage>
   <_iFramesDuration>2</_iFramesDuration>
   <_numberOfFlashes>5</_numberOfFlashes>
-  <_playerCurrentHealth>1</_playerCurrentHealth>
+  <_playerCurrentHealth>2</_playerCurrentHealth>
   <_playerMaxHealth>0</_playerMaxHealth>
   <PlayerPosition>
-    <x>0</x>
-    <y>0</y>
+    <x>-15.870657</x>
+    <y>-13.9147682</y>
     <z>0</z>
   </PlayerPosition>
   <SceneToLoad>6</SceneToLoad>
   <StateToLoad>Gameplay</StateToLoad>
-  <GameDifficulty>Normal</GameDifficulty>
-  <PlayerHealth>1</PlayerHealth>
+  <GameDifficulty>Easy</GameDifficulty>
+  <PlayerHealth>2</PlayerHealth>
 </GameData>

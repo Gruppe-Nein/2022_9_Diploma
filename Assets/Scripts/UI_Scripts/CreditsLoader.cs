@@ -7,6 +7,7 @@ public class CreditsLoader : MonoBehaviour
 {
     public void LoadMainMenu()
     {
+        Debug.Log("Loading Main Menu");
         SceneManager.LoadScene(0);
     }
 }

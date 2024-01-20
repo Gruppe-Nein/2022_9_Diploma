@@ -258,23 +258,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 200021651}
   m_CullTransparentMesh: 1
---- !u!1 &275833838 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5177434966425597808, guid: be20e31ff1089f44e9f5a54c559ffcdf, type: 3}
-  m_PrefabInstance: {fileID: 1935394835}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &275833839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275833838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84fb09f4ba5247c41bedab3e8d1db4a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &376566290
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +651,7 @@ GameObject:
   - component: {fileID: 1572752089}
   - component: {fileID: 1572752088}
   - component: {fileID: 1572752087}
+  - component: {fileID: 1572752090}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -740,10 +724,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 275833839}
-        m_TargetAssemblyTypeName: CreditsLoader, Assembly-CSharp
-        m_MethodName: LoadMainMenu
-        m_Mode: 1
+      - m_Target: {fileID: 1572752090}
+        m_TargetAssemblyTypeName: MainMenuLoader, Assembly-CSharp
+        m_MethodName: LoadSceneByIndex
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -790,6 +774,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572752085}
   m_CullTransparentMesh: 1
+--- !u!114 &1572752090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572752085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111e1151b56c59d4c9a17488f3204d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1700248322
 GameObject:
   m_ObjectHideFlags: 0
