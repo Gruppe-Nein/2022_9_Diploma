@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class TriggerTextPopup : MonoBehaviour
 {
-    public TMP_Text textField;
+    public GameObject TextObject;
     private Animator _textAnimator;
     private void Start()
     {
-        _textAnimator = textField.GetComponent<Animator>();
+        _textAnimator = TextObject.GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
