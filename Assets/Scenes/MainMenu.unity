@@ -571,6 +571,7 @@ MonoBehaviour:
   _difficultyMenu: {fileID: 1384855448}
   _loadingData: {fileID: 11400000, guid: b2b408d6340cd1f4a99bf9158e59c33a, type: 2}
   _sceneIndexes:
+  - {fileID: 11400000, guid: 8649ee2c1c5e0944b896f9c2c10b9118, type: 2}
   - {fileID: 11400000, guid: 9dff90dd4bb994d49917f0bd88257615, type: 2}
 --- !u!114 &176549819
 MonoBehaviour:
