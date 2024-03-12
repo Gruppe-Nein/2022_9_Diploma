@@ -1,3 +1,5 @@
+In summary, Project Chronos is a 2D game that combines puzzle-platforming with the twist of time manipulation. This design brings a fresh perspective to the established gaming genre and provides an enhanced player experience through puzzles that revolve around the concept of time-stopping. At the core of the gameplay and player experience is the ability to create a time-stopping chrono zone. This mechanic presents the player with challenging puzzles that require creative solutions and leads to the enhanced player experience.
+
 Team Number: 9
 ---
 Diploma Title in Polish:
